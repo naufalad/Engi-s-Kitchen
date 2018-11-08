@@ -15,7 +15,10 @@
 	}Player;
 
 	static Player Pemain;
-	static JAM Savetime;
+	static JAM RealTime;
+	//bakal disesuain sama real time, buat dipake di savegame
+	//bakalan NextNDetik mulu tiap program berjalan(kecuali ga harus real time, kalo ga harus ntar bisa diconvert dr lama main)
+
 	//static TabString Pesanan;
 	//ubah array.h buat orderan, ElType = String(atau mesin kata?)
 
@@ -44,7 +47,20 @@
 
 	void ExitMessage(boolean SaveGame);
 	//ntar bakal dipake di command exit sama exitnya main menu, dia bakal nampilin message kalo keluar game dan bakalan ngesave kalo savegamenya true
+	//tampilin credit pembuat game
+	/*	printf("Kelas K-1\n");
+	printf("Kelompok Warteg Bahari\n");
+	printf("Bimo Adityarahman Wiraputra/13517004\n");
+	printf("Ricky Yuliawan Pohan/13517025\n");
+	printf("Ahmad Rizqee Nurhani/13517058\n");
+	printf("Naufal Aditya Dirgandhavi/13517064\n");
+	printf("Ahmad Rizal Alifio/13517076\n\n");*/
+	
 	void TampilanProgramUtama();
 	//ntar bakal nampilin program utamanya
+	void SaveFile();
+	//bakal ngesave ke file eksternal dgn format yg di tampilan
+	void LoadFile();
+	//bakal dipake sama main menu yg Load game
 
 #endif

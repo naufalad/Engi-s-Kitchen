@@ -10,13 +10,7 @@ int main()
 	boolean StartGame = false;
 	
 	printf("===============SELAMAT DATANG DI ENGI'S KITCHEN EXPANSION!===============\n\n");
-	printf("Kelas K-1\n");
-	printf("Kelompok Warteg Bahari\n");
-	printf("Bimo Adityarahman Wiraputra/13517004\n");
-	printf("Ricky Yuliawan Pohan/13517025\n");
-	printf("Ahmad Rizqee Nurhani/13517058\n");
-	printf("Naufal Aditya Dirgandhavi/13517064\n");
-	printf("Ahmad Rizal Alifio/13517076\n\n");
+
 
 	do{
 		printf("MAIN MENU : \n");
@@ -50,8 +44,7 @@ int main()
 			ExitGame(false);
 			break;
 		
-		StartGame = true;
-		
+				
 	}while(StartGame == false);
 	//StartGame udh true
 	printf("\nSelamat datang, Chef.\n\n");
@@ -59,6 +52,12 @@ int main()
 	printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n");
 	printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n");
 	
+	//do{ TampilanProgramUtama() }while command!=Exit
+	/*if command == exit
+		mau disave?
+		if y ExitGame(true)
+		else ExitGame(false)
+	*/
 
 
 	return 0;
