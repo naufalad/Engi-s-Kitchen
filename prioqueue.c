@@ -13,22 +13,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-boolean IsEmpty (Queue Q)
+boolean IsEmptyQueue (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
     return Head(Q)==Nil && Tail(Q)==Nil;
     }
-boolean IsFull (Queue Q)
+boolean IsFullQueue (Queue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
+/* yaitu mengandung elemen sebanyak MaxElm */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return NBElmt(Q)==MaxEl(Q);
+    return NBElmt(Q)==MaxElm(Q);
     }
-int NBElmt (Queue Q)
+int NBElmtQueue (Queue Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
     {
     /* KAMUS LOKAL */
@@ -41,7 +41,7 @@ int NBElmt (Queue Q)
         {
 		if (Head(Q) > Tail(Q))
             {
-			return (MaxEl(Q) - (Head(Q)-Tail(Q) - 1));
+			return (MaxElm(Q) - (Head(Q)-Tail(Q) - 1));
             }
         else
             {
@@ -51,11 +51,11 @@ int NBElmt (Queue Q)
     }
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max)
+void CreateEmptyQueue (Queue * Q, int Max)
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
+/* atau : jika alokasi gagal, Q kosong dg MaxElm=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
     {
     /* KAMUS LOKAL */
@@ -63,30 +63,30 @@ void CreateEmpty (Queue * Q, int Max)
 	(*Q).T=malloc((Max+1)*sizeof(int));
 	if ((*Q).T == NULL)
         {
-		MaxEl(*Q) = 0;
+		MaxElm(*Q) = 0;
         }
 	else
         {
-		MaxEl(*Q) = Max;
+		MaxElm(*Q) = Max;
         }
 	Head(*Q) = 0;
 	Tail(*Q) = 0;
     }
 
 /* *** Destruktor *** */
-void DeAlokasi(Queue * Q)
+void DeAlokasiQueue(Queue * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+/* F.S. Q menjadi tidak terdefinisi lagi, MaxElm(Q) diset 0 */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
     free((*Q).T);
-	MaxEl(*Q)=0;
+	MaxElm(*Q)=0;
     }
 
 /* *** Primitif Add/Delete *** */
-void Add (Queue * Q, infotype X)
+void AddQueue (Queue * Q, infotypeQueue X)
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer;
@@ -96,13 +96,13 @@ void Add (Queue * Q, infotype X)
     address i;
     address prev;
     boolean cek;
-    infotype Temp;
+    infotypeQueue Temp;
     /* ALGORITMA */
     if (IsEmpty(*Q))
         {
         Head(*Q)=1;
         }
-    Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
+    Tail(*Q) = (Tail(*Q) % MaxElm(*Q)) + 1;
     Elmt(*Q,Tail(*Q))=X;
     i = Tail(*Q);
     prev = Tail(*Q);
@@ -111,7 +111,7 @@ void Add (Queue * Q, infotype X)
         {
         if (prev - 1 == 0)
             {
-            prev=MaxEl(*Q);
+            prev=MaxElm(*Q);
             }
         else
             {
@@ -130,7 +130,7 @@ void Add (Queue * Q, infotype X)
         i = prev;
         }
     }
-void Del (Queue * Q, infotype * X)
+void DelQueue (Queue * Q, infotypeQueue * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
@@ -146,7 +146,7 @@ void Del (Queue * Q, infotype * X)
         }
     else
         {
-		if (Head(*Q)==MaxEl(*Q))
+		if (Head(*Q)==MaxElm(*Q))
             {
 			Head(*Q)=1;
             }
@@ -168,7 +168,7 @@ void PrintQueue (Queue Q)
 */
     {
     /* KAMUS LOKAL */
-    infotype X;
+    infotypeQueue X;
     /* ALGORITMA */
     while (!IsEmpty(Q))
         {
