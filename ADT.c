@@ -90,6 +90,7 @@ void LoadFile();
     fscanf(load, "%d", kitchen);//<matriks kitchen>
     fclose(load);
 
+    //nampilin daftar apa aja yg bisa diload, ntar playernya milih terus ngeload statnya dan diassign ke variabel
 }*/
 //bakal dipake sama main menu yg Load game
 char MatriksToChar(int y){
