@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "jam.h"
+#include <time.h>
 
 
 boolean IsJAMValid(int H, int M, int S){
@@ -211,4 +212,15 @@ long Durasi(JAM Jaw, JAM Jakh){
 	lama = y-x;
 	
 	return lama;
+}
+
+JAM CurrentTime(){
+	time_t rawtime;
+  	JAM jam;
+
+  	time ( &rawtime );
+  	jam = DetikToJAM(rawtime);
+  	jam.HH= GetHour(jam) + 7;
+  	if(GetHour(jam)>23) jam.HH = GetHour(jam) - 24;
+  	return jam;
 }

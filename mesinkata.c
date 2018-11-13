@@ -21,7 +21,7 @@ void IgnoreBlank(){
 }
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang 
-   F.S. : CC ÅÇ BLANK atau CC = MARK */
+   F.S. : CC ÔøΩÔøΩ BLANK atau CC = MARK */
 
 void STARTKATA(){
 	START();
@@ -63,3 +63,24 @@ void SalinKata(){
           CC = BLANK atau CC = MARK; 
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+
+Kata StringToKata (char* s) {
+	int i = 0;
+	Kata K;
+	while (s[i] != '\0' && i < NMax) {
+		++i;
+		K.TabKata[i] = s[i-1];
+	}
+	K.Length = i;
+}
+
+boolean IsEqKata (Kata a, Kata b) {
+	if (a.Length != b.Length) return false;
+	int i;
+	for (i = 1; i <= a.Length; ++i) {
+		if (a.TabKata[i] != b.TabKata[i])
+			return false;
+	}
+	return true;
+}
