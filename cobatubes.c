@@ -1,7 +1,7 @@
 //kemungkinan dari command
 #include "ADT.h"
 void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
-//Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
+//Command ini adalah singkatan dari â€˜Go Upâ€™, sehingga posisi player berpindah ke
 //atas
 {
     /*kamus*/
@@ -33,7 +33,7 @@ void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Ti
     }
 }
 void GD(POINT *pemain,waktu *Time)
-/*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
+/*Command ini adalah singkatan dari â€˜Go Downâ€™, sehingga posisi player berpindah
 ke bawah*/
 {
     /*kamus*/
@@ -65,7 +65,7 @@ ke bawah*/
     }
 }
 void GL(POINT *pemain,waktu *Time)
-/*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi player berpindah
+/*Command ini adalah singkatan dari â€˜Go Leftâ€™, sehingga posisi player berpindah
 ke kiri*/
 {
     /*kamus*/
@@ -97,7 +97,7 @@ ke kiri*/
     }
 }
 void GR(POINT *pemain,waktu *Time)
-/*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi player berpindah
+/*Command ini adalah singkatan dari â€˜Go Rightâ€™, sehingga posisi player berpindah
 kekanan.*/
 {
     /*kamus*/
@@ -134,7 +134,12 @@ void ORDER(POINT pemain,waktu *Time,char[][] *order)//pemain bisa ambil brp bany
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
-
+    /*kamus*/
+    
+    /*algoritma*/
+    if(IsNearTable(pemain))
+    {
+        
 }
 void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
