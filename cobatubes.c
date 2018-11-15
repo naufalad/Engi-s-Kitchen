@@ -137,14 +137,15 @@ dengan pemain*/
     /*kamus*/
     
     /*algoritma*/
-    if(IsNearTable(pemain))
+    if(IsNearTable(pemain))//IsNearTable buat nentuin apakah deket pemain ada table atau nggak
     {
+        
         
 }
 void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
-
+    
 }
 void TAKE();
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
@@ -155,19 +156,44 @@ terdapat di tangan pemain*/
 void CT();
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
-void PLACE();
+void PLACE(POINT pemain,)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
+{
+    /*kamus*/
+    
+    /*algoritma*/
+    if(IsNearTable(pemain)
 void GIVE();
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 void RECIPE();
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
-void SAVE();
+void SAVE()
 /*Command ini digunakan untuk menyimpan state permainan saat ini agar dapat
 dilanjutkan kemudian. Metode interaksi bebas*/
-void LOAD();
+{
+    SaveFile();
+}
+void LOAD()
 /*Command ini digunakan untuk melanjutkan permainan sesuai dengan state yang
 ada pada text file. Metode interaksi bebas*/
-void EXIT();
+{
+    LoadFile();
+}
+void EXIT()
 /*Command ini digunakan untuk keluar dari program.*/
+{
+    /*kamus*/
+    char jawaban;
+    boolean f;
+    /*algoritma*/
+    printf("Apakah file ingin di save sebelum exit?(y/n)\n");
+    scanf("%c",&jawaban);
+    if(jawaban == 'y' || 'Y')
+        f = true;
+    else
+        f = false;
+    ExitMessage(f);
+    exit(0);
+}
