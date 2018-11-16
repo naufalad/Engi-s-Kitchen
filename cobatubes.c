@@ -195,5 +195,6 @@ void EXIT()
     else
         f = false;
     ExitMessage(f);
+    delay(10000);
     exit(0);
 }
