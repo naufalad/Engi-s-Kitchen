@@ -1,5 +1,6 @@
 //kemungkinan dari command
 #include "ADT.h"
+#include "stackt.h"
 void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
@@ -135,33 +136,48 @@ void ORDER(POINT pemain,waktu *Time,char[][] *order)//pemain bisa ambil brp bany
 dengan pemain*/
 {
     /*kamus*/
-    
+
     /*algoritma*/
     if(IsNearTable(pemain))//IsNearTable buat nentuin apakah deket pemain ada table atau nggak
     {
-        
-        
+
+
 }
 void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
-    
+
 }
-void TAKE();
+void TAKE(Stack *Hand,char* bahan)
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
 pemain*/
-void CH();
+{
+  /*kamus*/
+
+  /*Algoritma*/
+  push(Hand,bahan);
+}
+void CH(Stack *Hand)
 /*Command ini digunakan untuk membuang seluruh bahan makanan yang
 terdapat di tangan pemain*/
-void CT();
+{
+  /*kamus*/
+
+  /*Algoritma*/
+  CreateEmpty(Hand);
+}
+void CT(Stack Tray)
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
+{
+  
+}
 void PLACE(POINT pemain,)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
     /*kamus*/
-    
+
     /*algoritma*/
     if(IsNearTable(pemain)
 void GIVE();
