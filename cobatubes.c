@@ -1,6 +1,7 @@
 //kemungkinan dari command
 #include "ADT.h"
 #include "stackt.h"
+#include "bintree.c"
 void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
@@ -131,7 +132,7 @@ kekanan.*/
 }
 
 
-void ORDER(POINT pemain,waktu *Time,char[][] *order)//pemain bisa ambil brp banyak order?
+void ORDER(POINT pemain,List *menu,char[] order)//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
@@ -143,10 +144,15 @@ dengan pemain*/
 
 
 }
-void PUT()
+void PUT(Stack *Hand,Stack *Tray)
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
-
+  /*kamus*/
+  char[] isi;
+  /*Algoritma*/
+  while(!IsEmpty(*Hand))
+    POP(Hand,&isi);
+    Push(Tray,isi);
 }
 void TAKE(Stack *Hand,char* bahan)
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
@@ -166,11 +172,14 @@ terdapat di tangan pemain*/
   /*Algoritma*/
   CreateEmpty(Hand);
 }
-void CT(Stack Tray)
+void CT(Stack *Tray)
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
 {
-  
+  /*kamus*/
+
+  /*Algoritma*/
+  CreateEmpty(Tray);
 }
 void PLACE(POINT pemain,)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
@@ -180,11 +189,14 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 
     /*algoritma*/
     if(IsNearTable(pemain)
-void GIVE();
+void GIVE()
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
-void RECIPE();
+void RECIPE(BinTree resep)
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
+{
+  PrintTree(resep,2);
+}
 void SAVE()
 /*Command ini digunakan untuk menyimpan state permainan saat ini agar dapat
 dilanjutkan kemudian. Metode interaksi bebas*/
