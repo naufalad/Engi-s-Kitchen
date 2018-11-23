@@ -15,6 +15,7 @@
 	#include "stackt.c"
 	#include "prioqueue.h"
 	#include "bintree.h"
+	#include "graph.h"
 
 	typedef struct{
 		Kata nama;
@@ -38,7 +39,7 @@
 	} MejaDapur;
 
 	Player Pemain;
-	JAM RealTime
+	JAM RealTime;
 	//bakal disesuain sama real time, buat dipake di savegame
 	//bakalan NextNDetik mulu tiap program berjalan(kecuali ga harus real time, kalo ga harus ntar bisa diconvert dr lama main)
 
@@ -50,6 +51,9 @@
 	static MATRIKS Ruangan3;
 	static MATRIKS Dapur;
 	//ubah matriks.h buat representasi ruangan, ElType tetep int, tapi kalo kosong=0, Meja=1-4, Player(P) = 5, Kursi kosong(X) = 6, kursi ada(C) = 7, Meja naroh bahan(M) = 8, Tray(T) = 9
+	static Graph Denah;
+
+	
 	static Kata command;
 	//Mesin Karakter + Mesin Kata buat baca informasi player dr file eksternal, informasi peta(skrg lg dimana dll), baca command dr pengguna, sama baca savefile
 

@@ -160,3 +160,7 @@ BinTree assignResep(){
 	PrintTree(P,4);*/
     return P;
 }
+
+void InitDenah () {
+    MakeE
+}
