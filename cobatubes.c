@@ -2,7 +2,7 @@
 #include "ADT.h"
 #include "stackt.h"
 #include "bintree.c"
-void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+void Gu(POINT *pemain,int *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
@@ -34,7 +34,7 @@ void Gu(POINT *pemain,waktu *Time)//pemain adalah lokasi dari pemain saat itu,Ti
         }
     }
 }
-void GD(POINT *pemain,waktu *Time)
+void GD(POINT *pemain,int *Time)
 /*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
 ke bawah*/
 {
@@ -66,7 +66,7 @@ ke bawah*/
         }
     }
 }
-void GL(POINT *pemain,waktu *Time)
+void GL(POINT *pemain,int *Time)
 /*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi player berpindah
 ke kiri*/
 {
@@ -98,7 +98,7 @@ ke kiri*/
         }
     }
 }
-void GR(POINT *pemain,waktu *Time)
+void GR(POINT *pemain,int *Time)
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi player berpindah
 kekanan.*/
 {
@@ -132,7 +132,7 @@ kekanan.*/
 }
 
 
-void ORDER(POINT pemain,List *menu,char[] order)//pemain bisa ambil brp banyak order?
+void ORDER(POINT pemain,List *menu,Kata order)//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
@@ -148,13 +148,15 @@ void PUT(Stack *Hand,Stack *Tray)
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
   /*kamus*/
-  char[] isi;
+  Kata isi;
   /*Algoritma*/
   while(!IsEmpty(*Hand))
+  {
     POP(Hand,&isi);
     Push(Tray,isi);
+  }
 }
-void TAKE(Stack *Hand,char* bahan)
+void TAKE(Stack *Hand,Kata bahan)
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
 pemain*/
 {
@@ -181,17 +183,36 @@ dalam tray*/
   /*Algoritma*/
   CreateEmpty(Tray);
 }
-void PLACE(POINT pemain,)
+void PLACE(POINT pemain,int *customermeja,Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
     /*kamus*/
 
     /*algoritma*/
-    if(IsNearTable(pemain)
-void GIVE()
+    if(IsNearTable(pemain))
+    {
+      if(customermeja == 0)
+      {
+        if(!)
+      }
+    }
+void GIVE(POINT pemain,Stack *foodstack,int *ncustemer,int *money,int *time)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
+{
+  /*kamus*/
+  Kata makanan;
+  /*Algoritma*/
+  if(!IsEmptyStack(*foodstack) && IsNearTable(pemain)&& ncustemer != 0)
+  {
+    POP(foodstack,&makanan);
+    *money = 500*ncustemer;
+    *ncustemer = 0;
+    *time++
+  }
+
+}
 void RECIPE(BinTree resep)
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
 {
