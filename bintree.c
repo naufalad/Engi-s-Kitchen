@@ -237,7 +237,6 @@ void PrintTreeRek (BinTree P, int h, int CLevel)
             printf(" ");
 			}
         printKata(Akar(P));
-        printID(Akar(P));
         if (Left(P) != Nil)
 			{
             PrintTreeRek(Left(P), h, CLevel+1);
