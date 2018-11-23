@@ -9,7 +9,7 @@
 #define NodeMax 200
 
 typedef int indeks; /* indeks baris, kolom */
-typedef boolean ElTypeGraph; 
+typedef int ElTypeGraph; 
 typedef struct { 
 	ElTypeGraph Adj[NodeMax+1][NodeMax+1];
     int Node; /* banyaknya node yg terdefinisi */
@@ -20,20 +20,22 @@ typedef struct {
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
-void MakeGraph (int N, Graph * M); 
-/* Membentuk sebuah MATRIKS "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
-/* I.S. NB dan NK adalah valid untuk memori matriks yang dibuat */
-/* F.S. Matriks M sesuai dengan definisi di atas terbentuk */
+void MakeGraph (int N, Graph * G); 
+/* Membentuk sebuah MATRIKS "kosong" yang siap diisi berukuran N x N di "ujung kiri" memori */
 
 /* *** Selektor *** */
 #define Node(M) (M).Node
 #define Adj(M,i,j) (M).Adj[(i)][(j)]
 
-boolean SearchEdge (int A, int B);
-/* Mengecek apakah A dan B terhubung */
+int SearchEdge (Graph G, int A, int B);
+/* Mengecek jenis koneksi antara A dan B */
 
-void CreateEdge (int A, int B);
-/* Membuat node A dan B terhubung */
+int SearchEdge2 (Graph G, int A, int C);
+/* Mencari node yang terhubung dengan A dengan koneksi C */
+
+
+void CreateEdge (Graph* G, int A, int B, int C);
+/* Membuat node A dan B terhubung dengan kode C */
 
 
 
