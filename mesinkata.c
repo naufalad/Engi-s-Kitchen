@@ -132,13 +132,6 @@ void printKata(Kata kata1)
 	printf("\n");
     }
 
-void printID(Kata kata1)
-    {
-    /* KAMUS LOKAL */
-    /* ALGORITMA */
-	printf("%d", kata1.ID);
-    }
-
 boolean IsKataSama(Kata kata1, Kata kata2)
     {
     //KAMUS LOKAL
@@ -153,7 +146,7 @@ boolean IsKataSama(Kata kata1, Kata kata2)
         valid = false;
     }else{
             for(int i = 0; i < cnt; i++){
-                if(kata1[i] != kata2[i]){
+                if(kata1.TabKata[i] != kata.TabKata2[i]){
                     valid = false;
                 }
             }
