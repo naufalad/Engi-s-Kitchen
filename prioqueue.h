@@ -14,7 +14,7 @@
 /* Definisi elemen dan address */
 typedef struct { int prio;  /* [1..3], prioritas dengan nilai 1..3 (3 adalah prioritas tertinggi) */
                  int info;  /* nilai elemen */
-                 int kesabaran;
+                 int kesabaran ;
                } infotypeQueue;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
@@ -29,7 +29,8 @@ typedef struct { infotypeQueue * T;   /* tabel penyimpan elemen */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
-#define Prio(e)     (e).prio
+#define Prio(e)     (e).prio //janlup diubah
+#define Kesabaran(e)     (e).kesabaran
 #define Info(e)     (e).info
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL

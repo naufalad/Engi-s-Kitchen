@@ -13,7 +13,7 @@ void MakeEmptyArray (TabKata * T)
 }
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabKata T)
+int NbElmtArray (TabKata T)
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
@@ -39,13 +39,13 @@ IdxType GetLastIdx (TabKata T)
   return Neff(T)+IdxMin-1;
 }
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid (TabKata T, IdxType i)
+boolean IsIdxValidArray (TabKata T, IdxType i)
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
 {
   return (i>=GetFirstIdx(T) && i<=MaxNbEl(T));
 }
-boolean IsIdxEff (TabKata T, IdxType i)
+boolean IsIdxEffArray (TabKata T, IdxType i)
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
 {
@@ -84,9 +84,7 @@ void BacaIsi (TabKata * T)
   int i;//iterator
   MakeEmptyArray(T);
   for(i=0;i<n;i++){
-    char temp[20];
-    scanf("%s",&temp);
-    Elmt(*T,IdxMin+i) = StringToKata(temp);
+    Elmt(*T,IdxMin+i) = InputKata();
     Neff(*T)++;
   }
 }
@@ -100,14 +98,13 @@ void BacaIsiTab (TabKata * T)
 {
   int i = IdxMin;//Index
   //baca input
-  char temp[20];
+  Kata temp;
   MakeEmptyArray(T);
-  scanf("%s",&temp);
-  while(temp != -9999 && i<=MaxNbEl(*T)){
-    Elmt(*T,i) = StringToKata(temp);
+  while(IsEqKata(temp, StringToKata("-9999")) && i<=MaxNbEl(*T)){
+    temp = InputKata();
+    Elmt(*T,i) = temp;
     Neff(*T) = i;
     i++;
-    scanf("%s",&temp);
   }
 }
 void TulisIsi (TabKata T)
@@ -130,7 +127,9 @@ void TulisIsi (TabKata T)
     //ada isinya
     int i;//iterator
      for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
-       printf("[%d]%s\n",i,Elmt(T,i));
+       printf("[%d]",i);
+       OutputKata(Elmt(T,i));
+       printf("\n");
      }
   }
 }
@@ -153,10 +152,11 @@ void TulisIsiTab (TabKata T)
     //print elemen ke 1 hingga terakhir-1
     int i;//iterator
     for(i=GetFirstIdx(T);i<GetLastIdx(T);i++){
-      printf("%s,",Elmt(T,i));
+      OutputKata(Elmt(T,i));
     }
     //print elemen terakhir dan siku tutup
-    printf("%s]",Elmt(T,Neff(T)));
+    OutputKata(Elmt(T,Neff(T)));
+    printf("]");
   }
 }
 /* ********** SEARCHING ********** */
@@ -250,7 +250,7 @@ boolean IsSimetris (TabKata T)
     return true;
   }else{
     TabKata putar = InverseTab(T);
-    return Array(T,putar);
+    return (TI(T) == TI(putar));
   }
 }
 
@@ -292,11 +292,8 @@ void DelLastEl (TabKata * T, ElType * X)
 /*      Banyaknya elemen tabel berkurang satu */
 /*      Tabel T mungkin menjadi kosong */
 {
-  if (!Array(*T))
-  {
     *X = Elmt(*T, GetLastIdx(*T));
     Neff(*T) -= 1;
-  }
 }
 void DelEli (TabKata * T, IdxType i, ElType * X)
 /* Menghapus elemen ke-i tabel tanpa mengganggu kontiguitas */
@@ -307,7 +304,7 @@ void DelEli (TabKata * T, IdxType i, ElType * X)
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
 {
-  if (IsIdxEff(*T, i))
+  if (IsIdxEffArray(*T, i))
   {
     *X = Elmt(*T, i);
     IdxType j;//iterator

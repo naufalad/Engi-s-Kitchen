@@ -6,7 +6,7 @@
 
 /* File : prioqueue.c */
 /* Definisi ADT Priority Queue dengan representasi array secara eksplisit dan alokasi dinamik */
-/* Model Implementasi Versi III dengan circular buffer */
+/* MoDelQueue Implementasi Versi III dengan circular buffer */
 /* Elemen queue terurut mengecil berdasarkan elemen prio */
 
 #include "prioqueue.h"
@@ -26,14 +26,14 @@ boolean IsFullQueue (Queue Q)
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return NBElmt(Q)==MaxElm(Q);
+    return NBElmtQueue(Q)==MaxElm(Q);
     }
 int NBElmtQueue (Queue Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    if (IsEmpty(Q))
+    if (IsEmptyQueue(Q))
         {
 		return 0;
         }
@@ -85,7 +85,7 @@ void DeAlokasiQueue(Queue * Q)
 	MaxElm(*Q)=0;
     }
 
-/* *** Primitif Add/Delete *** */
+/* *** Primitif Add/DelQueueete *** */
 void AddQueue (Queue * Q, infotypeQueue X)
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
@@ -98,7 +98,7 @@ void AddQueue (Queue * Q, infotypeQueue X)
     boolean cek;
     infotypeQueue Temp;
     /* ALGORITMA */
-    if (IsEmpty(*Q))
+    if (IsEmptyQueue(*Q))
         {
         Head(*Q)=1;
         }
@@ -139,7 +139,7 @@ void DelQueue (Queue * Q, infotypeQueue * X)
     /* KAMUS LOKAL */
     /* ALGORITMA */
     *X=InfoHead(*Q);
-	if (NBElmt(*Q)==1)
+	if (NBElmtQueue(*Q)==1)
         {
 		Head(*Q)=Nil;
 		Tail(*Q)=Nil;
@@ -170,10 +170,10 @@ void PrintQueue (Queue Q)
     /* KAMUS LOKAL */
     infotypeQueue X;
     /* ALGORITMA */
-    while (!IsEmpty(Q))
+    while (!IsEmptyQueue(Q))
         {
         printf("%d %d\n", Prio(InfoHead(Q)), Info(InfoHead(Q)));
-        Del(&Q,&X);
+        DelQueue(&Q,&X);
         }
     printf("#\n");
     }

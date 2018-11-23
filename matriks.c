@@ -187,9 +187,9 @@ void PKaliKons (MATRIKS * M, ElType K){
 /* F.S. Mengalikan setiap elemen M dengan K */
 
 /* ********** KELOMPOK OPERASI RELASIONAL TERHADAP MATRIKS ********** */
-boolean EQ (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
+boolean EQMatriks (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 	int i, j;	
-	if((GetFirstIdxBrs(M1) == GetFirstIdxBrs(M2))&&(GetLastIdxKol(M1) == GetLastIdxKol(M2))&&(NBElmt(M1)==NBElmt(M2))){
+	if((GetFirstIdxBrs(M1) == GetFirstIdxBrs(M2))&&(GetLastIdxKol(M1) == GetLastIdxKol(M2))&&(NBElmtMatriks(M1)==(NBElmtMatriks(M2)))){
 		for(i=GetFirstIdxBrs(M1);i<=NBrsEff(M1);i++){
 			for(j=GetFirstIdxKol(M1);j<=NKolEff(M1);j++){
 				if(Elmt(M1,i,j)!=Elmt(M2,i,j)) return false;
@@ -199,12 +199,12 @@ boolean EQ (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 	return true;
 }
 	
-/* Mengirimkan true jika M1 = M2, yaitu NBElmt(M1) = NBElmt(M2) dan */
+/* Mengirimkan true jika M1 = M2, yaitu NbElmtMatriks(M1) = NbElmtMatriks(M2) dan */
 /* untuk setiap i,j yang merupakan indeks baris dan kolom M1(i,j) = M2(i,j) */
 /* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
    dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
-boolean NEQ (MATRIKS M1, MATRIKS M2){
-	if(EQ(M1,M2)) return (false);
+boolean NEQMatriks (MATRIKS M1, MATRIKS M2){
+	if(EQMatriks(M1,M2)) return (false);
 	else return(true);
 }
 /* Mengirimkan true jika M1 tidak sama dengan M2 */
@@ -215,7 +215,7 @@ boolean EQSize (MATRIKS M1, MATRIKS M2){
 /* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
 
 /* ********** Operasi lain ********** */
-int NBElmt (MATRIKS M){
+int NBElmtMatriks(MATRIKS M){
 	return(NBrsEff(M)*NKolEff(M));
 }
 /* Mengirimkan banyaknya elemen M */
@@ -272,10 +272,10 @@ boolean IsSparse (MATRIKS M){
 			if(Elmt(M,i,j)!=0) count++;
 		}
 	}
-	if(count*0.1/NBElmt(M) <= 0.05) return true;
+	if(count*0.1/NBElmtMatriks(M) <= 0.05) return true;
 	else return false;
 }
-/* Mengirimkan true jika M adalah matriks sparse: mariks gjarangh dengan definisi: 
+/* Mengirimkan true jika M adalah matriks sparse: mariks ï¿½gjarangï¿½h dengan definisi: 
    hanya maksimal 5% dari memori matriks yang efektif bukan bernilai 0 */ 
 MATRIKS Inverse1 (MATRIKS M){
 	return(KaliKons(M,-1));

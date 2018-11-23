@@ -50,7 +50,7 @@ void MakeEmptyArray (TabKata * T);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabKata T);
+int NbElmtArray (TabKata T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
@@ -68,7 +68,7 @@ IdxType GetLastIdx (TabKata T);
 boolean IsIdxValid (TabKata T, IdxType i);
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean IsIdxEff (TabKata T, IdxType i);
+boolean IsIdxEffArray (TabKata T, IdxType i);
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
 

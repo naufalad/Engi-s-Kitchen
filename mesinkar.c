@@ -10,17 +10,32 @@ boolean EOP;
 static FILE * pita;
 static int retval;
 
-void START() {
+void OPENFILE(char* filename)
+    {
+    /* KAMUS LOKAL */
+    /* ALGORITMA */
+    pita = fopen(filename,"r");
+    if (pita == NULL)
+        {
+        perror("failed: ");
+        }
+    }
+void START(char* filename)
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
    F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
           Jika CC = MARK maka EOP akan menyala (true) */
-
-	/* Algoritma */
-	pita = fopen("pitakar.txt","r");
+    {
+    /* KAMUS LOKAL */
+	/* ALGORITMA */
+    pita = fopen(filename,"r");
+    if (pita == NULL)
+        {
+        perror("failed: ");
+        }
 	ADV();
-}
+    }
 
 void ADV() {
 /* Pita dimajukan satu karakter. 
