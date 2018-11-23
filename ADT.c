@@ -19,8 +19,10 @@ void ExitMessage(boolean SaveGame){
 
 void TampilanProgramUtama(){
     Kata command;
-     printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
-    printf("│%s\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.nama, Pemain.money, Pemain.life, Pemain.time);
+    printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
+    printf("|");
+    OutputKata(Pemain.nama);
+    printf("\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.money, Pemain.life, Pemain.time);
     printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
     printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
@@ -57,11 +59,11 @@ void SaveFile(){
     fprintf(save, "QUEUE : ");
     int i = Head(Antrian);
     while(i!=Nil){
-        fprintf(save, "<%d %d %d>", Elmt(Antrian,i), Prio(Elmt(Antrian,i)), Kesabaran(Elmt(Antrian,i)));
+        fprintf(save, "<%d %d %d>", ElmtQueue(Antrian,i), Prio(ElmtQueue(Antrian,i)), Kesabaran(ElmtQueue(Antrian,i)));
         i++;
     }
     //save food stack
-    infotypeStack X;
+    Kata X;
     while(!IsEmptyStack(Makanan)){
         Pop(Makanan, X);
         for (int i = 1; i <= X.Length; ++i) {

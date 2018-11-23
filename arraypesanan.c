@@ -26,26 +26,26 @@ int MaxNbEl (TabPesanan T)
   return IdxMax-IdxMin+1;
 }
 /* *** Selektor INDEKS *** */
-IdxType GetFirstIdx (TabPesanan T)
+int GetFirstIdx (TabPesanan T)
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T pertama */
 {
   return IdxMin;
 }
-IdxType GetLastIdx (TabPesanan T)
+int GetLastIdx (TabPesanan T)
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T terakhir */
 {
   return Neff(T)+IdxMin-1;
 }
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidArray (TabPesanan T, IdxType i)
+boolean IsIdxValidArray (TabPesanan T, int i)
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
 {
   return (i>=GetFirstIdx(T) && i<=MaxNbEl(T));
 }
-boolean IsIdxEffArray (TabPesanan T, IdxType i)
+boolean IsIdxEffArray (TabPesanan T, int i)
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
 {
@@ -166,48 +166,21 @@ void TulisIsiTab (TabPesanan T)
 }
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-boolean SearchB (TabPesanan T, Kata X)
+boolean SearchArray (TabPesanan T, PesananID X)
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Memakai Skema search DENGAN boolean */
 {
   boolean Found = false;
-  IdxType i = GetFirstIdx(T);//iterator
+  int i = GetFirstIdx(T);//iterator
   while(i<=GetLastIdx(T) && !(Found)){
-    if(IsEqKata(Elmt(T,i).Menu,X)){
+    if(IsEqKata(Elmt(T,i).Menu,X.Menu) && Elmt(T,i).MejaID == X.MejaID){
       Found = true;
     }else{
       i++;
     }
   }
   return Found;
-}
-boolean SearchSentinel (TabPesanan T, Kata X)
-/* Search apakah ada elemen tabel T yang bernilai X */
-/* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
-/* dengan metoda sequential search dengan sentinel */
-/* Untuk sentinel, manfaatkan indeks ke-0 dalam definisi array dalam Bahasa C
-   yang tidak dipakai dalam definisi tabel */
-{
-  boolean ketemu = false;
-  IdxType i = GetLastIdx(T);//iterator
-  //set sentinel
-  Elmt(T,0).Menu = X;
-  //cari mundur dari belakang
-  while(!ketemu){
-    if(IsEqKata(Elmt(T,i).Menu,X)){
-      //ketemu
-      ketemu = true;
-    }else{
-      //cari lagi
-      i--;
-    }
-  }
-  if(i==0){
-    return false;
-  }else{
-    return true;
-  }
 }
 
 /* ********** OPERASI LAIN ********** */
@@ -217,7 +190,7 @@ void CopyTab (TabPesanan Tin, TabPesanan * Tout)
 /* Proses : Menyalin isi Tin ke Tout */
 {
   Neff(*Tout) = Neff(Tin);
-  IdxType i;//Iterator
+  int i;//Iterator
   for(i=GetFirstIdx(Tin);i<=GetLastIdx(Tin);i++){
     Elmt(*Tout,i) = Elmt(Tin,i);
   }
@@ -235,7 +208,7 @@ TabPesanan InverseTab (TabPesanan T)
     return temp;//karena temp adalah tabel kosong
   }else{
     //isi temp secara terbalik
-    IdxType i;//iterator
+    int i;//iterator
     for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
       Elmt(temp,Neff(temp)-i+GetFirstIdx(T)) = Elmt(T,i);
     }
@@ -261,7 +234,7 @@ boolean IsSimetris (TabPesanan T)
 
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl (TabPesanan * T, ElType X)
+void AddAsLastEl (TabPesanan * T, PesananID X)
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
@@ -269,7 +242,7 @@ void AddAsLastEl (TabPesanan * T, ElType X)
   Neff(*T)++;
   Elmt(*T,GetLastIdx(*T)) = X;
 }
-void AddEli (TabPesanan * T, ElType X, IdxType i)
+void AddEli (TabPesanan * T, PesananID X, int i)
 /* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas
    terhadap elemen yang sudah ada */
 /* I.S. Tabel tidak kosong dan tidak penuh */
@@ -278,7 +251,7 @@ void AddEli (TabPesanan * T, ElType X, IdxType i)
 /* Proses : Geser elemen ke-i+1 s.d. terakhir */
 /*          Isi elemen ke-i dengan X */
 {
-  IdxType j;
+  int j;
   Neff(*T) ++;
   j = GetLastIdx(*T)-1;
   while(j >= i)
@@ -290,7 +263,7 @@ void AddEli (TabPesanan * T, ElType X, IdxType i)
   Elmt(*T, i) = X;
 }
 /* ********** MENGHAPUS ELEMEN ********** */
-void DelLastEl (TabPesanan * T, ElType * X)
+void DelLastEl (TabPesanan * T, PesananID * X)
 /* Proses : Menghapus elemen terakhir tabel */
 /* I.S. Tabel tidak kosong */
 /* F.S. X adalah nilai elemen terakhir T sebelum penghapusan, */
@@ -300,7 +273,7 @@ void DelLastEl (TabPesanan * T, ElType * X)
     *X = Elmt(*T, GetLastIdx(*T));
     Neff(*T) -= 1;
 }
-void DelEli (TabPesanan * T, IdxType i, ElType * X)
+void DelEli (TabPesanan * T, int i, PesananID * X)
 /* Menghapus elemen ke-i tabel tanpa mengganggu kontiguitas */
 /* I.S. Tabel tidak kosong, i adalah indeks efektif yang valid */
 /* F.S. X adalah nilai elemen ke-i T sebelum penghapusan */
@@ -312,7 +285,7 @@ void DelEli (TabPesanan * T, IdxType i, ElType * X)
   if (IsIdxEffArray(*T, i))
   {
     *X = Elmt(*T, i);
-    IdxType j;//iterator
+    int j;//iterator
     for (j=i; j <= GetLastIdx(*T); j++)
     {
       Elmt(*T, j) = Elmt(*T, j+1);
