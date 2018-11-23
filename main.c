@@ -28,6 +28,7 @@ int main(){
 			case 1 :
 			printf("Masukkan nama anda(Max 6 huruf) : ");
 			Pemain.nama=InputKata();
+			init_all();
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n");
 			break;
 			
@@ -57,6 +58,8 @@ int main(){
 		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n");
 		printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n");
 		
+
+		//MAIN WHILE LOOP
 		do{ 
 			TampilanProgramUtama();
 			if(IsEqKata(command, StringToKata("GU"))) GU();

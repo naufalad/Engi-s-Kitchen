@@ -348,3 +348,10 @@ void Transpose (MATRIKS * M){
 }
 /* I.S. M terdefinisi dan IsBujursangkar(M) */
 /* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
+void MakeEmptyMatriks(MATRIKS *M){
+	for(int i=1;i<=NBrsEff(*M);i++){
+		for(int j=i;j<=NKolEff(*M);j++){
+			Elmt(*M,i,j)= 0;
+		}
+	}
+}
