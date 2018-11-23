@@ -75,7 +75,8 @@ BinTree BuildBalanceTree(int n)
 void BuildTree(BinTree *P, int* idx)
     {
     /* KAMUS LOKAL */
-    Kata kata1; int i;
+    Kata Text;
+    int i;
     /* ALGORITMA */
     ADV();
     if (CC == ')')
@@ -86,7 +87,7 @@ void BuildTree(BinTree *P, int* idx)
         {
         Allocate(P);
         Text.Length = 0;
-        i = 0;
+        i = 1;
         while ((CC !='(')&&(CC!=')'))
             {
             Text.TabKata[i] = CC;
@@ -297,10 +298,23 @@ A
     E
 */
     {
-    /* KAMUS LOKAL */
-    /* ALGORITMA */
-    PrintTreeRek (P,h,1);
+    if (!IsTreeEmpty(P)){
+        OutputKata(Akar(P));
+        printf("\n");
+        if (!IsTreeEmpty(Left(P))){
+            for (int i = 1; i <= h; i ++){
+                printf(" "); 
+            }
+            PrintTree(Left(P),h+h);
+        }
+        if (!IsTreeEmpty(Right(P))){
+            for (int i = 1; i <= h; i ++){
+                printf(" "); 
+            }
+            PrintTree(Right(P),h+h);
+        }
     }
+}
 
 /* *** Searching *** */
 boolean SearchTree(BinTree P, Kata X)
