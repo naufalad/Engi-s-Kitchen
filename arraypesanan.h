@@ -69,7 +69,7 @@ IdxType GetLastIdx (TabPesanan T);
 /* Mengirimkan indeks elemen T terakhir */
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidArray (TabPesanan T, IdxType i);
+boolean IsIdxValid (TabPesanan T, IdxType i);
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
 boolean IsIdxEffArray (TabPesanan T, IdxType i);

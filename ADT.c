@@ -17,30 +17,35 @@ void ExitMessage(boolean SaveGame){
 
 //ntar bakal dipake di command exit sama exitnya main menu, dia bakal nampilin message kalo keluar game dan bakalan ngesave kalo savegamenya true
 
-void TampilanProgramUtama(){
+/*void TampilanProgramUtama(Graf Posisi){
+    Matriks Ruangan;
     Kata command;
+    if(Posisi==1) Ruangan=Ruangan1;
+    else if(Posisi==2) Ruangan=Ruangan2;
+    else if(Posisi==3) Ruangan=Ruangan3;
+    else if(Posisi==4) Ruangan=Dapur;
      printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
     printf("│%s\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.nama, Pemain.money, Pemain.life, Pemain.time);
     printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
-    printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
+    printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(Ruangan[1][1]), MatriksToChar(Ruangan[1][2]), MatriksToChar(Ruangan[1][3]), MatriksToChar(Ruangan[1][4]), MatriksToChar(Ruangan[1][5]), MatriksToChar(Ruangan[1][6]), MatriksToChar(Ruangan[1][7]), MatriksToChar(Ruangan[1][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│2               │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 2,1)), MatriksToChar(ElmtMatriks(Tampilan,2,2)), MatriksToChar(ElmtMatriks(Tampilan,2,3)), MatriksToChar(ElmtMatriks(Tampilan,2,4)), MatriksToChar(ElmtMatriks(Tampilan,2,5)), MatriksToChar(ElmtMatriks(Tampilan,2,6)), MatriksToChar(ElmtMatriks(Tampilan,2,7)), MatriksToChar(ElmtMatriks(Tampilan,2,8)));
+    printf("│2               │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[2][1]), MatriksToChar(Ruangan[2][2]), MatriksToChar(Ruangan[2][3]), MatriksToChar(Ruangan[2][4]), MatriksToChar(Ruangan[2][5]), MatriksToChar(Ruangan[2][6]), MatriksToChar(Ruangan[2][7]), MatriksToChar(Ruangan[2][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 3,1)), MatriksToChar(ElmtMatriks(Tampilan,3,2)), MatriksToChar(ElmtMatriks(Tampilan,3,3)), MatriksToChar(ElmtMatriks(Tampilan,3,4)), MatriksToChar(ElmtMatriks(Tampilan,3,5)), MatriksToChar(ElmtMatriks(Tampilan,3,6)), MatriksToChar(ElmtMatriks(Tampilan,3,7)), MatriksToChar(ElmtMatriks(Tampilan,3,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[3][1]), MatriksToChar(Ruangan[3][2]), MatriksToChar(Ruangan[3][3]), MatriksToChar(Ruangan[3][4]), MatriksToChar(Ruangan[3][5]), MatriksToChar(Ruangan[3][6]), MatriksToChar(Ruangan[3][7]), MatriksToChar(Ruangan[3][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 4,1)), MatriksToChar(ElmtMatriks(Tampilan,4,2)), MatriksToChar(ElmtMatriks(Tampilan,4,3)), MatriksToChar(ElmtMatriks(Tampilan,4,4)), MatriksToChar(ElmtMatriks(Tampilan,4,5)), MatriksToChar(ElmtMatriks(Tampilan,4,6)), MatriksToChar(ElmtMatriks(Tampilan,4,7)), MatriksToChar(ElmtMatriks(Tampilan,4,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[4][1]), MatriksToChar(Ruangan[4][2]), MatriksToChar(Ruangan[4][3]), MatriksToChar(Ruangan[4][4]), MatriksToChar(Ruangan[4][5]), MatriksToChar(Ruangan[4][6]), MatriksToChar(Ruangan[4][7]), MatriksToChar(Ruangan[4][8]));
     printf("├────────────────┼───┼───┼───┼───┼───┼───┼───┼───┼────────────┤\n");
-    printf("│Order           │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Hand        │\n", MatriksToChar(ElmtMatriks(Tampilan, 5,1)), MatriksToChar(ElmtMatriks(Tampilan,5,2)), MatriksToChar(ElmtMatriks(Tampilan,5,3)), MatriksToChar(ElmtMatriks(Tampilan,5,4)), MatriksToChar(ElmtMatriks(Tampilan,5,5)), MatriksToChar(ElmtMatriks(Tampilan,5,6)), MatriksToChar(ElmtMatriks(Tampilan,5,7)), MatriksToChar(ElmtMatriks(Tampilan,5,8)));
+    printf("│Order           │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Hand        │\n", MatriksToChar(Ruangan[5][1]), MatriksToChar(Ruangan[5][2]), MatriksToChar(Ruangan[5][3]), MatriksToChar(Ruangan[5][4]), MatriksToChar(Ruangan[5][5]), MatriksToChar(Ruangan[5][6]), MatriksToChar(Ruangan[5][7]), MatriksToChar(Ruangan[5][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 6,1)), MatriksToChar(ElmtMatriks(Tampilan,6,2)), MatriksToChar(ElmtMatriks(Tampilan,6,3)), MatriksToChar(ElmtMatriks(Tampilan,6,4)), MatriksToChar(ElmtMatriks(Tampilan,6,5)), MatriksToChar(ElmtMatriks(Tampilan,6,6)), MatriksToChar(ElmtMatriks(Tampilan,6,7)), MatriksToChar(ElmtMatriks(Tampilan,6,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[6][1]), MatriksToChar(Ruangan[6][2]), MatriksToChar(Ruangan[6][3]), MatriksToChar(Ruangan[6][4]), MatriksToChar(Ruangan[6][5]), MatriksToChar(Ruangan[6][6]), MatriksToChar(Ruangan[6][7]), MatriksToChar(Ruangan[6][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 7,1)), MatriksToChar(ElmtMatriks(Tampilan,7,2)), MatriksToChar(ElmtMatriks(Tampilan,7,3)), MatriksToChar(ElmtMatriks(Tampilan,7,4)), MatriksToChar(ElmtMatriks(Tampilan,7,5)), MatriksToChar(ElmtMatriks(Tampilan,7,6)), MatriksToChar(ElmtMatriks(Tampilan,7,7)), MatriksToChar(ElmtMatriks(Tampilan,7,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[7][1]), MatriksToChar(Ruangan[7][2]), MatriksToChar(Ruangan[7][3]), MatriksToChar(Ruangan[7][4]), MatriksToChar(Ruangan[7][5]), MatriksToChar(Ruangan[7][6]), MatriksToChar(Ruangan[7][7]), MatriksToChar(Ruangan[7][8]));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(Ruangan[8][1]), MatriksToChar(Ruangan[8][2]), MatriksToChar(Ruangan[8][3]), MatriksToChar(Ruangan[8][4]), MatriksToChar(Ruangan[8][5]), MatriksToChar(Ruangan[8][6]), MatriksToChar(Ruangan[8][7]), MatriksToChar(Ruangan[8][8]));
     printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴────────────┘\n");
     printf(" Command : ");
     command= InputKata();
-}
+}*/
 //ntar bakal nampilin program utamanya
 void SaveFile(){
     FILE *save;
@@ -147,9 +152,6 @@ char MatriksToChar(int X){
         case 9 :
         y = 'T';
         break;
-        case 10 :
-        y = 'D';
-        break;
     }
     return y;
 }
@@ -163,7 +165,15 @@ BinTree assignResep(){
     return P;
 }
 
-void init_ruangan1(){
+void InitDenah () {
+    MakeGraph(4,&Denah);
+    CreateEdge(&Denah,1,2,1);
+    CreateEdge(&Denah,1,4,2);
+    CreateEdge(&Denah,3,4,1);
+    CreateEdge(&Denah,2,3,2);
+}
+
+void init_ruangan1() {
     (Ruangan1).P1.X = 5;
     (Ruangan1).P1.Y = 8;
     (Ruangan1).P2.X = 8;
@@ -172,45 +182,18 @@ void init_ruangan1(){
     (Ruangan1).M1.posisi.Y = 2;
     (Ruangan1).M1.kursi = 4;
     (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
-
     (Ruangan1).M2.posisi.X = 2;
     (Ruangan1).M2.posisi.Y = 7;
     (Ruangan1).M2.kursi = 2;
     (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
-
     (Ruangan1).M3.posisi.X = 7;
     (Ruangan1).M3.posisi.Y = 2;
     (Ruangan1).M3.kursi = 4;
     (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
-
     (Ruangan1).M4.posisi.X = 7;
     (Ruangan1).M4.posisi.Y = 7;
     (Ruangan1).M4.kursi = 2;
     (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
 }
 void init_ruangan2(){
     (Ruangan2).P1.X = 2;
@@ -219,49 +202,20 @@ void init_ruangan2(){
     (Ruangan2).P2.Y = 5;
     (Ruangan2).M1.posisi.X = 2;
     (Ruangan2).M1.posisi.Y = 2;
-    (Ruangan1).M1.kursi = 4;
-    (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
-
+    (Ruangan2).M1.kursi = 4;
+    (Ruangan2).M1.NCustomer = 0;
     (Ruangan2).M2.posisi.X = 2;
     (Ruangan2).M2.posisi.Y = 7;
-    (Ruangan1).M2.kursi = 2;
-    (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
-
+    (Ruangan2).M2.kursi = 2;
+    (Ruangan2).M2.NCustomer = 0;
     (Ruangan2).M3.posisi.X = 7;
     (Ruangan2).M3.posisi.Y = 2;
-    (Ruangan1).M3.kursi = 4;
-    (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
-
-
+    (Ruangan2).M3.kursi = 4;
     (Ruangan2).M3.NCustomer = 0;
     (Ruangan2).M4.posisi.X = 7;
     (Ruangan2).M4.posisi.Y = 7;
     (Ruangan2).M4.kursi = 2;
-    (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
+    (Ruangan2).M4.NCustomer = 0;
 }
 void init_ruangan3(){
     (Ruangan3).P1.X = 2;
@@ -270,49 +224,20 @@ void init_ruangan3(){
     (Ruangan3).P2.Y = 5;
     (Ruangan3).M1.posisi.X = 2;
     (Ruangan3).M1.posisi.Y = 2;
-    (Ruangan1).M1.kursi = 4;
-    (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
-
+    (Ruangan3).M1.kursi = 4;
+    (Ruangan3).M1.NCustomer = 0;
     (Ruangan3).M2.posisi.X = 2;
     (Ruangan3).M2.posisi.Y = 7;
-    (Ruangan1).M2.kursi = 2;
-    (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
-
+    (Ruangan3).M2.kursi = 2;
     (Ruangan3).M2.NCustomer = 0;
     (Ruangan3).M3.posisi.X = 7;
     (Ruangan3).M3.posisi.Y = 2;
-    (Ruangan1).M3.kursi = 4;
-    (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
-
+    (Ruangan3).M3.kursi = 4;
     (Ruangan3).M3.NCustomer = 0;
     (Ruangan3).M4.posisi.X = 7;
     (Ruangan3).M4.posisi.Y = 7;
-    (Ruangan2).M4.kursi = 2;
-    (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
+    (Ruangan3).M4.kursi = 2;
+    (Ruangan3).M4.NCustomer = 0;
 }
 void init_dapur(){
     (Dapur).P1.X = 5;
@@ -334,149 +259,39 @@ void init_dapur(){
     (Dapur).M4.posisi.X = 4;
     (Dapur).M4.posisi.Y = 3;
     (Dapur).M4.bahan = StringToKata("nasi");
-    (Dapur).M5.posisi.X = 4;
-    (Dapur).M5.posisi.Y = 2;
+    (Dapur).M5.posisi.X = 5;
+    (Dapur).M5.posisi.Y = 1;
     (Dapur).M5.bahan = StringToKata("telur");
-    (Dapur).M6.posisi.X = 4;
+    (Dapur).M6.posisi.X = 6;
     (Dapur).M6.posisi.Y = 1;
-    (Dapur).M6.bahan = StringToKata("ayam");
-    (Dapur).M7.posisi.X = 3;
-    (Dapur).M7.posisi.Y = 3;
-    (Dapur).M7.bahan = StringToKata("es krim");
-    (Dapur).M8.posisi.X = 3;
-    (Dapur).M8.posisi.Y = 2;
-    (Dapur).M8.bahan = StringToKata("pisang");
-    (Dapur).M9.posisi.X = 3;
-    (Dapur).M9.posisi.Y = 1;
-    (Dapur).M9.bahan = StringToKata("stroberi");
-    (Dapur).M10.posisi.X = 3;
-    (Dapur).M10.posisi.Y = 6;
-    (Dapur).M10.bahan = StringToKata("roti");
-    (Dapur).M11.posisi.X = 3;
-    (Dapur).M11.posisi.Y = 7;
-    (Dapur).M11.bahan = StringToKata("patty");
-    (Dapur).M12.posisi.X = 3;
-    (Dapur).M12.posisi.Y = 8;
-    (Dapur).M12.bahan = StringToKata("sosis");
-    (Dapur).M13.posisi.X = 4;
+    (Dapur).M6.bahan = 2;
+    (Dapur).M7.posisi.X = 7;
+    (Dapur).M7.posisi.Y = 1;
+    (Dapur).M7.bahan = 2;
+    (Dapur).M8.posisi.X = 8;
+    (Dapur).M8.posisi.Y = 1;
+    (Dapur).M8.bahan = 2;
+    (Dapur).M9.posisi.X = 5;
+    (Dapur).M9.posisi.Y = 4;
+    (Dapur).M9.bahan = 2;
+    (Dapur).M10.posisi.X = 5;
+    (Dapur).M10.posisi.Y = 5;
+    (Dapur).M10.bahan = 2;
+    (Dapur).M11.posisi.X = 8;
+    (Dapur).M11.posisi.Y = 4;
+    (Dapur).M11.bahan = 2;
+    (Dapur).M12.posisi.X = 8;
+    (Dapur).M12.posisi.Y = 5;
+    (Dapur).M12.bahan = 2;
+    (Dapur).M13.posisi.X = 8;
     (Dapur).M13.posisi.Y = 6;
-    (Dapur).M13.bahan = StringToKata("spaghetti");
-    (Dapur).M14.posisi.X = 4;
+    (Dapur).M13.bahan = 2;
+    (Dapur).M14.posisi.X = 8;
     (Dapur).M14.posisi.Y = 7;
-    (Dapur).M14.bahan = StringToKata("bolognaise");
-    (Dapur).M15.posisi.X = 4;
+    (Dapur).M14.bahan = 2;
+    (Dapur).M15.posisi.X = 8;
     (Dapur).M15.posisi.Y = 8;
-    (Dapur).M15.bahan = StringToKata("keju");
-    (Dapur).M16.posisi.X = 7;
-    (Dapur).M16.posisi.Y = 8;
-    (Dapur).M16.bahan = StringToKata("carbonara");
-}
-void InitDenah () {
-    MakeGraph(4,&Denah);
-    CreateEdge(&Denah,1,2,1);
-    CreateEdge(&Denah,1,4,2);
-    CreateEdge(&Denah,3,4,1);
-    CreateEdge(&Denah,2,3,2);
-}
+    (Dapur).M15.bahan = 2;
 
-void assignMatriks(){
-    MakeEmptyMatriks(&Tampilan);
-    int i = Pemain.posisi.X;
-    int j = Pemain.posisi.Y;
-    ElmtMatriks(Tampilan,i,j) = 5;
-    if(Pemain.ruangan != 4 ){
-        Ruang Ruangan;
-        if(Pemain.ruangan == 1) Ruangan = Ruangan1;
-        else if(Pemain.ruangan == 2) Ruangan = Ruangan2;
-        else if(Pemain.ruangan == 3) Ruangan = Ruangan3;
-        i = Ruangan.P1.X; j = Ruangan.P1.Y;
-        ElmtMatriks(Tampilan, i,j) = 10;
-        i = Ruangan.P2.X; j = Ruangan.P2.Y;
-        ElmtMatriks(Tampilan, i,j) = 10;
-        if(Ruangan.M1.NCustomer == 0){
-            i = Ruangan.M1.K1.X; j = Ruangan.M1.K1.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.M1.K2.X; j = Ruangan.M1.K2.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.M1.K3.X; j = Ruangan.M1.K3.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.M1.K4.X; j = Ruangan.M1.K4.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-        }else if(Ruangan.M1.NCustomer == 2){
-            i = Ruangan.M1.K1.X; j = Ruangan.M1.K1.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.M1.K2.X; j = Ruangan.M1.K2.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.M1.K3.X; j = Ruangan.M1.K3.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.M1.K4.X; j = Ruangan.M1.K4.Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-        } else if(Ruangan.M1.NCustomer == 4){
-            i = Ruangan.M1.K1.X; j = Ruangan.M1.K1.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.M1.K2.X; j = Ruangan.M1.K2.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.M1.K3.X; j = Ruangan.M1.K3.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.M1.K4.X; j = Ruangan.M1.K4.Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-        }
-    } else{
-        i = Dapur.P1.X; j = Dapur.P1.Y;
-        ElmtMatriks(Tampilan, i,j) = 10;
-        i = Dapur.P2.X; j = Dapur.P2.Y;
-        ElmtMatriks(Tampilan, i,j) = 10;
-        i = Dapur.T.posisi.X; j = Dapur.T.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 9;
-        i = Dapur.M1.posisi.X; j = Dapur.M1.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M2.posisi.X; j = Dapur.M2.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M3.posisi.X; j = Dapur.M3.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M4.posisi.X; j = Dapur.M4.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M5.posisi.X; j = Dapur.M5.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M6.posisi.X; j = Dapur.M6.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M7.posisi.X; j = Dapur.M7.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M8.posisi.X; j = Dapur.M8.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M9.posisi.X; j = Dapur.M9.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M10.posisi.X; j = Dapur.M10.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M11.posisi.X; j = Dapur.M11.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M12.posisi.X; j = Dapur.M12.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M13.posisi.X; j = Dapur.M13.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M14.posisi.X; j = Dapur.M14.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M15.posisi.X; j = Dapur.M15.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-        i = Dapur.M16.posisi.X; j = Dapur.M16.posisi.Y;
-        ElmtMatriks(Tampilan, i,j) = 8;
-    }
-}
 
-void init_player(){
-    Pemain.money = 500;
-    Pemain.life = 100;
-    Pemain.time = 0;
-    Pemain.posisi.X = 3;
-    Pemain.posisi.Y = 5;
-    Pemain.ruangan = 1;
-}
-
-void init_all(){
-    init_dapur;
-    init_player;
-    init_ruangan1;
-    init_ruangan2;
-    init_ruangan3;
-    InitDenah;
 }

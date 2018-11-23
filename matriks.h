@@ -133,6 +133,5 @@ void PInverse1 (MATRIKS * M);
 void Transpose (MATRIKS * M);
 /* I.S. M terdefinisi dan IsBujursangkar(M) */
 /* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-void MakeEmptyMatriks(MATRIKS *M);
 
 #endif
