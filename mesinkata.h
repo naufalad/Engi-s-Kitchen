@@ -13,7 +13,6 @@
 typedef struct {
 	char TabKata[100]; /* container penyimpan kata, indeks yang dipakai [1..NMax] */
     int Length;
-    int ID;
 } Kata;
 
 /* State Mesin Kata */
@@ -49,7 +48,6 @@ void SalinKata();
 boolean compareKata(Kata kata1, char* teks);
 void Length(Kata *kata);
 void printKata(Kata kata1);
-void printID(Kata kata1);
 boolean IsKataSama(Kata kata1, Kata kata2);
 
 #endif
