@@ -2,62 +2,45 @@
 #include "ADT.h"
 #include "stackt.h"
 #include "bintree.c"
-void Gu(POINT *pemain,int *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+void Gu(POINT *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.y == EdgeAtas/*batas atas dari peta*/)
+    if(*pemain.x == 1/*batas atas dari peta*/)
     {
-        P.x = *pemain.x;
-        P.y = *pemain.y +1;
-        if(P.y == pintu.y && P.x == pintu.x)
+        P.x = *pemain.x-1;
+        P.y = *pemain.y ;
+        if(ruangan == 3)
         {
-            gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
-            *Time += 1;
-        }
-        else
-            printf("Tidak bisa bergerak keatas!");
-    }
+          if(P.y ==  5 )
+          {
+              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
+              *Time += 1;
+          }
+          else
+              printf("Tidak bisa bergerak keatas!");
+          }
+        else if(ruangan == 4)
+        {
+          if(P.y ==  5 )
+          {
+              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
+              *Time += 1;
+          }
+          else
+              printf("Tidak bisa bergerak keatas!");
+              *Time += 1;
+          }
+      }
     else
     {
-        if((*pemain.y + 1) == Tempatduduk ||(*pemain.y + 1) == kursi)
+        if(IsNearTable(pemain,ruangan))
         {
             printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-        }
-        else
-        {
-            *pemain.y += 1;
-            Time += 1;
-        }
-    }
-}
-void GD(POINT *pemain,int *Time)
-/*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
-ke bawah*/
-{
-    /*kamus*/
-    POINT P;
-    /*algoritma*/
-    if(*pemain.y == EdgeBawah/*batas bawah dari peta*/)
-    {
-        P.x = *pemain.x;
-        P.y = *pemain.y -1;
-        if(P.y == pintu.y && P.x == pintu.x)
-        {
-            gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
             *Time += 1
-        }
-        else
-            printf("Tidak bisa bergerak kebawah!");
-    }
-    else
-    {
-        if((*pemain.y - 1) == Tempatduduk ||(*pemain.y - 1) == kursi)
-        {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
         }
         else
         {
@@ -66,80 +49,152 @@ ke bawah*/
         }
     }
 }
-void GL(POINT *pemain,int *Time)
+void GD(POINT *pemain,int *Time,int ruangan)
+/*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
+ke bawah*/
+{
+    /*kamus*/
+    POINT P;
+    /*algoritma*/
+    if(*pemain.x == 8/*batas atas dari peta*/)
+    {
+        P.x = *pemain.x+1;
+        P.y = *pemain.y;
+        if(ruangan == 1)
+        {
+          if(P.y == 5)
+          {
+              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
+              *Time += 1;
+          }
+          else
+              printf("Tidak bisa bergerak kebawah");
+              *Time += 1;
+          }
+        else if(ruangan == 2)
+        {
+          if(P.y ==  5 )
+          {
+              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
+              *Time += 1;
+          }
+          else
+              printf("Tidak bisa bergerak keatas!");
+              *Time += 1;
+          }
+      }
+    else
+    {
+        if(IsNearTable(pemain,ruangan))
+        {
+            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
+            *Time += 1
+        }
+        else
+        {
+            *pemain.y -= 1;
+            *Time += 1;
+        }
+    }
+}void GL(POINT *pemain,int *Time,int ruangan)
 /*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi player berpindah
 ke kiri*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.x == EdgeKiri/*batas kanan dari peta*/)
+    if(*pemain.y == 1/*batas kanan dari peta*/)
     {
-        P.x = *pemain.x - 1;
-        P.y = *pemain.y
-        if(P.x == pintu.x &&P.y == pintu.y)
+        P.x = *pemain.x;
+        P.y = *pemain.y -1 ;
+        if(ruangan == 2)
         {
-            gantiruangan(*pemain);
+          if(P.x == 2)
+          {
+              gantiruangan(*pemain);
+              *Time += 1;
+          }
+          else
+            printf("Tidak bisa bergerak kekiri!");
+        }
+        else if(ruangan == 3)
+        {
+          if(P.x == 2)
+          {
+              gantiruangan(*pemain);
+              *Time += 1;
+          }
+          else
+            printf("Tidak bisa bergerak kekiri!");
+        }
+      }
+    else
+    {
+        if(IsNearTable(*pemain,ruangan))
+        {
+            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
             *Time += 1;
         }
         else
-            printf("Tidak bisa bergerak kekiri!");
-    }
-    else
-    {
-        if((*pemain.x - 1) == Tempatduduk ||(*pemain.x - 1) == kursi)
         {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-        }
-        else
-        {
-            *pemain.x -= 1;
+            *pemain.y -= 1;
             *Time += 1;
         }
     }
 }
-void GR(POINT *pemain,int *Time)
+void GR(POINT *pemain,int *Time,int ruangan)
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi player berpindah
 kekanan.*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.x == EdgeKiri/*batas kanan dari peta*/)
+    if(*pemain.y == 8/*batas kanan dari peta*/)
     {
-        P.x = *pemain.x + 1;
-        P.y = *pemain.y
-        if(P.x == pintu.x &&P.y == pintu.y)
+        P.x = *pemain.x;
+        P.y = *pemain.y +1 ;
+        if(ruangan == 1)
         {
-            gantiruangan(*pemain);
-            *Time += 1;
+          if(P.x == 5)
+          {
+              gantiruangan(*pemain);
+              *Time += 1;
+          }
+          else
+            printf("Tidak bisa bergerak kekanan!");
         }
-        else
-            printf("Tidak bisa bergerak kekiri!");
-    }
+        else if(ruangan == 1)
+        {
+          if(P.x == 5)
+          {
+              gantiruangan(*pemain);
+              *Time += 1;
+          }
+          else
+            printf("Tidak bisa bergerak kekanan!");
+        }
+      }
     else
     {
-        if((*pemain.x + 1) == Tempatduduk ||(*pemain.x + 1) == kursi)
+        if(IsNearTable(*pemain,ruangan))
         {
             printf("Pemain tidak boleh menginjak meja ataupun kursi!")
+            *Time += 1;
         }
         else
         {
-            *pemain.x += 1;
+            *pemain.y += 1;
             *Time += 1;
         }
     }
-}
-
-
-void ORDER(POINT pemain,List *menu,Kata order)//pemain bisa ambil brp banyak order?
+}void ORDER(POINT pemain,List *menu,Kata order,int ruangan)//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
     /*kamus*/
 
     /*algoritma*/
-    if(IsNearTable(pemain))//IsNearTable buat nentuin apakah deket pemain ada table atau nggak
+    if(IsNearTable(pemain,ruangan))//IsNearTable buat nentuin apakah deket pemain ada table atau nggak
     {
 
 
@@ -183,28 +238,28 @@ dalam tray*/
   /*Algoritma*/
   CreateEmpty(Tray);
 }
-void PLACE(POINT pemain,int *customermeja,Queue antrian)
+void PLACE(POINT pemain,int *customermeja,Queue antrian,int ruangan)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
     /*kamus*/
 
     /*algoritma*/
-    if(IsNearTable(pemain))
+    if(IsNearTable(pemain,ruangan))
     {
       if(customermeja == 0)
       {
         if(!)
       }
     }
-void GIVE(POINT pemain,Stack *foodstack,int *ncustemer,int *money,int *time)
+void GIVE(POINT pemain,Stack *foodstack,int *ncustemer,int *money,int *time,int ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 {
   /*kamus*/
   Kata makanan;
   /*Algoritma*/
-  if(!IsEmptyStack(*foodstack) && IsNearTable(pemain)&& ncustemer != 0)
+  if(!IsEmptyStack(*foodstack) && IsNearTable(pemain,ruangan)&& ncustemer != 0)
   {
     POP(foodstack,&makanan);
     *money = 500*ncustemer;
