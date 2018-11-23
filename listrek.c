@@ -14,7 +14,7 @@
 address Alokasi (infotype X){
   ElmtList *P = (ElmtList*) malloc (sizeof(ElmtList));
 	if (P != NULL){ //alokasi berhasil
-		Info(P) = X;
+		InfoList(P) = X;
 		Next(P) = NULL;
 	}
 	return P;
@@ -48,10 +48,6 @@ infotype FirstElmt (List L){
   if(!IsEmpty(L)) return(Info(L));
 }
 /* Mengirimkan elemen pertama sebuah list L yang tidak kosong */
-List Tail(List L){
-  if(Next(L)!=NULL) return(Next(L));
-}
-/* Mengirimkan list L tanpa elemen pertamanya, mungkin menjadi list kosong */
 
 /* *** Konstruktor *** */
 List Konso(infotype e, List L){
@@ -145,7 +141,7 @@ boolean Search (List L, infotype X){
   if(IsEmpty(L)){
     return false;
   } else {
-    if(Info(L)==X) return true;
+    if(InfoList(L)==X) return true;
     else Search(Tail(L), X);
   }
 }

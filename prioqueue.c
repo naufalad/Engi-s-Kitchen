@@ -60,8 +60,8 @@ void CreateEmptyQueue (Queue * Q, int Max)
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-	(*Q).T=malloc((Max+1)*sizeof(int));
-	if ((*Q).T == NULL)
+	(*Q).TI=malloc((Max+1)*sizeof(int));
+	if ((*Q).TI == NULL)
         {
 		MaxElm(*Q) = 0;
         }
@@ -81,7 +81,7 @@ void DeAlokasiQueue(Queue * Q)
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    free((*Q).T);
+    free((*Q).TI);
 	MaxElm(*Q)=0;
     }
 

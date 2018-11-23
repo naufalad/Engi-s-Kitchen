@@ -7,8 +7,6 @@
 
 #include "boolean.h"
 
-#define NULL NULL
-
 /* Definisi Type */
 typedef int infotype;
 typedef struct tElmtlist* address;
@@ -20,7 +18,7 @@ typedef struct tElmtlist {
 /* Definisi list : */
 /* List kosong : L = NULL */
 
-typedef address Listi;
+typedef address List;
 
 /* Deklarasi  nama untuk variabel kerja */ 
 /*  	L : List */
@@ -29,7 +27,7 @@ typedef address Listi;
 /*                P.info menjadi Info(P); P.next menjadi Next(P) */
 
 /* Selektor */
-#define Info(P) (P)->info
+#define InfoList(P) (P)->info
 #define Next(P) (P)->next
 
 /* *** Manajemen Memori *** */
@@ -46,7 +44,7 @@ void Dealokasi (address P);
 /* *** Primitif-primitif yang harus direalisasikan *** */
 
 /* Pemeriksaan Kondisi List */
-int IsEmpty (address L);
+int IsEmpty (List L);
 /* Mengirimkan 1 jika L kosong dan 0 jika L tidak kosong */
 int IsOneElmt(List L);
 /* Mengirimkan 1 jika L berisi 1 elemen dan 0 jika > 1 elemen atau kosong */
@@ -54,8 +52,6 @@ int IsOneElmt(List L);
 /* *** Selektor *** */
 infotype FirstElmt (List L);
 /* Mengirimkan elemen pertama sebuah list L yang tidak kosong */
-List Tail(List L);
-/* Mengirimkan list L tanpa elemen pertamanya, mungkin menjadi list kosong */
 
 /* *** Konstruktor *** */
 List Konso(infotype e, List L);
