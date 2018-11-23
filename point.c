@@ -3,7 +3,7 @@
 #include "point.h"
 #include <math.h>
 
-POINT MakePOINT (float X, float Y){
+POINT MakePOINT (int X, int Y){
 	POINT temp;
 	
 	Absis(temp) = X;
@@ -11,8 +11,8 @@ POINT MakePOINT (float X, float Y){
 	return temp;
 }
 void BacaPOINT (POINT * P){
-	float X;
-	float Y;
+	int X;
+	int Y;
 	
 	printf("Masukkan absis dan ordinat : \n");
 	scanf("%f %f", &X, &Y);
@@ -72,7 +72,7 @@ POINT NextY (POINT P){
 	return (P);
 }
 
-POINT PlusDelta (POINT P, float deltaX, float deltaY){
+POINT PlusDelta (POINT P, int deltaX, int deltaY){
 	Absis(P) += deltaX;
 	Ordinat(P) += deltaY;
 	return(P);
@@ -87,19 +87,19 @@ POINT MirrorOf (POINT P, boolean SbX){
 	return P;
 }
 
-float Jarak0 (POINT P){
-	float temp;
+int Jarak0 (POINT P){
+	int temp;
 	temp = sqrt((Absis(P)*Absis(P))+(Ordinat(P)*Ordinat(P)));
 	return temp;
 }
 
-float Panjang (POINT P1, POINT P2){
-	float temp;
+int Panjang (POINT P1, POINT P2){
+	int temp;
 	temp = sqrt(((Absis(P1)-Absis(P2))*(Absis(P1)-Absis(P2))+((Ordinat(P1)-Ordinat(P2))*(Ordinat(P1)-Ordinat(P2)))));
 	return temp;
 }
 
-void Geser (POINT *P, float deltaX, float deltaY){
+void Geser (POINT *P, int deltaX, int deltaY){
 	*P = PlusDelta(*P, deltaX, deltaY);
 }
 
@@ -113,7 +113,7 @@ void GeserKeSbY (POINT *P){
 void Mirror (POINT *P, boolean SbX){
 	*P = MirrorOf(*P, SbX);
 }
-void Putar (POINT *P, float Sudut){
+void Putar (POINT *P, int Sudut){
 	
 	Absis(*P) = Absis(*P)*cos(Sudut) - Ordinat(*P)*sin(Sudut);
 	Ordinat(*P) = Absis(*P)*sin(Sudut) - Ordinat(*P)*cos(Sudut);
