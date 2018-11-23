@@ -1,135 +1,152 @@
-/*  Nama/NIM        : Bimo Adityarahman Wiraputra/13517004
-    Tanggal         : 7 November 2018
-    Nama file       : listrek.c
-    Deskripsi       : Implementasi listrek.h
+/* NIM/Nama  : 13517064/Naufal Aditya Dirgandhavi
+ * Nama file : listrek.c
+ * Topik     : ADT List Rekurens
+ * Tanggal   : 26 Oktober 2018   
+ * Deskripsi : Membuat implementasi dari listrek.h 
 */
 
+#include "boolean.h"
 #include "listrek.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-address Alokasi (infotype X) {
-    address P = malloc(sizeof(ElmtList));
-    if (P != Nil) {
-        Info(P) = X;
-        Next(P) = Nil;
+/* *** Manajemen Memori *** */
+address Alokasi (infotype X){
+  ElmtList *P = (ElmtList*) malloc (sizeof(ElmtList));
+	if (P != Nil){ //alokasi berhasil
+		Info(P) = X;
+		Next(P) = Nil;
+	}
+	return P;
+}
+/* Mengirimkan address hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka address tidak Nil, dan misalnya menghasilkan P, 
+  maka Info(P) = X, Next(P) = Nil */
+/* Jika alokasi gagal, mengirimkan Nil */
+void Dealokasi (address P){
+  free(P);
+}
+/* I.S. P terdefinisi */
+/* F.S. P dikembalikan ke sistem */
+/* Melakukan dealokasi/pengembalian address P */
+
+/* *** Primitif-primitif yang harus direalisasikan *** */
+
+/* Pemeriksaan Kondisi List */
+int IsEmpty(List L){
+  return(L == Nil); 
+}
+/* Mengirimkan 1 jika L kosong dan 0 jika L tidak kosong */
+int IsOneElmt(List L){
+  if(IsEmpty(L)) return 0;
+  else return(Next(L)==Nil);
+}
+/* Mengirimkan 1 jika L berisi 1 elemen dan 0 jika > 1 elemen atau kosong */
+
+/* *** Selektor *** */
+infotype FirstElmt (List L){
+  if(!IsEmpty(L)) return(Info(L));
+}
+/* Mengirimkan elemen pertama sebuah list L yang tidak kosong */
+List Tail(List L){
+  if(Next(L)!=Nil) return(Next(L));
+}
+/* Mengirimkan list L tanpa elemen pertamanya, mungkin menjadi list kosong */
+
+/* *** Konstruktor *** */
+List Konso(infotype e, List L){
+  address P = Alokasi(e);
+  if(P!=Nil){
+    Next(P)=L;
+    return(P);
+  } else return(L);
+}
+/* Mengirimkan list L dengan tambahan e sebagai elemen pertamanya. 
+e dialokasi terlebih dahulu. Jika alokasi gagal, mengirimkan L. */
+List KonsB(List L, infotype e){
+  address P = Alokasi(e);
+  if(P!=Nil){
+    if(IsEmpty(L)){
+      return(P);
+    } else{
+      Next(L) = KonsB(Tail(L),e);
+      return L;
     }
-    return P;
+  } else return L;
 }
+/* Mengirimkan list L dengan tambahan e sebagai elemen pertamanya */
+/* e harus dialokasi terlebih dahulu */
+/* Jika alokasi e gagal, mengirimkan L */ 
 
-void Dealokasi (address P) {
-    free(P);
+/* *** Operasi Lain *** */
+List Copy (List L){
+  List P;
+  if(IsEmpty(L)){
+    P = Nil;
+    //return P;
+  } else {
+    P = Alokasi(FirstElmt(L));
+    if(P==Nil) P = L;
+    else{
+      Next(P) = Copy(Tail(L));
+    }
+  }
+  return(P);
 }
-
-int IsEmpty (List L) {
-    if (L == Nil) return 1;
-    else return 0;
+/* Mengirimkan salinan list L (menjadi list baru) */
+/* Jika ada alokasi gagal, mengirimkan L */ 
+void MCopy (List Lin, List *Lout){
+  *Lout = Copy(Lin);
 }
+/* I.S. Lin terdefinisi */
+/* F.S. Lout berisi salinan dari Lin */
+/* Proses : menyalin Lin ke Lout */
+List Concat (List L1, List L2){
+  List P1, P2, P3;
 
-int IsOneElmt (List L) {
-    if (L == Nil) return 0;
-    else if (Next(L) == Nil) return 1;
-    else return 0; 
-}
-
-infotype FirstElmt (List L) {
-    return Info(L);
-}
-
-List Tail (List L) {
-    return Next(L);
-}
-
-List Konso (infotype e, List L) {
-    address P = Alokasi(e);
-    if (P == Nil) return L;
+  if(IsEmpty(L1)) {
+    P3 =Copy(L2);
+    if((!IsEmpty(L2)&&(P3==L2))) P3 = Nil;
+  } else {
+    P1 = Copy(L1);
+    if((!IsEmpty(L1)&&(P1==L1))) P3 = Nil;
     else {
-        Next(P) = L;
-        return P;
+      P2 = Copy(L2);
+      if((!IsEmpty(L2)&&(P3==L2))) P3 = Nil;
+      else P3 = Konso(FirstElmt(P1), Concat(Tail(P1), P2));
     }
+  }
+  return P3;
 }
 
-List KonsB (List L, infotype e) {
-    address P = Alokasi(e);
-    if (P == Nil) return L;
-    else if (IsEmpty(L)) return P;
-    else {
-        address Q = L;
-        while (Next(Q) != Nil)
-            Q = Next(Q);
-        Next(Q) = P;
-        return L;
-    }
+/* Mengirimkan salinan hasil konkatenasi list L1 dan L2 (menjadi list baru) */
+/* Jika ada alokasi gagal, menghasilkan Nil */
+void MConcat (List L1, List L2, List *LHsl){
+  *LHsl = Concat(L1, L2);
 }
-
-List Copy (List L) {
-    address P = L;
-    if (P == Nil) return Nil;
-    else {
-        address Q = Alokasi(Info(P));
-        boolean flag = Q == Nil;
-        address R = Q;
-        while (!flag && Next(P) != Nil) {
-            P = Next(P);
-            address S = Alokasi(Info(P));
-            flag = S == Nil;
-            if (!flag) {
-                Next(R) = S;
-                R = S;
-            }
-        }
-        if (flag) return Nil;
-        else return Q;
-    }
+/* I.S. L1, L2 terdefinisi */
+/* F.S. LHsl adalah hasil melakukan konkatenasi L1 dan L2 dengan cara "disalin" */
+/* Proses : Menghasilkan salinan hasil konkatenasi list L1 dan L2 */
+void PrintList (List L){
+  if(IsEmpty(L)){
+  } else{
+    printf("%d\n", Info(L));
+    PrintList(Tail(L));
+  }
 }
-
-void MCopy (List Lin, List* Lout) {
-    *Lout = Copy(Lin);
+/* I.S. L terdefinisi. */
+/* F.S. Setiap elemen list dicetak. */
+int NbElmtList (List L){
+  if(IsEmpty(L)) return 0;
+  else return(1+NbElmtList(Tail(L)));
 }
-
-List Concat (List L1, List L2) {
-    List L3 = Copy(L1);
-    List L4 = Copy(L2);
-    if (L3 == Nil && L1 != Nil) return Nil;
-    else if (L4 == Nil && L2 != Nil) return Nil;
-    else {
-        if (L3 == Nil) return L4;
-        address P = L3;
-        while (Next(P) != Nil)
-            P = Next(P);
-        Next(P) = L4;
-        return L3;
-    }
+/* Mengirimkan banyaknya elemen list L, Nol jika L kosong */
+boolean Search (List L, infotype X){
+  if(IsEmpty(L)){
+    return false;
+  } else {
+    if(Info(L)==X) return true;
+    else Search(Tail(L), X);
+  }
 }
-
-void MConcat (List L1, List L2, List* LHsl) {
-    *LHsl = Concat(L1,L2);
-}
-
-void PrintList (List L) {
-    address P = L;
-    while (P != Nil) {
-        printf("%d\n",Info(P));
-        P = Next(P);
-    }
-}
-
-int NbElmtList (List L) {
-    int ans = 0;
-    address P = L;
-    while (P != Nil) {
-        ++ans;
-        P = Next(P);
-    }
-    return ans;
-}
-
-boolean Search (List L, infotype X) {
-    int flag = false;
-    address P = L;
-    while (!flag && P != Nil) {
-        flag = Info(P) == X;
-        P = Next(P);
-    }
-    return flag;
-}
+/* Mengirim true jika X adalah anggota list, false jika tidak */

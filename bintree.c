@@ -58,7 +58,7 @@ BinTree BuildBalanceTree(int n)
         }
 	else
         {
-		scanf("%s", &X);
+		X = InputKata();
         P = (addrNode) malloc(sizeof (Node));
 		if (P != Nil)
             {
@@ -159,7 +159,8 @@ void PrintPreorder(BinTree P)
     else
 		{
         printf("(");
-        printKata(Akar(P));
+        OutputKata(Akar(P));
+        printf("\n");
         PrintPreorder(Left(P));
         PrintPreorder(Right(P));
         printf(")");
@@ -185,7 +186,7 @@ void PrintInorder(BinTree P)
 		{
         printf("(");
         PrintInorder(Left(P));
-        printKata(Akar(P));
+        OutputKata(Akar(P));
         PrintInorder(Right(P));
         printf(")");
 		}
@@ -211,7 +212,7 @@ void PrintPostorder(BinTree P)
         printf("(");
         PrintPostorder(Left(P));
         PrintPostorder(Right(P));
-        printKata(Akar(P));
+        OutputKata(Akar(P));
         printf(")");
 		}
     }
@@ -236,7 +237,8 @@ void PrintTreeRek (BinTree P, int h, int CLevel)
 			{
             printf(" ");
 			}
-        printKata(Akar(P));
+        OutputKata(Akar(P));
+        printID(Akar(P));
         if (Left(P) != Nil)
 			{
             PrintTreeRek(Left(P), h, CLevel+1);
@@ -283,7 +285,7 @@ boolean SearchTree(BinTree P, Kata X)
 		}
     else
 		{
-        if (IsKataSama(Akar(P),X))
+        if (IsEqKata(Akar(P),X))
 			{
             return true;
 			}
@@ -295,7 +297,7 @@ boolean SearchTree(BinTree P, Kata X)
     }
 
 /* *** Fungsi-Fungsi Lain *** */
-int NbElmt(BinTree P)
+int NbElmtTree(BinTree P)
 /* Mengirimkan banyaknya elemen (node) pohon biner P */
     {
     /* KAMUS LOKAL */
@@ -306,7 +308,7 @@ int NbElmt(BinTree P)
 		}
     else
 		{
-        return (1 + NbElmt(Left(P)) + NbElmt(Right(P)));
+        return (1 + NbElmtTree(Left(P)) + NbElmtTree(Right(P)));
 		}
     }
 int NbDaun(BinTree P)

@@ -124,7 +124,7 @@ boolean SearchTree(BinTree P, Kata X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 
 /* *** Fungsi-Fungsi Lain *** */
-int NbElmt(BinTree P);
+int NbElmtTree(BinTree P);
 /* Mengirimkan banyaknya elemen (node) pohon biner P */
 int NbDaun(BinTree P);
 /* Mengirimkan banyaknya daun (node) pohon biner P */

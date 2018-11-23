@@ -94,6 +94,41 @@ void SalinKata()
     CKata.Length = i;
     }
 
+Kata StringToKata (char* s) {
+	int i = 0;
+	Kata K;
+	while (s[i] != '\0' && i < NMax) {
+		i++;
+		K.TabKata[i] = s[i-1];
+	}
+	K.Length = i;
+	return K;
+}
+
+boolean IsEqKata (Kata a, Kata b) {
+	if (a.Length != b.Length) return false;
+	int i;
+	for (i = 1; i <= a.Length; ++i) {
+		if (a.TabKata[i] != b.TabKata[i])
+			return false;
+	}
+	return true;
+}
+
+void OutputKata(Kata K){
+	for (int i = 1; i <= K.Length; ++i) {
+		printf("%c", K.TabKata[i]);
+	}
+}
+
+Kata InputKata(){
+	char* a=NULL;
+	Kata K;
+
+	scanf("%m[^\n]%*c", &a);
+	K = StringToKata(a);
+	return K;
+}
 void Length(Kata *kata)
     {
     /* KAMUS LOKAL */
@@ -120,37 +155,30 @@ boolean compareKata(Kata kata1, char* teks)
 	return true;
     }
 
-void printKata(Kata kata1)
-    {
+void printID(Kata kata1){
     /* KAMUS LOKAL */
-    int i;
     /* ALGORITMA */
-	for(i = 0; i < kata1.Length; i++)
-        {
-		printf("%c", kata1.TabKata[i]);
-        }
-	printf("\n");
+	printf("%d", kata1.ID);
     }
 
-boolean IsKataSama(Kata kata1, Kata kata2)
+/*boolean IsKataSama(Kata kata1, Kata kata2)
     {
     //KAMUS LOKAL
     boolean valid = true;
     int cnt, cnt2;
     //ALGORITMA
-    Length(kata1);
-    Length(kata2);
+    Length(&kata1);
+    Length(&kata2);
     cnt = kata1.Length;
     cnt2 = kata2.Length;
     if(cnt  != cnt2){
         valid = false;
     }else{
             for(int i = 0; i < cnt; i++){
-                if(kata1.TabKata[i] != kata.TabKata2[i]){
+                if(kata1[i] != kata2[i]){
                     valid = false;
                 }
             }
         }
     return valid;
-    }
-
+    }*/	
