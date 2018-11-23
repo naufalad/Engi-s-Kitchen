@@ -22,6 +22,19 @@
 		int time;
 		POINT posisi;
 	} Player;
+
+	typedef struct{
+		POINT posisi;
+		int kursi;
+
+	} MejaMakan;
+
+	typedef struct{
+		POINT posisi;
+		Kata bahan;
+	} MejaDapur;
+
+	
 	static Player Pemain;
 	static JAM RealTime = CurrentTime();
 	//bakal disesuain sama real time, buat dipake di savegame
