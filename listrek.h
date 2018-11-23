@@ -7,19 +7,20 @@
 
 #include "boolean.h"
 
-#define Nil NULL
+#define NULL NULL
 
 /* Definisi Type */
 typedef int infotype;
-typedef struct tElmtlist *address;
+typedef struct tElmtlist* address;
 typedef struct tElmtlist { 
 	infotype info;
 	address next;
 } ElmtList;
 
 /* Definisi list : */
-/* List kosong : L = Nil */
-typedef address List;
+/* List kosong : L = NULL */
+
+typedef address Listi;
 
 /* Deklarasi  nama untuk variabel kerja */ 
 /*  	L : List */
@@ -34,9 +35,9 @@ typedef address List;
 /* *** Manajemen Memori *** */
 address Alokasi (infotype X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak Nil, dan misalnya menghasilkan P, 
-  maka Info(P) = X, Next(P) = Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* Jika alokasi berhasil, maka address tidak NULL, dan misalnya menghasilkan P, 
+  maka Info(P) = X, Next(P) = NULL */
+/* Jika alokasi gagal, mengirimkan NULL */
 void Dealokasi (address P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
@@ -45,7 +46,7 @@ void Dealokasi (address P);
 /* *** Primitif-primitif yang harus direalisasikan *** */
 
 /* Pemeriksaan Kondisi List */
-int IsEmpty(List L);
+int IsEmpty (address L);
 /* Mengirimkan 1 jika L kosong dan 0 jika L tidak kosong */
 int IsOneElmt(List L);
 /* Mengirimkan 1 jika L berisi 1 elemen dan 0 jika > 1 elemen atau kosong */
@@ -75,7 +76,7 @@ void MCopy (List Lin, List *Lout);
 /* Proses : menyalin Lin ke Lout */
 List Concat (List L1, List L2);
 /* Mengirimkan salinan hasil konkatenasi list L1 dan L2 (menjadi list baru) */
-/* Jika ada alokasi gagal, menghasilkan Nil */
+/* Jika ada alokasi gagal, menghasilkan NULL */
 void MConcat (List L1, List L2, List *LHsl);
 /* I.S. L1, L2 terdefinisi */
 /* F.S. LHsl adalah hasil melakukan konkatenasi L1 dan L2 dengan cara "disalin" */

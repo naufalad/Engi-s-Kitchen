@@ -93,8 +93,8 @@ void AddQueue (Queue * Q, infotypeQueue X)
         elemen baru disisipkan pada posisi yang tepat sesuai dengan prioritas */
     {
     /* KAMUS LOKAL */
-    address i;
-    address prev;
+    int i;
+    int prev;
     boolean cek;
     infotypeQueue Temp;
     /* ALGORITMA */
@@ -103,7 +103,7 @@ void AddQueue (Queue * Q, infotypeQueue X)
         Head(*Q)=1;
         }
     Tail(*Q) = (Tail(*Q) % MaxElm(*Q)) + 1;
-    Elmt(*Q,Tail(*Q))=X;
+    ElmtQueue(*Q,Tail(*Q))=X;
     i = Tail(*Q);
     prev = Tail(*Q);
     cek = true;
@@ -117,11 +117,11 @@ void AddQueue (Queue * Q, infotypeQueue X)
             {
             prev--;
             }
-        if (Prio(Elmt(*Q,prev))<Prio(Elmt(*Q,i)))
+        if (prio(Elmt(*Q,prev))<prio(Elmt(*Q,i)))
             {
-            Temp=Elmt(*Q,i);
-            Elmt(*Q,i)=Elmt(*Q,prev);
-            Elmt(*Q,prev)=Temp;
+            Temp=ElmtQueue(*Q,i);
+            ElmtQueue(*Q,i)=ElmtQueue(*Q,prev);
+            ElmtQueue(*Q,prev)=Temp;
             }
         else
             {

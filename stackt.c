@@ -27,7 +27,7 @@ boolean IsFullStack (Stack S){
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack (Stack * S, infotypeStack X){
+void PushStack (Stack * S, Kata X){
 	Top(*S)++;
 	InfoTop(*S)=X;
 }
@@ -36,7 +36,7 @@ void PushStack (Stack * S, infotypeStack X){
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void PopStack (Stack * S, infotypeStack* X){
+void PopStack (Stack * S, Kata* X){
 	*X= InfoTop(*S);
 	Top(*S)=Top(*S)-1;
 }
