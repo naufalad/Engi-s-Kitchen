@@ -72,6 +72,35 @@ BinTree BuildBalanceTree(int n)
 		return P;
         }
     }
+void BuildTree(BinTree *P, int* idx)
+    {
+    /* KAMUS LOKAL */
+    Kata kata1; int i;
+    /* ALGORITMA */
+    ADV();
+    if (CC == ')')
+        {
+        (*P)=Nil;
+        }
+    else
+        {
+        Allocate(P);
+        Text.Length = 0;
+        i = 0;
+        while ((CC !='(')&&(CC!=')'))
+            {
+            Text.TabKata[i] = CC;
+            Text.Length++;
+            ADV();
+            i++;
+            }
+        Akar(*P) = Text;
+        *idx = *idx + 1;
+        BuildTree(&Left(*P),idx);
+        BuildTree(&Right(*P),idx);
+        }
+    ADV();
+    }
 
 /* Manajemen Memory */
 addrNode AlokNode(Kata X)
