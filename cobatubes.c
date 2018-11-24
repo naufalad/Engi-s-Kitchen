@@ -214,8 +214,8 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Tidak ada tamu yang menunggu\n");
         return;
     }
-    int meja = IsNearTable();
-    if (meja == 0) {
+    int i = IsNearTable();
+    if (i == 0) {
         printf("Anda harus berada dekat meja makan\n");
         return;
     }
