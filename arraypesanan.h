@@ -181,6 +181,8 @@ void DelEli (TabPesanan * T, int i, PesananID * X);
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
 
+PesananID NthElmtArray (TabPesanan* Q, int X);
+
 
 
 #endif

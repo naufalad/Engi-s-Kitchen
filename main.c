@@ -68,8 +68,6 @@ int main(){
 		char c;
 		scanf("%c", &c);
 		do{ 
-			const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
-  			write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 			assignMatriks();
 			TampilanProgramUtama();
 			command= InputKata();

@@ -160,7 +160,7 @@ void DelQueue (Queue * Q, infotypeQueue * X)
         }
     }
 
-infotypeQueue NthElmt (Queue* Q, int X) {
+infotypeQueue NthElmtQueue (Queue* Q, int X) {
     if (X <= NBElmtQueue(*Q)) {
         int i = Head(*Q);
         while (X > 1) {
