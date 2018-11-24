@@ -49,18 +49,21 @@ void SaveFile(){
     for (int i = 1; i <= Pemain.nama.Length; ++i) {
 		fprintf(save, "%c", Pemain.nama.TabKata[i]);
 	} //nama, Kata
-    fprintf(save, "Life : %d", Pemain.life); //<life, int>
-    fprintf(save, "Money : %d", Pemain.money); //<money, int >
-    fprintf(save, "Time : %d", Pemain.time); //<time, int >
-    fprintf(save, " Posisi : <%d, %d>", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
+    fprintf(save,"\n");
+    fprintf(save, "Life : %d\n", Pemain.life); //<life, int>
+    fprintf(save, "Money : %d\n", Pemain.money); //<money, int >
+    fprintf(save, "Time : %d\n", Pemain.time); //<time, int >
+    fprintf(save, "Posisi : <%d, %d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
     //save antrian
-    fprintf(save, "QUEUE : ");
+    fprintf(save, "QUEUE : \n");
     int i = Head(Antrian);
     while(i!=Nil){
         fprintf(save, "<%d %d %d>", Elmt(Antrian,i), Prio(Elmt(Antrian,i)), Kesabaran(Elmt(Antrian,i)));
         i++;
     }
+    fprintf(save,"\n");
     //save food stack
+    fprintf(save, "FOOD : \n");
     infotypeStack X;
     while(!IsEmptyStack(Makanan)){
         Pop(Makanan, X);
@@ -68,33 +71,48 @@ void SaveFile(){
 	    	fprintf(save, "%c", X.TabKata[i]);
         }
 	}
+    fprintf(save, "\n");
+    fprintf(save, "ORDER : \n");
     //save array pesanan
-    /*for(i=1; i<=GetLastIdx(Pesanan);i++){
-        fprintf(save, "<"); //<array order>
-        for (int j = 1; j <= Elmt(Pesanan,i).Length; ++j) {
-	    	fprintf(save, "%c", Elmt(Pesanan,i).TabKata[j]);
+    for(i=1; i<=GetLastIdx(Pesanan);i++){
+        fprintf(save, "%d ", ElmtArray(Pesanan,i).MejaID); //<array order>
+        for (int j = 1; j <= ElmtArray(Pesanan,i).Menu.Length; ++j) {
+	    	fprintf(save, "%c", ElmtArray(Pesanan,i).Menu.TabKata[j]);
         }
-    }*/
+        fprintf(save, "\n");
+    }
     //save stack tangan 
+    fprintf(save, "HAND : \n");
     while(!IsEmptyStack(Tangan)){
         Pop(Tangan, X);
         for (int i = 1; i <= X.Length; ++i) {
 	    	fprintf(save, "%c", X.TabKata[i]);
         }
     }
-    /*save ruangan
-    fprintf(save, "<%d, %d>\n", matriks ruangan 1); //<matriks ruangan 1>
-    fprintf(save, "<%d, %d>\n", matriks ruangan 2); //<matriks ruangan 2>
-    fprintf(save, "<%d, %d>\n", matriks ruangan 3); //<matriks ruangan 3>
-    fprintf(save, "<%d, %d>\n", kitchen); //<matriks kitchen>*/
-    fprintf(save, "#");
+    //save ruangan
+    fprintf(save, "Customer Meja Ruangan 1 : \n");
+    fprintf(save, "%d\n", Ruangan1.M1.NCustomer);
+    fprintf(save, "%d\n", Ruangan1.M2.NCustomer);
+    fprintf(save, "%d\n", Ruangan1.M3.NCustomer);
+    fprintf(save, "%d\n", Ruangan1.M4.NCustomer);
+    fprintf(save, "Customer Meja Ruangan 2 : \n");
+    fprintf(save, "%d\n", Ruangan2.M1.NCustomer);
+    fprintf(save, "%d\n", Ruangan2.M2.NCustomer);
+    fprintf(save, "%d\n", Ruangan2.M3.NCustomer);
+    fprintf(save, "%d\n", Ruangan2.M4.NCustomer);
+    fprintf(save, "Customer Meja Ruangan 3 : \n");
+    fprintf(save, "%d\n", Ruangan3.M1.NCustomer);
+    fprintf(save, "%d\n", Ruangan3.M2.NCustomer);
+    fprintf(save, "%d\n", Ruangan3.M3.NCustomer);
+    fprintf(save, "%d\n", Ruangan3.M4.NCustomer);
+    fprintf(save, "#\n");
     fclose(save);
-}
-//bakal ngesave ke file eksternal dgn format yg di tampilan
-/*void LoadFile();
-    /*FILE *save;
-    load= fopen("savegame.txt", "r");
-    fscanf(load, "%d:%d:%d", &RealTime);//Jam real time
+}//bakal ngesave ke file eksternal dgn format yg di tampilan
+void LoadFile(){
+    FILE *save;
+    STARTKATA("savegame.txt");
+    
+    OutputKata(CKata);//Jam real time
     fscanf(load, "%s", &Pemain.nama);//<nama, string>
     fscanf(load, "%d", &Pemain.life);//<life, int>
     fscanf(load, "%d", &Pemain.money);//<money, int >
@@ -112,7 +130,7 @@ void SaveFile(){
     fclose(load);
 
     //nampilin daftar apa aja yg bisa diload, ntar playernya milih terus ngeload statnya dan diassign ke variabel
-}*/
+}
 //bakal dipake sama main menu yg Load game
 char MatriksToChar(int X){
     char y;

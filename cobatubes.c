@@ -1,18 +1,17 @@
 //kemungkinan dari command
 #include "ADT.h"
-#include "stackt.h"
-#include "bintree.c"
-void Gu(POINT *pemain,int *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+
+void GU(POINT *pemain,int *Time)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.y == EdgeAtas/*batas atas dari peta*/)
+    if(*pemain.Y == EdgeAtas/*batas atas dari peta*/)
     {
-        P.x = *pemain.x;
-        P.y = *pemain.y +1;
+        P.X = *pemain.X;
+        P.Y = *pemain.Y-1;
         if(P.y == pintu.y && P.x == pintu.x)
         {
             gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
@@ -172,7 +171,7 @@ terdapat di tangan pemain*/
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmpty(Hand);
+  CreateEmptyStack(Hand);
 }
 void CT(Stack *Tray)
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
@@ -181,7 +180,7 @@ dalam tray*/
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmpty(Tray);
+  CreateEmptyStack(Tray);
 }
 void PLACE(POINT pemain,int *customermeja,Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
