@@ -300,16 +300,16 @@ A
     {
     if (!IsTreeEmpty(P)){
         OutputKata(Akar(P));
-        printf("\n");
+        printf("\n└");
         if (!IsTreeEmpty(Left(P))){
             for (int i = 1; i <= h; i ++){
-                printf(" "); 
+                printf("─"); 
             }
             PrintTree(Left(P),h+h);
         }
         if (!IsTreeEmpty(Right(P))){
             for (int i = 1; i <= h; i ++){
-                printf(" "); 
+                printf("─"); 
             }
             PrintTree(Right(P),h+h);
         }

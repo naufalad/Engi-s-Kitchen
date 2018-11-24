@@ -96,4 +96,5 @@
 	int GetRandomArrival();
 	Kata GetRandomMenuName(int MenuIdx);
 	void RandomizerQueue();
+	Kata SimplMenu (Kata K);
 #endif

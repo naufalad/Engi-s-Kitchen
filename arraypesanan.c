@@ -294,3 +294,15 @@ void DelEli (TabPesanan * T, int i, PesananID * X)
   }
 }
 
+PesananID NthElmtArray (TabPesanan* Q, int X) {
+  PesananID temp;
+  if (X > NbElmtArray(*Q)) {
+    temp.Room = 0;
+    temp.MejaID = 0;
+    temp.Menu = StringToKata(" ");
+    temp.Kesabaran = 0;
+  } else {
+    temp = (*Q).TI[X];
+  }
+  return temp;
+}
