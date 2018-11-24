@@ -43,3 +43,12 @@ void PopStack (Stack * S, Kata* X){
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+void TulisStack(Stack S){
+	Stack P = S;
+	Kata X;
+	while(!IsEmptyStack(P)){
+		PopStack(&P, &X);
+		OutputKata(X);
+		printf("\n");
+	}
+}

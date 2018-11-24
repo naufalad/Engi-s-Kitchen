@@ -7,6 +7,7 @@
 
 #include "boolean.h"
 #include "mesinkata.h"
+#include <stdio.h>
 
 #define Nil 0
 #define MaxEl 10
@@ -55,5 +56,5 @@ void PopStack (Stack * S, Kata* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-
+void TulisStack(Stack S);
 #endif

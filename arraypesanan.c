@@ -124,7 +124,6 @@ void TulisIsi (TabPesanan T)
 {
   //cek KOSONG
   if(Neff(T)==0){
-    printf("Tabel kosong\n");
   }else{
     //ada isinya
     int i;//iterator

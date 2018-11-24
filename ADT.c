@@ -54,26 +54,30 @@ void TampilanProgramUtama(){
     printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
     printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴────────────┘\n");
     printf(" Command : ");
+    //PrintQueue(Antrian);
+    //TulisIsi(Pesanan);
+    //TulisStack(Makanan);
+    //TulisStack(Tangan);
 }
 //ntar bakal nampilin program utamanya
 void SaveFile(){
     int i,j;
     FILE *save;
-    save= fopen("savegame.txt", "a");
+    save= fopen("savegame.txt", "w");
     fprintf(save, "Waktu Save : ===%d:%d:%d===\n", RealTime.HH, RealTime.MM, RealTime.SS); //Jam real time
     for (i = 1; i <= Pemain.nama.Length; ++i) {
 		fprintf(save, "%c", Pemain.nama.TabKata[i]);
 	} //nama, Kata
     fprintf(save,"\n");
-    fprintf(save, "Life : %d\n", Pemain.life); //<life, int>
-    fprintf(save, "Money : %d\n", Pemain.money); //<money, int >
-    fprintf(save, "Time : %d\n", Pemain.time); //<time, int >
-    fprintf(save, "Posisi : \n<%d, %d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
+    fprintf(save, "%d\n", Pemain.life); //<life, int>
+    fprintf(save, "%d\n", Pemain.money); //<money, int >
+    fprintf(save, "%d\n", Pemain.time); //<time, int >
+    fprintf(save, "<%d,%d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
     //save antrian
     fprintf(save, "QUEUE : \n");
     i = Head(Antrian);
     while(i!=Nil){
-        fprintf(save, "<%d %d %d>", Info(ElmtQueue(Antrian,i)), Prio(ElmtQueue(Antrian,i)), Kesabaran(ElmtQueue(Antrian,i)));
+        fprintf(save, "<%d,%d,%d>", Info(ElmtQueue(Antrian,i)), Prio(ElmtQueue(Antrian,i)), Kesabaran(ElmtQueue(Antrian,i)));
         i++;
     }
     fprintf(save,"\n");
@@ -106,7 +110,6 @@ void SaveFile(){
         }
     }
     //save ruangan
-    int j;
     for (i = 1; i <= 3; ++i) {
         fprintf(save, "Customer Meja Ruangan %d : \n", i);
         for (j = 1; j <= 4; ++j)
@@ -119,16 +122,16 @@ void LoadFile(){
     STARTKATA("savegame.txt");
     int i=1;
     int x,j;
-    do{
+    
         printf("%d. ", i);
         i++;
         do{
-            OutputKata(CKata);
             ADVKATA();
+            OutputKata(CKata);
             printf("\n");
-        }while(CC!='#');   
-    }while(CC!='.');
-    printf("Masukkan pilihan ");
+            ADV();
+        }while(CC!='#');
+    printf("Masukkan pilihan : ");
     scanf("%d", &x);
 
     STARTKATA("savegame.txt");
@@ -355,22 +358,22 @@ void init_Ruangan1 (){
     (Ruangan[1]).TTable[4].TChair[2].Y = (Ruangan[1]).TTable[4].posisi.Y+1;
 }
 void init_Ruangan2 (){
-    (Ruangan[2]).P1.X = 2;
+    (Ruangan[2]).P1.X = 4;
     (Ruangan[2]).P1.Y = 1;
     (Ruangan[2]).P2.X = 8;
     (Ruangan[2]).P2.Y = 5;
     (Ruangan[2]).TTable[1].posisi.X = 2;
     (Ruangan[2]).TTable[1].posisi.Y = 2;
-    (Ruangan[1]).TTable[1].kursi = 4;
-    (Ruangan[1]).TTable[1].NCustomer = 0;
-    (Ruangan[1]).TTable[1].TChair[1].X = (Ruangan[1]).TTable[1].posisi.X;
-    (Ruangan[1]).TTable[1].TChair[1].Y = (Ruangan[1]).TTable[1].posisi.Y-1;
-    (Ruangan[1]).TTable[1].TChair[2].X = (Ruangan[1]).TTable[1].posisi.X;
-    (Ruangan[1]).TTable[1].TChair[2].Y = (Ruangan[1]).TTable[1].posisi.Y+1;
-    (Ruangan[1]).TTable[1].TChair[3].X = (Ruangan[1]).TTable[1].posisi.X-1;
-    (Ruangan[1]).TTable[1].TChair[3].Y = (Ruangan[1]).TTable[1].posisi.Y;
-    (Ruangan[1]).TTable[1].TChair[4].X = (Ruangan[1]).TTable[1].posisi.X+1;
-    (Ruangan[1]).TTable[1].TChair[4].Y = (Ruangan[1]).TTable[1].posisi.Y;
+    (Ruangan[2]).TTable[1].kursi = 4;
+    (Ruangan[2]).TTable[1].NCustomer = 0;
+    (Ruangan[2]).TTable[1].TChair[1].X = (Ruangan[2]).TTable[1].posisi.X;
+    (Ruangan[2]).TTable[1].TChair[1].Y = (Ruangan[2]).TTable[1].posisi.Y-1;
+    (Ruangan[2]).TTable[1].TChair[2].X = (Ruangan[2]).TTable[1].posisi.X;
+    (Ruangan[2]).TTable[1].TChair[2].Y = (Ruangan[2]).TTable[1].posisi.Y+1;
+    (Ruangan[2]).TTable[1].TChair[3].X = (Ruangan[2]).TTable[1].posisi.X-1;
+    (Ruangan[2]).TTable[1].TChair[3].Y = (Ruangan[2]).TTable[1].posisi.Y;
+    (Ruangan[2]).TTable[1].TChair[4].X = (Ruangan[2]).TTable[1].posisi.X+1;
+    (Ruangan[2]).TTable[1].TChair[4].Y = (Ruangan[2]).TTable[1].posisi.Y;
 
     (Ruangan[2]).TTable[2].posisi.X = 2;
     (Ruangan[2]).TTable[2].posisi.Y = 7;
@@ -404,7 +407,7 @@ void init_Ruangan2 (){
     (Ruangan[2]).TTable[4].TChair[2].Y = (Ruangan[2]).TTable[4].posisi.Y+1;
 }
 void init_Ruangan3 (){
-    (Ruangan[3]).P1.X = 2;
+    (Ruangan[3]).P1.X = 4;
     (Ruangan[3]).P1.Y = 1;
     (Ruangan[3]).P2.X = 1;
     (Ruangan[3]).P2.Y = 5;
@@ -520,9 +523,11 @@ void InitDenah () {
 }
 
 void assignMatriks(){
+    int i,j;
+    i = Pemain.posisi.X;
+    j = Pemain.posisi.Y;
+    Tampilan.NBrsEff = Tampilan.NKolEff = 8;
     MakeEmptyMatriks(&Tampilan);
-    int i = Pemain.posisi.X;
-    int j = Pemain.posisi.Y;
     ElmtMatriks(Tampilan,i,j) = 5;
     if(Pemain.ruangan != 4 ){
         Ruang TempRuangan;
@@ -624,6 +629,7 @@ void init_all(){
     init_Ruangan2();
     init_Ruangan3();
     InitDenah();
+    
     CreateEmptyQueue(&Antrian, MaxEl);
     CreateEmptyStack(&Makanan);
     CreateEmptyStack(&Tangan);

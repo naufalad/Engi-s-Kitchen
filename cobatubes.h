@@ -24,7 +24,7 @@ kekanan.*/
 dengan pemain*/
 void PUT();
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
-void TAKE(Stack *Hand,Kata bahan);
+void TAKE();
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
 pemain*/
 void CH();
@@ -51,5 +51,7 @@ void EXIT(boolean *exit);
 /*Command ini digunakan untuk keluar dari program.*/
 
 /*~~~TAMBAHAN~~~*/
-MejaMakan IsNearTable(Ruang R);
+int IsNearTable ();
 void GantiRuangan ();
+void UpdateTimePatience();
+MejaDapur IsNearKitchenTable();

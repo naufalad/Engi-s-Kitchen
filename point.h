@@ -57,4 +57,6 @@ int Kuadran (POINT P);
 /* Prekondisi : P bukan titik origin, */
 /*              dan P tidak terletak di salah satu sumbu */
 
+boolean AdjPOINT (POINT a, POINT b);
+
 #endif

@@ -61,3 +61,12 @@ int Kuadran (POINT P){
 	}
 	return temp;
 }
+
+int abs (int a) {
+	if (a >= 0) return a;
+	return -a;
+}
+
+boolean AdjPOINT (POINT a, POINT b) {
+	return abs(Absis(a)-Absis(b))+abs(Ordinat(a)-Ordinat(b)) == 1;
+}

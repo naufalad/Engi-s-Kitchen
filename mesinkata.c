@@ -18,7 +18,7 @@ void IgnoreBlank()
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    while ((CC == '<' ||CC == BLANK || CC == '\n' || CC == ';' || CC == ',' || CC =='(' || CC == ')') && CC != MARK)
+    while ((CC == BLANK || CC == '\n' || CC == ';' || CC == ',' || CC =='(' || CC == ')') && CC != MARK)
         {
         ADV();
         }
@@ -83,7 +83,7 @@ void SalinKata()
         {
         CKata.TabKata[i] = CC;
         ADV();
-        if (CC == MARK || CC == ';' || CC == '\n' || CC == ',')
+        if (CC == MARK || CC == ';' || CC == '\n')
             {
             break;
             }
@@ -132,7 +132,8 @@ Kata InputKata(){
 }
 void Length(Kata *kata)
     {
-    /* KAMUS LOKAL */
+    /* KAMUS LOK
+    AL */
     int i;
     /* ALGORITMA */
     for(i = 0; kata->TabKata[i] != '\0'; i++);

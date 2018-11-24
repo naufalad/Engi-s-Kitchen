@@ -43,6 +43,7 @@ int main(){
 			case 3 : 
 			LoadFile();
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n");
+			break;
 			//read file eksternal
 			case 4 :
 			ExitMessage(false);
@@ -68,27 +69,26 @@ int main(){
 			assignMatriks();
 			TampilanProgramUtama();
 			command= InputKata();
-			if(IsEqKata(command, StringToKata("GU"))) GU(&Pemain);
-			else if(IsEqKata(command, StringToKata("GD"))) GD(&Pemain);
-			else if(IsEqKata(command, StringToKata("GL"))) GL(&Pemain);
-			else if(IsEqKata(command, StringToKata("GR"))) GR(&Pemain);
+			if(IsEqKata(command, StringToKata("GU"))) GU();
+			else if(IsEqKata(command, StringToKata("GD"))) GD();
+			else if(IsEqKata(command, StringToKata("GL"))) GL();
+			else if(IsEqKata(command, StringToKata("GR"))) GR();
 			//else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
 			else if(IsEqKata(command, StringToKata("PUT"))) PUT(&Tangan, &(Dapur).T.bahan);
-			//else if(IsEqKata(command, StringToKata("TAKE"))) TAKE(&Tangan, );
+			else if(IsEqKata(command, StringToKata("TAKE"))) TAKE();
 			else if(IsEqKata(command, StringToKata("CH"))) CH(&Tangan);
 			else if(IsEqKata(command, StringToKata("CT"))) CT(&(Dapur).T.bahan);
-			//else if(IsEqKata(command, StringToKata("PLACE"))) PLACE();
+			else if(IsEqKata(command, StringToKata("PLACE"))) PLACE(Pemain, Ruangan[Pemain.ruangan], Antrian);
 			//else if(IsEqKata(command, StringToKata("GIVE"))) GIVE(Pemain, &Makanan, );
 			else if(IsEqKata(command, StringToKata("RECIPE"))) RECIPE(Resep);
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
-			TulisPOINT(Pemain.posisi);
 			//buat ngelakuin sesuai inputan
 		}while(!exit);
 		printf("Jam Sekarang : ");
 		TulisJAM(RealTime);
-		printf("Mau disave?[1 untuk Ya]");
+		printf("Mau disave?[1 untuk Ya] ");
 		scanf("%d", &pilihan);
 		if (pilihan==1) ExitMessage(true);
 		else ExitMessage(false);
