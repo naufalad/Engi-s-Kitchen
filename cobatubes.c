@@ -255,15 +255,94 @@ void EXIT()
     exit(0);
 }
 
-boolean IsNearSatTable(Player Pemain, Ruang R, tabpesanan ArOrder)
+MejaMakan IsNearTable(Player Pemain, Ruang R)
 /* Command ini digunakan untuk menentukan apakah pemain berada di sebelah meja yang benar */
 {
     //Kamus
-    int roomID;
+    POINT P;
+    boolean f=false;
+    int i,j;
     //Algoritma
-    for (int i=1;i<=4,i++) {
-
+    P.X = Pemain.posisi.X;
+    P.Y = Pemain.posisi.Y;
+    P.X = P.X+1;
+    while(i<=4 && !f)
+    {
+      while(j<=4 && !f)
+      {
+        if(EQ(P,R.TTable[i].TChair[j]))
+        {
+          f = true;
+        }
+        else
+          j++;
+      }
+      i++;
     }
+    if(!f)
+    {
+      P.X -= 2;
+      i = 1;
+      j = 1;
+      while(i<=4 && !f)
+      {
+        while(j<=4 && !f)
+        {
+          if(EQ(P,R.TTable[i].TChair[j]))
+          {
+            f = true;
+          }
+          else
+            j++;
+        }
+        i++;
+      }
+    }
+    if(!f)
+    {
+      P.X += 1;
+      P.Y += 1;
+      i = 1;
+      j = 1;
+
+      while(i<=4 && !f)
+      {
+        while(j<=4 && !f)
+        {
+          if(EQ(P,R.TTable[i].TChair[j]))
+          {
+            f = true;
+          }
+          else
+            j++;
+        }
+        i++;
+      }
+    }
+    if(!f)
+    {
+      P.Y -= 2;
+      i = 1;
+      i = 1;
+
+      while(i<=4 && !f)
+      {
+        while(j<=4 && !f)
+        {
+          if(EQ(P,R.TTable[i].TChair[j]))
+          {
+            f = true;
+          }
+          else
+            j++;
+        }
+        i++;
+      }
+    }
+  if(f)
+  {
+    return R.TTable[i];
+  }
 }
 
 void GantiRuangan () {
@@ -276,7 +355,7 @@ void GantiRuangan () {
             pintu = 2;
         }
     }
-    
+
     } else if (Pemain.ruangan == 4) {
         if (EQ(Pemain.posisi,Dapur.P1)) {
             pintu = 1;
