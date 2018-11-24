@@ -30,7 +30,7 @@
 	typedef struct{
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
-		int NCustomer;
+		int NCustomer; //lagi ada berapa orang yang ngedudukin
 		boolean isOrderTaken;
 		POINT TChair[5];
 	} MejaMakan;
@@ -89,4 +89,9 @@
 	void init_player();
 	void init_all();
 	void assignMatriks();
+	int GetRandomMenu();
+	int GetRandomPrio();
+	int GetRandomNCust();
+	int GetRandomArrival();
+	Kata GetRandomMenuName(int MenuIdx);
 #endif

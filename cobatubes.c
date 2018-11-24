@@ -76,7 +76,7 @@ ke bawah*/
     }
     printf("%d  ", Pemain.ruangan);
     TulisPOINT(Pemain.posisi);
-    UpdateTimePatience();  
+    UpdateTimePatience();
 }
 
 void GL()
@@ -144,28 +144,66 @@ kekanan.*/
     UpdateTimePatience();
 }
 
-/*void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
+void ORDER()//Pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan Pemain*/
-//{
+{
     /*kamus*/
-
+    int TableNo;
+    int orderidx;
     /*algoritma*/
-    /*if(IsNearTable(Pemain,ruangan))//IsNearTable buat nentuin apakah deket Pemain ada table atau nggak
-    {
+    TableNo = IsNearTable();
 
-
-}*/
+    if ((Ruangan[Pemain.ruangan].TTable[TableNo].NCustomer == 0) || (TableNo == 0) || (Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken)) {
+        /* Kalau di meja gaada orang, atau ga deket meja, atau mejanya udah diambil orderannya */
+        printf("Ngambil order siapa goblok\n");
+        printf("Ericko Lim aja lebih pinter dari maneh\n");
+    } else {
+        orderidx = GetRandomMenu();
+        Pesanan.TI[Neff(Pesanan)+1].Room = Pemain.ruangan;
+        Pesanan.TI[Neff(Pesanan)+1].MejaID = TableNo;
+        Pesanan.TI[Neff(Pesanan)+1].Kesabaran = 40;
+        Pesanan.TI[Neff(Pesanan)+1].Menu = GetRandomMenuName(orderidx);
+    }
+}
 void PUT()
+/*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
   /*kamus*/
   Kata isi;
+  BinTree R;
   /*Algoritma*/
-  while(!IsEmptyStack(Tangan))
+  if(Pemain.posisi.X - 1 == Dapur.T.posisi.X || Pemain.posisi.Y + 1 == Dapur.T.posisi.Y)
   {
-    PopStack(&Tangan,&isi);
-    PushStack(&(Dapur).T.bahan,isi);
+    R = Resep;
+    while(!IsEmptyStack(Tangan))
+    {
+      PopStack(&Tangan,&isi);
+      PushStack(&Dapur.T.bahan,isi);
+    }
+    PopStack(&Dapur.T.bahan,&isi);
+    while(!IsEmptyStack(Dapur.T.bahan))
+    {
+      PopStack(&Dapur.T.bahan,&isi);
+      if(IsEqKata(isi,Akar(Left(R))))
+      {
+        R = Left(R);
+      }
+      else if(IsEqKata(isi,Akar(Right(R))))
+      {
+        R = Right(R);
+      }
+      else
+      {
+        CH();
+      }
+    }
+    R = Left(R);
+    if(IsTreeOneElmt(R))
+    {
+      PushStack(&Makanan,Akar(R));
+    }
   }
 }
 void TAKE()
@@ -197,7 +235,7 @@ dalam tray*/
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmptyStack(&(Dapur).T.bahan);
+  CreateEmptyStack(&Makanan);
 }
 
 int IsNearTable () {
@@ -288,14 +326,14 @@ void GantiRuangan () {
             pintu = 2;
         }
     }
-    
+
     if (Pemain.ruangan == 4) {
         if (EQ(Pemain.posisi,Dapur.P1)) {
             pintu = 1;
         } else if (EQ(Pemain.posisi,Dapur.P2)) {
             pintu = 2;
         }
-    } 
+    }
     if (pintu != 0) {
         Pemain.ruangan = SearchEdge2(Denah,Pemain.ruangan,pintu);
         if (Pemain.ruangan >= 1 && Pemain.ruangan <= 3) {
@@ -310,7 +348,7 @@ void GantiRuangan () {
             } else if (pintu == 2) {
                 Pemain.posisi = Dapur.P2;
             }
-        } 
+        }
     }
 }
 
@@ -410,3 +448,28 @@ void UpdateTimePatience() {
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
 }
+
+int GetRandomArrival(){ 
+    srand(RealTime.SS); 
+    return (rand() % 27)+15; 
+} 
+ 
+int GetRandomNCust(){ 
+    srand(RealTime.SS); 
+    if ((rand() % 2) == 0) { 
+        return 2; 
+    } else { /* rand() mod 2 == 1 */ 
+        return 4; 
+    } 
+} 
+ 
+int GetRandomPrio(){ 
+    srand(RealTime.SS); 
+    if ((rand() % 3) == 2) { 
+        return 1; 
+    } else if ((rand() % 3) == 1) { 
+        return 2; 
+    } else { /* mod 3 == 0 */ 
+        return 3; 
+    } 
+} 
