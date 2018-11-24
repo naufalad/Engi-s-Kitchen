@@ -376,13 +376,12 @@ Kata IsNearKitchenTable(){
     return StringToKata(" ");
 }    
 /* Command ini digunakan untuk menentukan apakah Pemain berada di sebelah meja yang benar */
-void UpdateTimePatience(IntervalCustomer) {
+void UpdateTimePatience() {
 /* Mengupdate Kesabaran dan waktu */
     Pemain.time++;
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
     
-<<<<<<< HEAD
 }
 void SubKesabaranArray (TabPesanan* T, int* Life) {
   if (!IsEmptyArray(*T)) {
@@ -402,11 +401,9 @@ void SubKesabaranArray (TabPesanan* T, int* Life) {
     }
     Neff(*T) = j-1;
   }
-=======
     //Kalau IntervalCustomer >0 akan decrement
     //Kalau IntervalCustomer =0 akan merandom tamu datang untuk masuk ke antrian sistem
     RandomizerQueue(&IntervalCustomer);
->>>>>>> 69c5754cce2d02a998960052566f147be975129c
 }
 
 void help(){

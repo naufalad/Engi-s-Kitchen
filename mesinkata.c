@@ -190,10 +190,10 @@ Kata NumToKata (int x) {
     if (x <= 0) K.Length = 0;
     else {
         int a = 1;
-        while (a < x) a *= 10;
+        while (10*a <= x) a *= 10;
         int i = 1;
         Kata K;
-        while (x) {
+        while (a) {
             K.TabKata[i] = (x/a)+'0';
             x -= a*(x/a);
             a /= 10;
