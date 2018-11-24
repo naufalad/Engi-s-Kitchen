@@ -1,18 +1,43 @@
 //kemungkinan dari command
 #include "cobatubes.h"
 
-void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+Player Pemain;
+JAM RealTime;
+TabPesanan Pesanan;
+Ruang Ruangan[4];
+MATRIKS Tampilan;
+RuangDapur Dapur;
+Kata command;
+Queue Antrian;
+Stack Makanan;
+Stack Tangan;
+Graph Denah;
+BinTree Resep;
+
+void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi Player berpindah ke
 //atas
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    P.X = (*pemain).posisi.X-1;
-    P.Y = (*pemain).posisi.Y;
+    P.X = (Pemain).posisi.X-1;
+    P.Y = (Pemain).posisi.Y;
+    Ruang ruangan;
+    switch ((Pemain).ruangan){
+        case 1 :
+        ruangan = Ruangan[1];  
+        break;
+        case 2 :
+        ruangan = Ruangan[2];  
+        break;
+        case 3 :
+        ruangan = Ruangan[3];  
+        break;
+    }
 
     if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(*pemain);
+        GantiRuangan(Pemain);
     } else{
         for (int i=1;i<=4;i++){
             if (ruangan.TTable[i].kursi == 2) {
@@ -20,7 +45,7 @@ void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -29,25 +54,37 @@ void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
         } 
     }
 }
-void GD(Player *pemain,Ruang ruangan)
+void GD(Player Pemain)
 /*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi Player berpindah
 ke bawah*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    P.X = (*pemain).posisi.X+1;
-    P.Y = (*pemain).posisi.Y;
+    P.X = (Pemain).posisi.X+1;
+    P.Y = (Pemain).posisi.Y;
+    Ruang ruangan;
+    switch ((Pemain).ruangan){
+        case 1 :
+        ruangan = Ruangan[1];  
+        break;
+        case 2 :
+        ruangan = Ruangan[2];  
+        break;
+        case 3 :
+        ruangan = Ruangan[3];  
+        break;
+    }
 
     if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(*pemain);
+        GantiRuangan(Pemain);
     } else{
         for (int i=1;i<=4;i++){
             if (ruangan.TTable[i].kursi == 2) {
@@ -55,7 +92,7 @@ ke bawah*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -64,7 +101,7 @@ ke bawah*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -72,18 +109,30 @@ ke bawah*/
     }
 }
 
-void GL(Player *pemain,Ruang ruangan)
+void GL()
 /*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi Player berpindah
 ke kiri*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    P.X = (*pemain).posisi.X;
-    P.Y = (*pemain).posisi.Y-1;
+    P.X = (Pemain).posisi.X;
+    P.Y = (Pemain).posisi.Y-1;
+    Ruang ruangan;
+    switch ((Pemain).ruangan){
+        case 1 :
+        ruangan = Ruangan[1];  
+        break;
+        case 2 :
+        ruangan = Ruangan[2];  
+        break;
+        case 3 :
+        ruangan = Ruangan[3];  
+        break;
+    }
 
     if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(*pemain);
+        GantiRuangan(Pemain);
     } else{
         for (int i=1;i<=4;i++){
             if (ruangan.TTable[i].kursi == 2) {
@@ -91,7 +140,7 @@ ke kiri*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -100,25 +149,37 @@ ke kiri*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
         } 
     }
 }
-void GR(Player *pemain,Ruang ruangan)
+void GR()
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi Player berpindah
 kekanan.*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    P.X = (*pemain).posisi.X;
-    P.Y = (*pemain).posisi.Y+1;
+    P.X = (Pemain).posisi.X;
+    P.Y = (Pemain).posisi.Y+1;
+    Ruang ruangan;
+    switch ((Pemain).ruangan){
+        case 1 :
+        ruangan = Ruangan[1];  
+        break;
+        case 2 :
+        ruangan = Ruangan[2];  
+        break;
+        case 3 :
+        ruangan = Ruangan[3];  
+        break;
+    }
 
     if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(*pemain);
+        GantiRuangan(Pemain);
     } else{
         for (int i=1;i<=4;i++){
             if (ruangan.TTable[i].kursi == 2) {
@@ -126,7 +187,7 @@ kekanan.*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -135,7 +196,7 @@ kekanan.*/
                     if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
                         printf("Anda tidak dapat melangkahi Meja/Kursi");
                     } else {
-                        (*pemain).posisi = P;
+                        (Pemain).posisi = P;
                     }
                 }
             }
@@ -143,70 +204,58 @@ kekanan.*/
     }
 }
 
-/*void ORDER(Player pemain,List *menu,Ruang ruangan)//pemain bisa ambil brp banyak order?
+/*void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
-dengan pemain*/
+dengan Pemain*/
 //{
     /*kamus*/
 
     /*algoritma*/
-    /*if(IsNearTable(pemain,ruangan))//IsNearTable buat nentuin apakah deket pemain ada table atau nggak
+    /*if(IsNearTable(Pemain,ruangan))//IsNearTable buat nentuin apakah deket Pemain ada table atau nggak
     {
 
 
 }*/
-void PUT(Stack *Hand,Stack *Tray)
+void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
   /*kamus*/
   Kata isi;
   /*Algoritma*/
-  while(!IsEmptyStack(*Hand))
+  while(!IsEmptyStack(Tangan))
   {
-    PopStack(Hand,&isi);
-    PushStack(Tray,isi);
+    PopStack(&Tangan,&isi);
+    PushStack(&(Dapur).T.bahan,isi);
   }
 }
-void TAKE(Stack *Hand,Kata bahan)
+/*void TAKE()
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
-pemain*/
-{
+Pemain*/
+//{
   /*kamus*/
 
   /*Algoritma*/
-  push(Hand,bahan);
-}
-void CH(Stack *Hand, int *time)
+  /*PushStack(&Tangan,bahan);
+}*/
+void CH()
 /*Command ini digunakan untuk membuang seluruh bahan makanan yang
-terdapat di tangan pemain*/
+terdapat di tangan Pemain*/
 {
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmpty(Hand);
+  CreateEmptyStack(&Tangan);
 }
-void CT(Stack *Tray)
+void CT()
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
 {
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmpty(Tray);
+  CreateEmptyStack(&(Dapur).T.bahan);
 }
-
-int IsNearTable () {
-    if (Pemain.ruangan <= 3) {
-        int i,j;
-        for (i = 1; i <= 4; ++i) {
-            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
-                if (AdjPoint(Pemain.posisi,Ruangan[Pemain.ruangan].TTable[i].TChair[j])) return i;
-        }
-    }
-    return 0;
-}
-
-void PLACE(Player pemain, Ruang room, Queue antrian)
+void PLACE(Player Pemain, Ruang room, Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
@@ -214,12 +263,17 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Tidak ada tamu yang menunggu\n");
         return;
     }
-    int meja = IsNearTable();
-    if (meja == 0) {
+    int i;
+    MejaMakan meja = IsNearTable(room);
+    if(EQ(meja.posisi, room.TTable[1].posisi)) i = 1;
+    else if(EQ(meja.posisi, room.TTable[2].posisi)) i = 2;
+    else if(EQ(meja.posisi, room.TTable[3].posisi)) i = 3;
+    else if(EQ(meja.posisi, room.TTable[4].posisi)) i = 4;
+    if (meja.kursi == 0) {
         printf("Anda harus berada dekat meja makan\n");
         return;
     }
-    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(Info(antrian))) {
+    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(antrian).info) {
         printf("Banyak kursi tidak memenuhi\n");
         return;
     }
@@ -227,7 +281,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Tempat sudah ditempati\n");
         return;
     }
-    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(Info(antrian));
+    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(antrian).info;
     Ruangan[Pemain.ruangan].TTable[i].isOrderTaken = false;
     infotypeQueue X;
     DelQueue(&antrian,&X);
@@ -239,19 +293,20 @@ bertetanggaan*/
 {
   /*kamus*/
   Kata makanan;
+  MejaMakan M =  IsNearTable(ruangan);
   /*Algoritma*/
-  if(!IsEmptyStack(*foodstack) && IsNearTable(pemain,ruangan)&& *ncustemer != 0)
+  if(!IsEmptyStack(*foodstack)&&M.kursi!=0)
   {
-    POP(foodstack,&makanan);
-    *money = *money + (500* *ncustemer);
-    *ncustemer = 0;
+    PopStack(foodstack,&makanan);
+    *money = *money + (500 * M.NCustomer);
+    M.NCustomer = 0;
   }
 
 }
-void RECIPE(BinTree resep)
+void RECIPE()
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
 {
-  PrintTree(resep,2);
+  PrintTree(Resep,2);
 }
 void SAVE()
 /*Command ini digunakan untuk menyimpan state permainan saat ini agar dapat
@@ -265,26 +320,15 @@ ada pada text file. Metode interaksi bebas*/
 {
     LoadFile();
 }
-void EXIT()
+void EXIT(boolean *exit)
 /*Command ini digunakan untuk keluar dari program.*/
 {
     /*kamus*/
-    char jawaban;
-    boolean f;
-    /*algoritma*/
-    printf("Apakah file ingin di save sebelum exit?(y/n)\n");
-    scanf("%c",&jawaban);
-    if(jawaban == 'y' || 'Y')
-        f = true;
-    else
-        f = false;
-    ExitMessage(f);
-    delay(10000);
-    exit(0);
+    *exit = true;
 }
 
-MejaMakan IsNearTable(Player Pemain, Ruang R)
-/* Command ini digunakan untuk menentukan apakah pemain berada di sebelah meja yang benar */
+MejaMakan IsNearTable(Ruang R)
+/* Command ini digunakan untuk menentukan apakah Pemain berada di sebelah meja yang benar */
 {
     //Kamus
     POINT P;
@@ -371,7 +415,10 @@ MejaMakan IsNearTable(Player Pemain, Ruang R)
   {
     return R.TTable[i];
   }
+  R.TTable[0].kursi = 0;
+  return R.TTable[0];
 }
+
 
 void GantiRuangan () {
     int pintu = 0;
@@ -383,8 +430,8 @@ void GantiRuangan () {
             pintu = 2;
         }
     }
-
-    } else if (Pemain.ruangan == 4) {
+    
+    if (Pemain.ruangan == 4) {
         if (EQ(Pemain.posisi,Dapur.P1)) {
             pintu = 1;
         } else if (EQ(Pemain.posisi,Dapur.P2)) {

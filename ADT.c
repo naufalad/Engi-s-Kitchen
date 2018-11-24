@@ -32,7 +32,6 @@ void ExitMessage(boolean SaveGame){
 //ntar bakal dipake di command exit sama exitnya main menu, dia bakal nampilin message kalo keluar game dan bakalan ngesave kalo savegamenya true
 
 void TampilanProgramUtama(){
-    Kata command;
     printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
     printf("|");
     OutputKata(Pemain.nama);
@@ -55,9 +54,6 @@ void TampilanProgramUtama(){
     printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
     printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴────────────┘\n");
     printf(" Command : ");
-    char c;
-	scanf("%c", &c);
-    command= InputKata();
 }
 //ntar bakal nampilin program utamanya
 void SaveFile(){
