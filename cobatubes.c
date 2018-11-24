@@ -263,13 +263,8 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Tidak ada tamu yang menunggu\n");
         return;
     }
-    int i;
-    MejaMakan meja = IsNearTable(room);
-    if(EQ(meja.posisi, room.TTable[1].posisi)) i = 1;
-    else if(EQ(meja.posisi, room.TTable[2].posisi)) i = 2;
-    else if(EQ(meja.posisi, room.TTable[3].posisi)) i = 3;
-    else if(EQ(meja.posisi, room.TTable[4].posisi)) i = 4;
-    if (meja.kursi == 0) {
+    int i = IsNearTable();
+    if (i == 0) {
         printf("Anda harus berada dekat meja makan\n");
         return;
     }
