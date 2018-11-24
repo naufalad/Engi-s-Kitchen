@@ -15,7 +15,7 @@ Stack Makanan;
 Stack Tangan;
 Graph Denah;
 BinTree Resep;
-
+int IntervalCustomer;
 
 void ExitMessage(boolean SaveGame){
     if (SaveGame) SaveFile();
@@ -692,5 +692,28 @@ Kata GetRandomMenuName(int MenuIdx){
             return StringToKata("spaghetti bolognaise"); break;
         case 8  :
             return StringToKata("spaghetti carbonara"); break;
+    }
+}
+
+void RandomizerQueue(int *Interval){
+    /* Kamus Lokal */
+    infotypeQueue TamuDatang;
+    /* Algoritma */
+    if(*Interval == 0){
+        TamuDatang.prio = GetRandomPrio();
+        TamuDatang.info = GetRandomNCust();
+        switch (TamuDatang.prio) {
+            case 1  :
+                TamuDatang.kesabaran = 30; break;
+            case 2  :
+                TamuDatang.kesabaran = 25; break;
+            case 3  :
+                TamuDatang.kesabaran = 20; break;
+        }
+        AddQueue(&Antrian,TamuDatang);
+
+        (*Interval) = GetRandomArrival();
+    } else {
+        *Interval--;
     }
 }

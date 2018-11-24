@@ -13,6 +13,7 @@ Stack Makanan;
 Stack Tangan;
 Graph Denah;
 BinTree Resep;
+int IntervalCustomer;
 
 void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi Player berpindah ke
@@ -147,6 +148,7 @@ kekanan.*/
 void ORDER()//Pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan Pemain*/
+/* follow @amndfkhrns */
 {
     /*kamus*/
     int TableNo;
@@ -363,9 +365,13 @@ Kata IsNearKitchenTable(){
     return StringToKata(" ");
 }    
 /* Command ini digunakan untuk menentukan apakah Pemain berada di sebelah meja yang benar */
-void UpdateTimePatience() {
+void UpdateTimePatience(IntervalCustomer) {
 /* Mengupdate Kesabaran dan waktu */
     Pemain.time++;
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
+    
+    //Kalau IntervalCustomer >0 akan decrement
+    //Kalau IntervalCustomer =0 akan merandom tamu datang untuk masuk ke antrian sistem
+    RandomizerQueue(&IntervalCustomer);
 }
