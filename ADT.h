@@ -52,10 +52,8 @@
 		MejaMakan TTable[5];
 	}Ruang;
 
-	extern Ruang Ruangan1;
-	extern Ruang Ruangan2;
-	extern Ruang Ruangan3;
-
+	extern Ruang Ruangan[4];
+	
 	typedef struct{
 		POINT posisi;
 		Stack bahan;
@@ -65,22 +63,7 @@
 		POINT P1;
 		POINT P2;
 		Tray T;
-		MejaDapur M1;
-		MejaDapur M2;
-		MejaDapur M3;
-		MejaDapur M4;
-		MejaDapur M5;
-		MejaDapur M6;
-		MejaDapur M7;
-		MejaDapur M8;
-		MejaDapur M9;
-		MejaDapur M10;
-		MejaDapur M11;
-		MejaDapur M12;
-		MejaDapur M13;
-		MejaDapur M14;
-		MejaDapur M15;
-		MejaDapur M16;
+		MejaDapur M[16];
 	} RuangDapur;
 
 	extern MATRIKS Tampilan;

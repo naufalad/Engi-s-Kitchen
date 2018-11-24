@@ -55,5 +55,5 @@ void EXIT();
 /*Command ini digunakan untuk keluar dari program.*/
 
 /*~~~TAMBAHAN~~~*/
-boolean IsNearSatTable(Player Pemain, ruangan R, TabPesanan ArOrder);
+boolean IsNearSatTable(Player Pemain, Ruang R, TabPesanan ArOrder);
 void GantiRuangan ();
