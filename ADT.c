@@ -668,3 +668,24 @@ int GetRandomMenu(){
     srand(RealTime.SS);
     return ((rand() % 8) + 1 );   
 }
+
+Kata GetRandomMenuName(int MenuIdx){
+    switch(MenuIdx) {
+        case 1  : 
+            return StringToKata("banana split"); break;
+        case 2  :
+            return StringToKata("sundae"); break;
+        case 3  :
+            return StringToKata("nasi telur dadar"); break;
+        case 4  :
+            return StringToKata("nasi ayam goreng"); break;
+        case 5  :
+            return StringToKata("burger"); break;
+        case 6  :
+            return StringToKata("hot dog"); break;
+        case 7  :
+            return StringToKata("spaghetti bolognaise"); break;
+        case 8  :
+            return StringToKata("spaghetti carbonara"); break;
+    }
+}
