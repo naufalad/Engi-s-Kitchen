@@ -107,7 +107,7 @@ void SaveFile(){
         }
     }
     //save ruangan
-    int i,j;
+    int j;
     for (i = 1; i <= 3; ++i) {
         fprintf(save, "Customer Meja Ruangan %d : \n", i);
         for (j = 1; j <= 4; ++j)

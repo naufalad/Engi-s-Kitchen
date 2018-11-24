@@ -22,7 +22,6 @@ int main(){
 		printf("3. Load Game\n");
 		printf("4. Exit\n");
 		printf("Masukkan Pilihan Anda : ");
-		scanf("%d", &pilihan);
 		
 		switch (pilihan){
 			case 1 :
