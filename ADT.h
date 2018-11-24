@@ -17,6 +17,8 @@
 	#include "bintree.h"
 	#include "graph.h"
 
+	#define EdgeAtas 1
+	#define EdgeBawah 8
 	typedef struct{
 		Kata nama;
 		int money;
