@@ -112,18 +112,21 @@ kekanan.*/
     UpdateTimePatience();
 }
 
-/*void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
+void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan Pemain*/
 //{
     /*kamus*/
-
+    MejaMakan TableNo;
     /*algoritma*/
-    /*if(IsNearTable(Pemain,ruangan))//IsNearTable buat nentuin apakah deket Pemain ada table atau nggak
-    {
+    TableNo = IsNearTable();
 
+    if (TableNo == 0) {
+        printf("Ngambil order siapa goblok");
+    } else {
 
-}*/
+    }
+}
 void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
@@ -285,3 +288,28 @@ void UpdateTimePatience() {
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
 }
+
+int GetRandomArrival(){ 
+    srand(RealTime.SS); 
+    return (rand() % 27)+15; 
+} 
+ 
+int GetRandomNCust(){ 
+    srand(RealTime.SS); 
+    if ((rand() % 2) == 0) { 
+        return 2; 
+    } else { /* rand() mod 2 == 1 */ 
+        return 4; 
+    } 
+} 
+ 
+int GetRandomPrio(){ 
+    srand(RealTime.SS); 
+    if ((rand() % 3) == 2) { 
+        return 1; 
+    } else if ((rand() % 3) == 1) { 
+        return 2; 
+    } else { /* mod 3 == 0 */ 
+        return 3; 
+    } 
+} 

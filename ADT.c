@@ -630,3 +630,41 @@ void init_all(){
     CreateEmptyStack(&Tangan);
     CreateEmptyStack(&Dapur.T.bahan);
 }
+
+int GetRandomArrival(){ 
+    JAM RealTime = CurrentTime();
+
+    srand(RealTime.SS); 
+    return (rand() % 27)+15; 
+} 
+ 
+int GetRandomNCust(){ 
+    JAM RealTime = CurrentTime();
+
+    srand(RealTime.SS); 
+    if ((rand() % 2) == 0) { 
+        return 2; 
+    } else { /* rand() mod 2 == 1 */ 
+        return 4; 
+    } 
+} 
+ 
+int GetRandomPrio(){ 
+    JAM RealTime = CurrentTime();
+
+    srand(RealTime.SS); 
+    if ((rand() % 3) == 2) { 
+        return 1; 
+    } else if ((rand() % 3) == 1) { 
+        return 2; 
+    } else { /* mod 3 == 0 */ 
+        return 3; 
+    } 
+} 
+
+int GetRandomMenu(){
+    JAM RealTime = CurrentTime();
+
+    srand(RealTime.SS);
+    return ((rand() % 8) + 1 );   
+}

@@ -106,4 +106,8 @@
 	void init_player();
 	void init_all();
 	void assignMatriks();
+	int GetRandomMenu();
+	int GetRandomPrio();
+	int GetRandomNCust();
+	int GetRandomArrival();
 #endif
