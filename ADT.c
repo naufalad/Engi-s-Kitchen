@@ -35,7 +35,7 @@ void TampilanProgramUtama(){
     printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
     printf("|");
     OutputKata(Pemain.nama);
-    printf("\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.money, Pemain.life, Pemain.time);
+    printf("\t         │ Money: %d\t │  Life: %d\t │Time: %d     │\n", Pemain.money, Pemain.life, Pemain.time);
     printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
     printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
@@ -634,6 +634,11 @@ void init_all(){
     CreateEmptyStack(&Makanan);
     CreateEmptyStack(&Tangan);
     CreateEmptyStack(&Dapur.T.bahan);
+    infotypeQueue X;
+    X.info = 4;
+    X.prio = 2;
+    X.kesabaran =30;
+    AddQueue(&Antrian,X);
 }
 
 int GetRandomArrival(){ 

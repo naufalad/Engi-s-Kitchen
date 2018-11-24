@@ -84,7 +84,7 @@ int main(){
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
-			UpdateTimePatience();
+			//UpdateTimePatience();
 			//buat ngelakuin sesuai inputan
 		}while(!exit);
 		printf("Jam Sekarang : ");

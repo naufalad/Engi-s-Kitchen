@@ -447,4 +447,5 @@ void UpdateTimePatience() {
     Pemain.time++;
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
+    
 }
