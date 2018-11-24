@@ -23,6 +23,7 @@ typedef struct {
   Kata Menu;   /* type elemen tabel */
   int MejaID;
   int Kesabaran;
+  int Room;
 } PesananID;
 typedef struct { 
 	PesananID TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
