@@ -32,89 +32,123 @@ void ExitMessage(boolean SaveGame){
 //ntar bakal dipake di command exit sama exitnya main menu, dia bakal nampilin message kalo keluar game dan bakalan ngesave kalo savegamenya true
 
 void TampilanProgramUtama(){
-    printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
+    printf("\n┌────────────────┬───────────────┬───────────────┬───────────────┐\n");
     printf("|");
     OutputKata(Pemain.nama);
-    printf("\t         │ Money: %d\t │  Life: %d\t │Time: %d     │\n", Pemain.money, Pemain.life, Pemain.time);
-    printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
-    printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
+    printf("\t         │ Money: %d\t │  Life: %d\t │Time: %d\t │\n", Pemain.money, Pemain.life, Pemain.time);
+    printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼───────────────┤\n");
+    printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack     │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
     infotypeQueue TempCustomer;
     TempCustomer = NthElmtQueue(&Antrian, 1);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    Kata TempMakanan;
+    TempMakanan = NthElmtStack(&Makanan, 1);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
     TempCustomer = NthElmtQueue(&Antrian, 2);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 2,1)), MatriksToChar(ElmtMatriks(Tampilan,2,2)), MatriksToChar(ElmtMatriks(Tampilan,2,3)), MatriksToChar(ElmtMatriks(Tampilan,2,4)), MatriksToChar(ElmtMatriks(Tampilan,2,5)), MatriksToChar(ElmtMatriks(Tampilan,2,6)), MatriksToChar(ElmtMatriks(Tampilan,2,7)), MatriksToChar(ElmtMatriks(Tampilan,2,8)));
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 2,1)), MatriksToChar(ElmtMatriks(Tampilan,2,2)), MatriksToChar(ElmtMatriks(Tampilan,2,3)), MatriksToChar(ElmtMatriks(Tampilan,2,4)), MatriksToChar(ElmtMatriks(Tampilan,2,5)), MatriksToChar(ElmtMatriks(Tampilan,2,6)), MatriksToChar(ElmtMatriks(Tampilan,2,7)), MatriksToChar(ElmtMatriks(Tampilan,2,8)));
+    TempMakanan = NthElmtStack(&Makanan, 2);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
     TempCustomer = NthElmtQueue(&Antrian, 3);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    TempMakanan = NthElmtStack(&Makanan, 3);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
     TempCustomer = NthElmtQueue(&Antrian, 4);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 3,1)), MatriksToChar(ElmtMatriks(Tampilan,3,2)), MatriksToChar(ElmtMatriks(Tampilan,3,3)), MatriksToChar(ElmtMatriks(Tampilan,3,4)), MatriksToChar(ElmtMatriks(Tampilan,3,5)), MatriksToChar(ElmtMatriks(Tampilan,3,6)), MatriksToChar(ElmtMatriks(Tampilan,3,7)), MatriksToChar(ElmtMatriks(Tampilan,3,8)));
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 3,1)), MatriksToChar(ElmtMatriks(Tampilan,3,2)), MatriksToChar(ElmtMatriks(Tampilan,3,3)), MatriksToChar(ElmtMatriks(Tampilan,3,4)), MatriksToChar(ElmtMatriks(Tampilan,3,5)), MatriksToChar(ElmtMatriks(Tampilan,3,6)), MatriksToChar(ElmtMatriks(Tampilan,3,7)), MatriksToChar(ElmtMatriks(Tampilan,3,8)));
+    TempMakanan = NthElmtStack(&Makanan, 4);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
     TempCustomer = NthElmtQueue(&Antrian, 5);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    TempMakanan = NthElmtStack(&Makanan, 5);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
     TempCustomer = NthElmtQueue(&Antrian, 6);
     printf("│ %c %c ", NumToChar(TempCustomer.prio), NumToChar(TempCustomer.info));
     OutputKata(NumToKata(TempCustomer.kesabaran));
     if (TempCustomer.kesabaran < 10) printf("\t");
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 4,1)), MatriksToChar(ElmtMatriks(Tampilan,4,2)), MatriksToChar(ElmtMatriks(Tampilan,4,3)), MatriksToChar(ElmtMatriks(Tampilan,4,4)), MatriksToChar(ElmtMatriks(Tampilan,4,5)), MatriksToChar(ElmtMatriks(Tampilan,4,6)), MatriksToChar(ElmtMatriks(Tampilan,4,7)), MatriksToChar(ElmtMatriks(Tampilan,4,8)));
-    printf("├────────────────┼───┼───┼───┼───┼───┼───┼───┼───┼────────────┤\n");
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 4,1)), MatriksToChar(ElmtMatriks(Tampilan,4,2)), MatriksToChar(ElmtMatriks(Tampilan,4,3)), MatriksToChar(ElmtMatriks(Tampilan,4,4)), MatriksToChar(ElmtMatriks(Tampilan,4,5)), MatriksToChar(ElmtMatriks(Tampilan,4,6)), MatriksToChar(ElmtMatriks(Tampilan,4,7)), MatriksToChar(ElmtMatriks(Tampilan,4,8)));
+    TempMakanan = NthElmtStack(&Makanan, 6);
+    OutputKata(SimplMenu(TempMakanan));
+    printf("\t\t │\n");
+    printf("├────────────────┼───┼───┼───┼───┼───┼───┼───┼───┼───────────────┤\n");
     
-    printf("│Order           │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Hand        │\n", MatriksToChar(ElmtMatriks(Tampilan, 5,1)), MatriksToChar(ElmtMatriks(Tampilan,5,2)), MatriksToChar(ElmtMatriks(Tampilan,5,3)), MatriksToChar(ElmtMatriks(Tampilan,5,4)), MatriksToChar(ElmtMatriks(Tampilan,5,5)), MatriksToChar(ElmtMatriks(Tampilan,5,6)), MatriksToChar(ElmtMatriks(Tampilan,5,7)), MatriksToChar(ElmtMatriks(Tampilan,5,8)));
+    printf("│Order           │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Hand           │\n", MatriksToChar(ElmtMatriks(Tampilan, 5,1)), MatriksToChar(ElmtMatriks(Tampilan,5,2)), MatriksToChar(ElmtMatriks(Tampilan,5,3)), MatriksToChar(ElmtMatriks(Tampilan,5,4)), MatriksToChar(ElmtMatriks(Tampilan,5,5)), MatriksToChar(ElmtMatriks(Tampilan,5,6)), MatriksToChar(ElmtMatriks(Tampilan,5,7)), MatriksToChar(ElmtMatriks(Tampilan,5,8)));
     PesananID TempPesanan;
     TempPesanan = NthElmtArray(&Pesanan, 1);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    Kata TempTangan;
+    TempTangan = NthElmtStack(&Tangan, 1);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
     TempPesanan = NthElmtArray(&Pesanan, 2);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 6,1)), MatriksToChar(ElmtMatriks(Tampilan,6,2)), MatriksToChar(ElmtMatriks(Tampilan,6,3)), MatriksToChar(ElmtMatriks(Tampilan,6,4)), MatriksToChar(ElmtMatriks(Tampilan,6,5)), MatriksToChar(ElmtMatriks(Tampilan,6,6)), MatriksToChar(ElmtMatriks(Tampilan,6,7)), MatriksToChar(ElmtMatriks(Tampilan,6,8)));
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 6,1)), MatriksToChar(ElmtMatriks(Tampilan,6,2)), MatriksToChar(ElmtMatriks(Tampilan,6,3)), MatriksToChar(ElmtMatriks(Tampilan,6,4)), MatriksToChar(ElmtMatriks(Tampilan,6,5)), MatriksToChar(ElmtMatriks(Tampilan,6,6)), MatriksToChar(ElmtMatriks(Tampilan,6,7)), MatriksToChar(ElmtMatriks(Tampilan,6,8)));
+    TempTangan = NthElmtStack(&Tangan, 2);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
     TempPesanan = NthElmtArray(&Pesanan, 3);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    TempTangan = NthElmtStack(&Tangan, 3);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
     TempPesanan = NthElmtArray(&Pesanan, 4);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 7,1)), MatriksToChar(ElmtMatriks(Tampilan,7,2)), MatriksToChar(ElmtMatriks(Tampilan,7,3)), MatriksToChar(ElmtMatriks(Tampilan,7,4)), MatriksToChar(ElmtMatriks(Tampilan,7,5)), MatriksToChar(ElmtMatriks(Tampilan,7,6)), MatriksToChar(ElmtMatriks(Tampilan,7,7)), MatriksToChar(ElmtMatriks(Tampilan,7,8)));
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 7,1)), MatriksToChar(ElmtMatriks(Tampilan,7,2)), MatriksToChar(ElmtMatriks(Tampilan,7,3)), MatriksToChar(ElmtMatriks(Tampilan,7,4)), MatriksToChar(ElmtMatriks(Tampilan,7,5)), MatriksToChar(ElmtMatriks(Tampilan,7,6)), MatriksToChar(ElmtMatriks(Tampilan,7,7)), MatriksToChar(ElmtMatriks(Tampilan,7,8)));
+    TempTangan = NthElmtStack(&Tangan, 4);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
     TempPesanan = NthElmtArray(&Pesanan, 5);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
+    printf("\t ├───┼───┼───┼───┼───┼───┼───┼───│ ");
+    TempTangan = NthElmtStack(&Tangan, 5);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
     TempPesanan = NthElmtArray(&Pesanan, 6);
     printf("| %c %c ", NumToChar(TempPesanan.Room), NumToChar(TempPesanan.MejaID));
     OutputKata(SimplMenu(TempPesanan.Menu));
     printf(" ");
     OutputKata(NumToKata(TempCustomer.kesabaran));
-    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
-    printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴────────────┘\n");
+    printf("\t │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ ", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
+    TempTangan = NthElmtStack(&Tangan, 6);
+    OutputKata(SimplMenu(TempTangan));
+    printf("\t\t │\n");
+    printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴───────────────┘\n");
     printf(" Command : ");
-    PrintQueue(Antrian);
-    TulisIsi(Pesanan);
-    TulisStack(Makanan);
-    TulisStack(Tangan);
 }
 //ntar bakal nampilin program utamanya
 void SaveFile(){
@@ -780,7 +814,37 @@ Kata SimplMenu (Kata K) {
         return StringToKata("H.D");
     if (IsEqKata(K,StringToKata("spaghetti bolognese")))
         return StringToKata("S.B");
-    if (IsEqKata(K,StringToKata("spaghetti carbonara")))
-        return StringToKata("S.C");
+    if (IsEqKata(K,StringToKata("piring")))
+        return StringToKata("pir");
+    if (IsEqKata(K,StringToKata("sendok")))
+        return StringToKata("sen");
+    if (IsEqKata(K,StringToKata("es krim")))
+        return StringToKata("e.k");
+    if (IsEqKata(K,StringToKata("pisang")))
+        return StringToKata("pis");
+    if (IsEqKata(K,StringToKata("stroberi")))
+        return StringToKata("str");
+    if (IsEqKata(K,StringToKata("nasi")))
+        return StringToKata("nas");
+    if (IsEqKata(K,StringToKata("telur")))
+        return StringToKata("tel");
+    if (IsEqKata(K,StringToKata("ayam goreng")))
+        return StringToKata("a.g");
+    if (IsEqKata(K,StringToKata("garpu")))
+        return StringToKata("gar");
+    if (IsEqKata(K,StringToKata("roti")))
+        return StringToKata("roti");
+    if (IsEqKata(K,StringToKata("patty")))
+        return StringToKata("pat");
+    if (IsEqKata(K,StringToKata("sosis")))
+        return StringToKata("sos");
+    if (IsEqKata(K,StringToKata("spaghetti")))
+        return StringToKata("spa");
+    if (IsEqKata(K,StringToKata("bolognese")))
+        return StringToKata("bol");
+    if (IsEqKata(K,StringToKata("keju")))
+        return StringToKata("kej");
+    if (IsEqKata(K,StringToKata("carbonara")))
+        return StringToKata("car");
     else return StringToKata("   ");
 }
