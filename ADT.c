@@ -519,9 +519,11 @@ void InitDenah () {
 }
 
 void assignMatriks(){
+    int i,j;
+    i = Pemain.posisi.X;
+    j = Pemain.posisi.Y;
+    Tampilan.NBrsEff = Tampilan.NKolEff = 8;
     MakeEmptyMatriks(&Tampilan);
-    int i = Pemain.posisi.X;
-    int j = Pemain.posisi.Y;
     ElmtMatriks(Tampilan,i,j) = 5;
     if(Pemain.ruangan != 4 ){
         Ruang TempRuangan;

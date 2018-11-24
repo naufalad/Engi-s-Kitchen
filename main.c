@@ -68,10 +68,10 @@ int main(){
 			assignMatriks();
 			TampilanProgramUtama();
 			command= InputKata();
-			if(IsEqKata(command, StringToKata("GU"))) GU(&Pemain);
-			else if(IsEqKata(command, StringToKata("GD"))) GD(&Pemain);
-			else if(IsEqKata(command, StringToKata("GL"))) GL(&Pemain);
-			else if(IsEqKata(command, StringToKata("GR"))) GR(&Pemain);
+			if(IsEqKata(command, StringToKata("GU"))) GU();
+			else if(IsEqKata(command, StringToKata("GD"))) GD();
+			else if(IsEqKata(command, StringToKata("GL"))) GL();
+			else if(IsEqKata(command, StringToKata("GR"))) GR();
 			//else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
 			else if(IsEqKata(command, StringToKata("PUT"))) PUT(&Tangan, &(Dapur).T.bahan);
 			//else if(IsEqKata(command, StringToKata("TAKE"))) TAKE(&Tangan, );
@@ -83,7 +83,6 @@ int main(){
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
-			TulisPOINT(Pemain.posisi);
 			//buat ngelakuin sesuai inputan
 		}while(!exit);
 		printf("Jam Sekarang : ");

@@ -53,3 +53,4 @@ void EXIT(boolean *exit);
 /*~~~TAMBAHAN~~~*/
 int IsNearTable ();
 void GantiRuangan ();
+void UpdateTimePatience();
