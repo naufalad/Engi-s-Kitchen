@@ -1,8 +1,7 @@
 //kemungkinan dari command
-#include "ADT.h"
-#include "stackt.h"
-#include "bintree.c"
-void Gu(P *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+#include "cobatubes.h"
+
+void Gu(player *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
@@ -49,7 +48,7 @@ void Gu(P *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat 
         }
     }
 }
-void GD(POINT *pemain,int *Time,int ruangan)
+void GD(Player *pemain,int *Time,int ruangan)
 /*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
 ke bawah*/
 {
@@ -96,7 +95,7 @@ ke bawah*/
             *Time += 1;
         }
     }
-}void GL(POINT *pemain,int *Time,int ruangan)
+}void GL(Player *pemain,int *Time,int ruangan)
 /*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi player berpindah
 ke kiri*/
 {
@@ -142,7 +141,7 @@ ke kiri*/
         }
     }
 }
-void GR(POINT *pemain,int *Time,int ruangan)
+void GR(Player *pemain,int *Time,int ruangan)
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi player berpindah
 kekanan.*/
 {
@@ -187,7 +186,7 @@ kekanan.*/
             *Time += 1;
         }
     }
-}void ORDER(POINT pemain,List *menu,Kata order,int ruangan)//pemain bisa ambil brp banyak order?
+}void ORDER(Player pemain,List *menu,Kata order,int ruangan)//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
@@ -238,7 +237,7 @@ dalam tray*/
   /*Algoritma*/
   CreateEmpty(Tray);
 }
-void PLACE(POINT pemain,int *customermeja,Queue antrian,int ruangan)
+void PLACE(Player pemain,int *customermeja,Queue antrian,int ruangan)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
@@ -252,7 +251,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         if(!)
       }
     }
-void GIVE(POINT pemain,Stack *foodstack,int *ncustemer,int *money,int *time,int ruangan)
+void GIVE(Player pemain,Stack *foodstack,int *ncustemer,int *money,int *time,int ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 {
@@ -301,4 +300,15 @@ void EXIT()
     ExitMessage(f);
     delay(10000);
     exit(0);
+}
+
+boolean IsNearSatTable(Player Pemain, Ruang R, tabpesanan ArOrder) 
+/* Command ini digunakan untuk menentukan apakah pemain berada di sebelah meja yang benar */
+{
+    //Kamus
+    int roomID;
+    //Algoritma
+    for (int i=1;i<=4,i++) {
+        
+    }
 }

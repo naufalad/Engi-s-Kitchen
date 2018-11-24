@@ -4,6 +4,8 @@
 #include "stackt.h"
 #include "bintree.h"
 #include "prioqueue.h"
+#include "arraypesanan.h"
+
 void Gu(POINT *pemain,int *Time);//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari �Go Up�, sehingga posisi player berpindah ke
 //atas
@@ -46,3 +48,6 @@ void LOAD();
 ada pada text file. Metode interaksi bebas*/
 void EXIT();
 /*Command ini digunakan untuk keluar dari program.*/
+
+/*~~~TAMBAHAN~~~*/
+boolean IsNearSatTable(Player Pemain, ruangan R, TabPesanan ArOrder);
