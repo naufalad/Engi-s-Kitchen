@@ -27,42 +27,40 @@
 		POINT posisi;
 		int ruangan;
 	} Player;
+
 	extern Player Pemain;
 	extern JAM RealTime;
+
 	typedef struct{
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
 		int NCustomer;
-		POINT K1; //Kiri, digunakan jika Kursi = 2
-		POINT K2; //Kanan, digunakan jika Kursi = 2
-		POINT K3; //Up
-		POINT K4; //Bottom
+		POINT TChair[5];
 	} MejaMakan;
+
 
 	typedef struct{
 		POINT posisi;
 		Kata bahan;
 	} MejaDapur;
-	//bakal disesuain sama real time, buat dipake di savegame
-	//bakalan NextNDetik mulu tiap program berjalan(kecuali ga harus real time, kalo ga harus ntar bisa diconvert dr lama main)
-
+	
 	extern TabPesanan Pesanan;
-	//ubah array.h buat orderan, ElType = Kata(atau mesin kata?)
+
 	typedef struct{
 		POINT P1;
 		POINT P2;
-		MejaMakan M1;
-		MejaMakan M2;
-		MejaMakan M3;
-		MejaMakan M4;
+		MejaMakan TTable[5];
 	}Ruang;
+
 	extern Ruang Ruangan1;
 	extern Ruang Ruangan2;
 	extern Ruang Ruangan3;
+
 	typedef struct{
 		POINT posisi;
 		Stack bahan;
 	}Tray;
+
 	typedef struct{
 		POINT P1;
 		POINT P2;
@@ -83,7 +81,7 @@
 		MejaDapur M14;
 		MejaDapur M15;
 		MejaDapur M16;
-	}RuangDapur;
+	} RuangDapur;
 
 	extern MATRIKS Tampilan;
 	extern RuangDapur Dapur;

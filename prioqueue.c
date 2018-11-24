@@ -98,37 +98,40 @@ void AddQueue (Queue * Q, infotypeQueue X)
     boolean cek;
     infotypeQueue Temp;
     /* ALGORITMA */
-    if (IsEmptyQueue(*Q))
-        {
-        Head(*Q)=1;
+    if (!IsFullQueue(*Q)) {
+        if (IsEmptyQueue(*Q))
+            {
+            Head(*Q)=1;
+            }
+        Tail(*Q) = (Tail(*Q) % MaxElm(*Q)) + 1;
+        ElmtQueue(*Q,Tail(*Q))=X;
+        i = Tail(*Q);
+        prev = Tail(*Q);
+        cek = true;
+        while (cek && i!=Head(*Q))
+            {
+            if (prev - 1 == 0)
+                {
+                prev=MaxElm(*Q);
+                }
+            else
+                {
+                prev--;
+                }
+            if (Prio(ElmtQueue(*Q,prev))<Prio(ElmtQueue(*Q,i)))
+                {
+                Temp=ElmtQueue(*Q,i);
+                ElmtQueue(*Q,i)=ElmtQueue(*Q,prev);
+                ElmtQueue(*Q,prev)=Temp;
+                }
+            else
+                {
+                cek = false;
+                }
+            i = prev;
+            }
         }
-    Tail(*Q) = (Tail(*Q) % MaxElm(*Q)) + 1;
-    ElmtQueue(*Q,Tail(*Q))=X;
-    i = Tail(*Q);
-    prev = Tail(*Q);
-    cek = true;
-    while (cek && i!=Head(*Q))
-        {
-        if (prev - 1 == 0)
-            {
-            prev=MaxElm(*Q);
-            }
-        else
-            {
-            prev--;
-            }
-        if (Prio(ElmtQueue(*Q,prev))<Prio(ElmtQueue(*Q,i)))
-            {
-            Temp=ElmtQueue(*Q,i);
-            ElmtQueue(*Q,i)=ElmtQueue(*Q,prev);
-            ElmtQueue(*Q,prev)=Temp;
-            }
-        else
-            {
-            cek = false;
-            }
-        i = prev;
-        }
+    
     }
 void DelQueue (Queue * Q, infotypeQueue * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
