@@ -268,24 +268,15 @@ boolean IsNearSatTable(Player Pemain, Ruang R, tabpesanan ArOrder)
 
 void GantiRuangan () {
     int pintu = 0;
-    if (Pemain.ruangan == 1) {
-        if (EQ(Pemain.posisi,Ruangan1.P1)) {
+    int i;
+    for (i = 1; i <= 3; ++i) {
+        if (EQ(Pemain.posisi,Ruangan[i].P1)) {
             pintu = 1;
-        } else if (EQ(Pemain.posisi,Ruangan1.P2)) {
+        } else if (EQ(Pemain.posisi,Ruangan[i].P2)) {
             pintu = 2;
         }
-    } else if (Pemain.ruangan == 2) {
-        if (EQ(Pemain.posisi,Ruangan2.P1)) {
-            pintu = 1;
-        } else if (EQ(Pemain.posisi,Ruangan2.P2)) {
-            pintu = 2;
-        }
-    } else if (Pemain.ruangan == 3) {
-        if (EQ(Pemain.posisi,Ruangan3.P1)) {
-            pintu = 1;
-        } else if (EQ(Pemain.posisi,Ruangan3.P2)) {
-            pintu = 2;
-        }
+    }
+    
     } else if (Pemain.ruangan == 4) {
         if (EQ(Pemain.posisi,Dapur.P1)) {
             pintu = 1;
@@ -295,23 +286,11 @@ void GantiRuangan () {
     } 
     if (pintu != 0) {
         Pemain.ruangan = SearchEdge2(Denah,Pemain.ruangan,pintu);
-        if (Pemain.ruangan == 1) {
+        if (Pemain.ruangan >= 1 && Pemain.ruangan <= 3) {
             if (pintu == 1) {
-                Pemain.posisi = Ruangan1.P1;
+                Pemain.posisi = Ruangan[i].P1;
             } else if (pintu == 2) {
-                Pemain.posisi = Ruangan1.P2;
-            }
-        } else if (Pemain.ruangan == 2) {
-            if (pintu == 1) {
-                Pemain.posisi = Ruangan2.P1;
-            } else if (pintu == 2) {
-                Pemain.posisi = Ruangan2.P2;
-            }
-        } else if (Pemain.ruangan == 3) {
-            if (pintu == 1) {
-                Pemain.posisi = Ruangan3.P1;
-            } else if (pintu == 2) {
-                Pemain.posisi = Ruangan3.P2;
+                Pemain.posisi = Ruangan[i].P2;
             }
         } else if (Pemain.ruangan == 4) {
             if (pintu == 1) {

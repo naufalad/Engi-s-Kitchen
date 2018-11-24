@@ -6,18 +6,15 @@
 Player Pemain;
 JAM RealTime;
 TabPesanan Pesanan;
- Ruang Ruangan1;
- Ruang Ruangan2;
- Ruang Ruangan3;
- MATRIKS Tampilan;
- RuangDapur Dapur;
- Kata command;
- Queue Antrian;
- Stack Makanan;
- Stack Tangan;
- Graph Denah;
- BinTree Resep;
-
+Ruang Ruangan[4];
+MATRIKS Tampilan;
+RuangDapur Dapur;
+Kata command;
+Queue Antrian;
+Stack Makanan;
+Stack Tangan;
+Graph Denah;
+BinTree Resep;
 
 
 void ExitMessage(boolean SaveGame){
@@ -110,21 +107,12 @@ void SaveFile(){
         }
     }
     //save ruangan
-    fprintf(save, "Customer Meja Ruangan 1 : \n");
-    fprintf(save, "%d\n", Ruangan1.TTable[1].NCustomer);
-    fprintf(save, "%d\n", Ruangan1.TTable[2].NCustomer);
-    fprintf(save, "%d\n", Ruangan1.TTable[3].NCustomer);
-    fprintf(save, "%d\n", Ruangan1.TTable[4].NCustomer);
-    fprintf(save, "Customer Meja Ruangan 2 : \n");
-    fprintf(save, "%d\n", Ruangan2.TTable[1].NCustomer);
-    fprintf(save, "%d\n", Ruangan2.TTable[2].NCustomer);
-    fprintf(save, "%d\n", Ruangan2.TTable[3].NCustomer);
-    fprintf(save, "%d\n", Ruangan2.TTable[4].NCustomer);
-    fprintf(save, "Customer Meja Ruangan 3 : \n");
-    fprintf(save, "%d\n", Ruangan3.TTable[1].NCustomer);
-    fprintf(save, "%d\n", Ruangan3.TTable[2].NCustomer);
-    fprintf(save, "%d\n", Ruangan3.TTable[3].NCustomer);
-    fprintf(save, "%d\n", Ruangan3.TTable[4].NCustomer);
+    int i,j;
+    for (i = 1; i <= 3; ++i) {
+        fprintf(save, "Customer Meja Ruangan %d : \n", i);
+        for (j = 1; j <= 4; ++j)
+            fprintf(save, "%d\n", Ruangan[i].TTable[j].NCustomer);
+    }
     fprintf(save, "#\n");
     fclose(save);
 }//bakal ngesave ke file eksternal dgn format yg di tampilan
@@ -318,154 +306,154 @@ BinTree assignResep(){
     return P;
 }
 
-void init_ruangan1(){
-    (Ruangan1).P1.X = 5;
-    (Ruangan1).P1.Y = 8;
-    (Ruangan1).P2.X = 8;
-    (Ruangan1).P2.Y = 5;
-    (Ruangan1).TTable[1].posisi.X = 2;
-    (Ruangan1).TTable[1].posisi.Y = 2;
-    (Ruangan1).TTable[1].kursi = 4;
-    (Ruangan1).TTable[1].NCustomer = 0;
-    (Ruangan1).TTable[1].TChair[1].X = (Ruangan1).TTable[1].posisi.X;
-    (Ruangan1).TTable[1].TChair[1].Y = (Ruangan1).TTable[1].posisi.Y-1;
-    (Ruangan1).TTable[1].TChair[2].X = (Ruangan1).TTable[1].posisi.X;
-    (Ruangan1).TTable[1].TChair[2].Y = (Ruangan1).TTable[1].posisi.Y+1;
-    (Ruangan1).TTable[1].TChair[3].X = (Ruangan1).TTable[1].posisi.X-1;
-    (Ruangan1).TTable[1].TChair[3].Y = (Ruangan1).TTable[1].posisi.Y;
-    (Ruangan1).TTable[1].TChair[4].X = (Ruangan1).TTable[1].posisi.X+1;
-    (Ruangan1).TTable[1].TChair[4].Y = (Ruangan1).TTable[1].posisi.Y;
+void init_Ruangan1 (){
+    (Ruangan[1]).P1.X = 5;
+    (Ruangan[1]).P1.Y = 8;
+    (Ruangan[1]).P2.X = 8;
+    (Ruangan[1]).P2.Y = 5;
+    (Ruangan[1]).TTable[1].posisi.X = 2;
+    (Ruangan[1]).TTable[1].posisi.Y = 2;
+    (Ruangan[1]).TTable[1].kursi = 4;
+    (Ruangan[1]).TTable[1].NCustomer = 0;
+    (Ruangan[1]).TTable[1].TChair[1].X = (Ruangan[1]).TTable[1].posisi.X;
+    (Ruangan[1]).TTable[1].TChair[1].Y = (Ruangan[1]).TTable[1].posisi.Y-1;
+    (Ruangan[1]).TTable[1].TChair[2].X = (Ruangan[1]).TTable[1].posisi.X;
+    (Ruangan[1]).TTable[1].TChair[2].Y = (Ruangan[1]).TTable[1].posisi.Y+1;
+    (Ruangan[1]).TTable[1].TChair[3].X = (Ruangan[1]).TTable[1].posisi.X-1;
+    (Ruangan[1]).TTable[1].TChair[3].Y = (Ruangan[1]).TTable[1].posisi.Y;
+    (Ruangan[1]).TTable[1].TChair[4].X = (Ruangan[1]).TTable[1].posisi.X+1;
+    (Ruangan[1]).TTable[1].TChair[4].Y = (Ruangan[1]).TTable[1].posisi.Y;
 
-    (Ruangan1).TTable[2].posisi.X = 2;
-    (Ruangan1).TTable[2].posisi.Y = 7;
-    (Ruangan1).TTable[2].kursi = 2;
-    (Ruangan1).TTable[2].NCustomer = 0;
-    (Ruangan1).TTable[2].TChair[1].X = (Ruangan1).TTable[2].posisi.X;
-    (Ruangan1).TTable[2].TChair[1].Y = (Ruangan1).TTable[2].posisi.Y-1;
-    (Ruangan1).TTable[2].TChair[2].X = (Ruangan1).TTable[2].posisi.X;
-    (Ruangan1).TTable[2].TChair[2].Y = (Ruangan1).TTable[2].posisi.Y+1;
+    (Ruangan[1]).TTable[2].posisi.X = 2;
+    (Ruangan[1]).TTable[2].posisi.Y = 7;
+    (Ruangan[1]).TTable[2].kursi = 2;
+    (Ruangan[1]).TTable[2].NCustomer = 0;
+    (Ruangan[1]).TTable[2].TChair[1].X = (Ruangan[1]).TTable[2].posisi.X;
+    (Ruangan[1]).TTable[2].TChair[1].Y = (Ruangan[1]).TTable[2].posisi.Y-1;
+    (Ruangan[1]).TTable[2].TChair[2].X = (Ruangan[1]).TTable[2].posisi.X;
+    (Ruangan[1]).TTable[2].TChair[2].Y = (Ruangan[1]).TTable[2].posisi.Y+1;
 
-    (Ruangan1).TTable[3].posisi.X = 7;
-    (Ruangan1).TTable[3].posisi.Y = 2;
-    (Ruangan1).TTable[3].kursi = 4;
-    (Ruangan1).TTable[3].NCustomer = 0;
-    (Ruangan1).TTable[3].TChair[1].X = (Ruangan1).TTable[3].posisi.X;
-    (Ruangan1).TTable[3].TChair[1].Y = (Ruangan1).TTable[3].posisi.Y-1;
-    (Ruangan1).TTable[3].TChair[2].X = (Ruangan1).TTable[3].posisi.X;
-    (Ruangan1).TTable[3].TChair[2].Y = (Ruangan1).TTable[3].posisi.Y+1;
-    (Ruangan1).TTable[3].TChair[3].X = (Ruangan1).TTable[3].posisi.X-1;
-    (Ruangan1).TTable[3].TChair[3].Y = (Ruangan1).TTable[3].posisi.Y;
-    (Ruangan1).TTable[3].TChair[4].X = (Ruangan1).TTable[3].posisi.X+1;
-    (Ruangan1).TTable[3].TChair[4].Y = (Ruangan1).TTable[3].posisi.Y;
+    (Ruangan[1]).TTable[3].posisi.X = 7;
+    (Ruangan[1]).TTable[3].posisi.Y = 2;
+    (Ruangan[1]).TTable[3].kursi = 4;
+    (Ruangan[1]).TTable[3].NCustomer = 0;
+    (Ruangan[1]).TTable[3].TChair[1].X = (Ruangan[1]).TTable[3].posisi.X;
+    (Ruangan[1]).TTable[3].TChair[1].Y = (Ruangan[1]).TTable[3].posisi.Y-1;
+    (Ruangan[1]).TTable[3].TChair[2].X = (Ruangan[1]).TTable[3].posisi.X;
+    (Ruangan[1]).TTable[3].TChair[2].Y = (Ruangan[1]).TTable[3].posisi.Y+1;
+    (Ruangan[1]).TTable[3].TChair[3].X = (Ruangan[1]).TTable[3].posisi.X-1;
+    (Ruangan[1]).TTable[3].TChair[3].Y = (Ruangan[1]).TTable[3].posisi.Y;
+    (Ruangan[1]).TTable[3].TChair[4].X = (Ruangan[1]).TTable[3].posisi.X+1;
+    (Ruangan[1]).TTable[3].TChair[4].Y = (Ruangan[1]).TTable[3].posisi.Y;
 
-    (Ruangan1).TTable[4].posisi.X = 7;
-    (Ruangan1).TTable[4].posisi.Y = 7;
-    (Ruangan1).TTable[4].kursi = 2;
-    (Ruangan1).TTable[4].NCustomer = 0;
-    (Ruangan1).TTable[4].TChair[1].X = (Ruangan1).TTable[4].posisi.X;
-    (Ruangan1).TTable[4].TChair[1].Y = (Ruangan1).TTable[4].posisi.Y-1;
-    (Ruangan1).TTable[4].TChair[2].X = (Ruangan1).TTable[4].posisi.X;
-    (Ruangan1).TTable[4].TChair[2].Y = (Ruangan1).TTable[4].posisi.Y+1;
+    (Ruangan[1]).TTable[4].posisi.X = 7;
+    (Ruangan[1]).TTable[4].posisi.Y = 7;
+    (Ruangan[1]).TTable[4].kursi = 2;
+    (Ruangan[1]).TTable[4].NCustomer = 0;
+    (Ruangan[1]).TTable[4].TChair[1].X = (Ruangan[1]).TTable[4].posisi.X;
+    (Ruangan[1]).TTable[4].TChair[1].Y = (Ruangan[1]).TTable[4].posisi.Y-1;
+    (Ruangan[1]).TTable[4].TChair[2].X = (Ruangan[1]).TTable[4].posisi.X;
+    (Ruangan[1]).TTable[4].TChair[2].Y = (Ruangan[1]).TTable[4].posisi.Y+1;
 }
-void init_ruangan2(){
-    (Ruangan2).P1.X = 2;
-    (Ruangan2).P1.Y = 1;
-    (Ruangan2).P2.X = 8;
-    (Ruangan2).P2.Y = 5;
-    (Ruangan2).TTable[1].posisi.X = 2;
-    (Ruangan2).TTable[1].posisi.Y = 2;
-    (Ruangan1).TTable[1].kursi = 4;
-    (Ruangan1).TTable[1].NCustomer = 0;
-    (Ruangan1).TTable[1].TChair[1].X = (Ruangan1).TTable[1].posisi.X;
-    (Ruangan1).TTable[1].TChair[1].Y = (Ruangan1).TTable[1].posisi.Y-1;
-    (Ruangan1).TTable[1].TChair[2].X = (Ruangan1).TTable[1].posisi.X;
-    (Ruangan1).TTable[1].TChair[2].Y = (Ruangan1).TTable[1].posisi.Y+1;
-    (Ruangan1).TTable[1].TChair[3].X = (Ruangan1).TTable[1].posisi.X-1;
-    (Ruangan1).TTable[1].TChair[3].Y = (Ruangan1).TTable[1].posisi.Y;
-    (Ruangan1).TTable[1].TChair[4].X = (Ruangan1).TTable[1].posisi.X+1;
-    (Ruangan1).TTable[1].TChair[4].Y = (Ruangan1).TTable[1].posisi.Y;
+void init_Ruangan2 (){
+    (Ruangan[2]).P1.X = 2;
+    (Ruangan[2]).P1.Y = 1;
+    (Ruangan[2]).P2.X = 8;
+    (Ruangan[2]).P2.Y = 5;
+    (Ruangan[2]).TTable[1].posisi.X = 2;
+    (Ruangan[2]).TTable[1].posisi.Y = 2;
+    (Ruangan[1]).TTable[1].kursi = 4;
+    (Ruangan[1]).TTable[1].NCustomer = 0;
+    (Ruangan[1]).TTable[1].TChair[1].X = (Ruangan[1]).TTable[1].posisi.X;
+    (Ruangan[1]).TTable[1].TChair[1].Y = (Ruangan[1]).TTable[1].posisi.Y-1;
+    (Ruangan[1]).TTable[1].TChair[2].X = (Ruangan[1]).TTable[1].posisi.X;
+    (Ruangan[1]).TTable[1].TChair[2].Y = (Ruangan[1]).TTable[1].posisi.Y+1;
+    (Ruangan[1]).TTable[1].TChair[3].X = (Ruangan[1]).TTable[1].posisi.X-1;
+    (Ruangan[1]).TTable[1].TChair[3].Y = (Ruangan[1]).TTable[1].posisi.Y;
+    (Ruangan[1]).TTable[1].TChair[4].X = (Ruangan[1]).TTable[1].posisi.X+1;
+    (Ruangan[1]).TTable[1].TChair[4].Y = (Ruangan[1]).TTable[1].posisi.Y;
 
-    (Ruangan2).TTable[2].posisi.X = 2;
-    (Ruangan2).TTable[2].posisi.Y = 7;
-    (Ruangan2).TTable[2].kursi = 2;
-    (Ruangan2).TTable[2].NCustomer = 0;
-    (Ruangan2).TTable[2].TChair[1].X = (Ruangan2).TTable[2].posisi.X;
-    (Ruangan2).TTable[2].TChair[1].Y = (Ruangan2).TTable[2].posisi.Y-1;
-    (Ruangan2).TTable[2].TChair[2].X = (Ruangan2).TTable[2].posisi.X;
-    (Ruangan2).TTable[2].TChair[2].Y = (Ruangan2).TTable[2].posisi.Y+1;
+    (Ruangan[2]).TTable[2].posisi.X = 2;
+    (Ruangan[2]).TTable[2].posisi.Y = 7;
+    (Ruangan[2]).TTable[2].kursi = 2;
+    (Ruangan[2]).TTable[2].NCustomer = 0;
+    (Ruangan[2]).TTable[2].TChair[1].X = (Ruangan[2]).TTable[2].posisi.X;
+    (Ruangan[2]).TTable[2].TChair[1].Y = (Ruangan[2]).TTable[2].posisi.Y-1;
+    (Ruangan[2]).TTable[2].TChair[2].X = (Ruangan[2]).TTable[2].posisi.X;
+    (Ruangan[2]).TTable[2].TChair[2].Y = (Ruangan[2]).TTable[2].posisi.Y+1;
 
-    (Ruangan2).TTable[3].posisi.X = 7;
-    (Ruangan2).TTable[3].posisi.Y = 2;
-    (Ruangan2).TTable[3].kursi = 4;
-    (Ruangan2).TTable[3].NCustomer = 0;
-    (Ruangan2).TTable[3].TChair[1].X = (Ruangan2).TTable[3].posisi.X;
-    (Ruangan2).TTable[3].TChair[1].Y = (Ruangan2).TTable[3].posisi.Y-1;
-    (Ruangan2).TTable[3].TChair[2].X = (Ruangan2).TTable[3].posisi.X;
-    (Ruangan2).TTable[3].TChair[2].Y = (Ruangan2).TTable[3].posisi.Y+1;
-    (Ruangan2).TTable[3].TChair[3].X = (Ruangan2).TTable[3].posisi.X-1;
-    (Ruangan2).TTable[3].TChair[3].Y = (Ruangan2).TTable[3].posisi.Y;
-    (Ruangan2).TTable[3].TChair[4].X = (Ruangan2).TTable[3].posisi.X+1;
-    (Ruangan2).TTable[3].TChair[4].Y = (Ruangan2).TTable[3].posisi.Y;
+    (Ruangan[2]).TTable[3].posisi.X = 7;
+    (Ruangan[2]).TTable[3].posisi.Y = 2;
+    (Ruangan[2]).TTable[3].kursi = 4;
+    (Ruangan[2]).TTable[3].NCustomer = 0;
+    (Ruangan[2]).TTable[3].TChair[1].X = (Ruangan[2]).TTable[3].posisi.X;
+    (Ruangan[2]).TTable[3].TChair[1].Y = (Ruangan[2]).TTable[3].posisi.Y-1;
+    (Ruangan[2]).TTable[3].TChair[2].X = (Ruangan[2]).TTable[3].posisi.X;
+    (Ruangan[2]).TTable[3].TChair[2].Y = (Ruangan[2]).TTable[3].posisi.Y+1;
+    (Ruangan[2]).TTable[3].TChair[3].X = (Ruangan[2]).TTable[3].posisi.X-1;
+    (Ruangan[2]).TTable[3].TChair[3].Y = (Ruangan[2]).TTable[3].posisi.Y;
+    (Ruangan[2]).TTable[3].TChair[4].X = (Ruangan[2]).TTable[3].posisi.X+1;
+    (Ruangan[2]).TTable[3].TChair[4].Y = (Ruangan[2]).TTable[3].posisi.Y;
 
-    (Ruangan2).TTable[4].posisi.X = 7;
-    (Ruangan2).TTable[4].posisi.Y = 7;
-    (Ruangan2).TTable[4].kursi = 2;
-    (Ruangan2).TTable[4].NCustomer = 0;
-    (Ruangan2).TTable[4].TChair[1].X = (Ruangan2).TTable[4].posisi.X;
-    (Ruangan2).TTable[4].TChair[1].Y = (Ruangan2).TTable[4].posisi.Y-1;
-    (Ruangan2).TTable[4].TChair[2].X = (Ruangan2).TTable[4].posisi.X;
-    (Ruangan2).TTable[4].TChair[2].Y = (Ruangan2).TTable[4].posisi.Y+1;
+    (Ruangan[2]).TTable[4].posisi.X = 7;
+    (Ruangan[2]).TTable[4].posisi.Y = 7;
+    (Ruangan[2]).TTable[4].kursi = 2;
+    (Ruangan[2]).TTable[4].NCustomer = 0;
+    (Ruangan[2]).TTable[4].TChair[1].X = (Ruangan[2]).TTable[4].posisi.X;
+    (Ruangan[2]).TTable[4].TChair[1].Y = (Ruangan[2]).TTable[4].posisi.Y-1;
+    (Ruangan[2]).TTable[4].TChair[2].X = (Ruangan[2]).TTable[4].posisi.X;
+    (Ruangan[2]).TTable[4].TChair[2].Y = (Ruangan[2]).TTable[4].posisi.Y+1;
 }
-void init_ruangan3(){
-    (Ruangan3).P1.X = 2;
-    (Ruangan3).P1.Y = 1;
-    (Ruangan3).P2.X = 1;
-    (Ruangan3).P2.Y = 5;
-    (Ruangan3).TTable[1].posisi.X = 2;
-    (Ruangan3).TTable[1].posisi.Y = 2;
-    (Ruangan3).TTable[1].kursi = 4;
-    (Ruangan3).TTable[1].NCustomer = 0;
-    (Ruangan3).TTable[1].TChair[1].X = (Ruangan3).TTable[1].posisi.X;
-    (Ruangan3).TTable[1].TChair[1].Y = (Ruangan3).TTable[1].posisi.Y-1;
-    (Ruangan3).TTable[1].TChair[2].X = (Ruangan3).TTable[1].posisi.X;
-    (Ruangan3).TTable[1].TChair[2].Y = (Ruangan3).TTable[1].posisi.Y+1;
-    (Ruangan3).TTable[1].TChair[3].X = (Ruangan3).TTable[1].posisi.X-1;
-    (Ruangan3).TTable[1].TChair[3].Y = (Ruangan3).TTable[1].posisi.Y;
-    (Ruangan3).TTable[1].TChair[4].X = (Ruangan3).TTable[1].posisi.X+1;
-    (Ruangan3).TTable[1].TChair[4].Y = (Ruangan3).TTable[1].posisi.Y;
+void init_Ruangan3 (){
+    (Ruangan[3]).P1.X = 2;
+    (Ruangan[3]).P1.Y = 1;
+    (Ruangan[3]).P2.X = 1;
+    (Ruangan[3]).P2.Y = 5;
+    (Ruangan[3]).TTable[1].posisi.X = 2;
+    (Ruangan[3]).TTable[1].posisi.Y = 2;
+    (Ruangan[3]).TTable[1].kursi = 4;
+    (Ruangan[3]).TTable[1].NCustomer = 0;
+    (Ruangan[3]).TTable[1].TChair[1].X = (Ruangan[3]).TTable[1].posisi.X;
+    (Ruangan[3]).TTable[1].TChair[1].Y = (Ruangan[3]).TTable[1].posisi.Y-1;
+    (Ruangan[3]).TTable[1].TChair[2].X = (Ruangan[3]).TTable[1].posisi.X;
+    (Ruangan[3]).TTable[1].TChair[2].Y = (Ruangan[3]).TTable[1].posisi.Y+1;
+    (Ruangan[3]).TTable[1].TChair[3].X = (Ruangan[3]).TTable[1].posisi.X-1;
+    (Ruangan[3]).TTable[1].TChair[3].Y = (Ruangan[3]).TTable[1].posisi.Y;
+    (Ruangan[3]).TTable[1].TChair[4].X = (Ruangan[3]).TTable[1].posisi.X+1;
+    (Ruangan[3]).TTable[1].TChair[4].Y = (Ruangan[3]).TTable[1].posisi.Y;
 
-    (Ruangan3).TTable[2].posisi.X = 2;
-    (Ruangan3).TTable[2].posisi.Y = 7;
-    (Ruangan3).TTable[2].kursi = 2;
-    (Ruangan3).TTable[2].NCustomer = 0;
-    (Ruangan3).TTable[2].TChair[1].X = (Ruangan3).TTable[2].posisi.X;
-    (Ruangan3).TTable[2].TChair[1].Y = (Ruangan3).TTable[2].posisi.Y-1;
-    (Ruangan3).TTable[2].TChair[2].X = (Ruangan3).TTable[2].posisi.X;
-    (Ruangan3).TTable[2].TChair[2].Y = (Ruangan3).TTable[2].posisi.Y+1;
+    (Ruangan[3]).TTable[2].posisi.X = 2;
+    (Ruangan[3]).TTable[2].posisi.Y = 7;
+    (Ruangan[3]).TTable[2].kursi = 2;
+    (Ruangan[3]).TTable[2].NCustomer = 0;
+    (Ruangan[3]).TTable[2].TChair[1].X = (Ruangan[3]).TTable[2].posisi.X;
+    (Ruangan[3]).TTable[2].TChair[1].Y = (Ruangan[3]).TTable[2].posisi.Y-1;
+    (Ruangan[3]).TTable[2].TChair[2].X = (Ruangan[3]).TTable[2].posisi.X;
+    (Ruangan[3]).TTable[2].TChair[2].Y = (Ruangan[3]).TTable[2].posisi.Y+1;
 
-    (Ruangan3).TTable[2].NCustomer = 0;
-    (Ruangan3).TTable[3].posisi.X = 7;
-    (Ruangan3).TTable[3].posisi.Y = 2;
-    (Ruangan3).TTable[3].kursi = 4;
-    (Ruangan3).TTable[3].NCustomer = 0;
-    (Ruangan3).TTable[3].TChair[1].X = (Ruangan3).TTable[3].posisi.X;
-    (Ruangan3).TTable[3].TChair[1].Y = (Ruangan3).TTable[3].posisi.Y-1;
-    (Ruangan3).TTable[3].TChair[2].X = (Ruangan3).TTable[3].posisi.X;
-    (Ruangan3).TTable[3].TChair[2].Y = (Ruangan3).TTable[3].posisi.Y+1;
-    (Ruangan3).TTable[3].TChair[3].X = (Ruangan3).TTable[3].posisi.X-1;
-    (Ruangan3).TTable[3].TChair[3].Y = (Ruangan3).TTable[3].posisi.Y;
-    (Ruangan3).TTable[3].TChair[4].X = (Ruangan3).TTable[3].posisi.X+1;
-    (Ruangan3).TTable[3].TChair[4].Y = (Ruangan3).TTable[3].posisi.Y;
+    (Ruangan[3]).TTable[2].NCustomer = 0;
+    (Ruangan[3]).TTable[3].posisi.X = 7;
+    (Ruangan[3]).TTable[3].posisi.Y = 2;
+    (Ruangan[3]).TTable[3].kursi = 4;
+    (Ruangan[3]).TTable[3].NCustomer = 0;
+    (Ruangan[3]).TTable[3].TChair[1].X = (Ruangan[3]).TTable[3].posisi.X;
+    (Ruangan[3]).TTable[3].TChair[1].Y = (Ruangan[3]).TTable[3].posisi.Y-1;
+    (Ruangan[3]).TTable[3].TChair[2].X = (Ruangan[3]).TTable[3].posisi.X;
+    (Ruangan[3]).TTable[3].TChair[2].Y = (Ruangan[3]).TTable[3].posisi.Y+1;
+    (Ruangan[3]).TTable[3].TChair[3].X = (Ruangan[3]).TTable[3].posisi.X-1;
+    (Ruangan[3]).TTable[3].TChair[3].Y = (Ruangan[3]).TTable[3].posisi.Y;
+    (Ruangan[3]).TTable[3].TChair[4].X = (Ruangan[3]).TTable[3].posisi.X+1;
+    (Ruangan[3]).TTable[3].TChair[4].Y = (Ruangan[3]).TTable[3].posisi.Y;
 
-    (Ruangan3).TTable[3].NCustomer = 0;
-    (Ruangan3).TTable[4].posisi.X = 7;
-    (Ruangan3).TTable[4].posisi.Y = 7;
-    (Ruangan3).TTable[4].kursi = 2;
-    (Ruangan3).TTable[4].NCustomer = 0;
-    (Ruangan3).TTable[4].TChair[1].X = (Ruangan3).TTable[4].posisi.X;
-    (Ruangan3).TTable[4].TChair[1].Y = (Ruangan3).TTable[4].posisi.Y-1;
-    (Ruangan3).TTable[4].TChair[2].X = (Ruangan3).TTable[4].posisi.X;
-    (Ruangan3).TTable[4].TChair[2].Y = (Ruangan3).TTable[4].posisi.Y+1;
+    (Ruangan[3]).TTable[3].NCustomer = 0;
+    (Ruangan[3]).TTable[4].posisi.X = 7;
+    (Ruangan[3]).TTable[4].posisi.Y = 7;
+    (Ruangan[3]).TTable[4].kursi = 2;
+    (Ruangan[3]).TTable[4].NCustomer = 0;
+    (Ruangan[3]).TTable[4].TChair[1].X = (Ruangan[3]).TTable[4].posisi.X;
+    (Ruangan[3]).TTable[4].TChair[1].Y = (Ruangan[3]).TTable[4].posisi.Y-1;
+    (Ruangan[3]).TTable[4].TChair[2].X = (Ruangan[3]).TTable[4].posisi.X;
+    (Ruangan[3]).TTable[4].TChair[2].Y = (Ruangan[3]).TTable[4].posisi.Y+1;
 }
 void init_dapur(){
     (Dapur).P1.X = 5;
@@ -538,40 +526,40 @@ void assignMatriks(){
     int j = Pemain.posisi.Y;
     ElmtMatriks(Tampilan,i,j) = 5;
     if(Pemain.ruangan != 4 ){
-        Ruang Ruangan;
-        if(Pemain.ruangan == 1) Ruangan = Ruangan1;
-        else if(Pemain.ruangan == 2) Ruangan = Ruangan2;
-        else if(Pemain.ruangan == 3) Ruangan = Ruangan3;
-        i = Ruangan.P1.X; j = Ruangan.P1.Y;
+        Ruang TempRuangan;
+        if(Pemain.ruangan == 1) TempRuangan = Ruangan[1];
+        else if(Pemain.ruangan == 2) TempRuangan = Ruangan[2];
+        else if(Pemain.ruangan == 3) TempRuangan = Ruangan[3];
+        i = TempRuangan.P1.X; j = TempRuangan.P1.Y;
         ElmtMatriks(Tampilan, i,j) = 10;
-        i = Ruangan.P2.X; j = Ruangan.P2.Y;
+        i = TempRuangan.P2.X; j = TempRuangan.P2.Y;
         ElmtMatriks(Tampilan, i,j) = 10;
-        if(Ruangan.TTable[1].NCustomer == 0){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
+        if(TempRuangan.TTable[1].NCustomer == 0){
+            i = TempRuangan.TTable[1].TChair[1].X; j = TempRuangan.TTable[1].TChair[1].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
+            i = TempRuangan.TTable[1].TChair[2].X; j = TempRuangan.TTable[1].TChair[2].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
+            i = TempRuangan.TTable[1].TChair[3].X; j = TempRuangan.TTable[1].TChair[3].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
+            i = TempRuangan.TTable[1].TChair[4].X; j = TempRuangan.TTable[1].TChair[4].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-        }else if(Ruangan.TTable[1].NCustomer == 2){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
+        }else if(TempRuangan.TTable[1].NCustomer == 2){
+            i = TempRuangan.TTable[1].TChair[1].X; j = TempRuangan.TTable[1].TChair[1].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
+            i = TempRuangan.TTable[1].TChair[2].X; j = TempRuangan.TTable[1].TChair[2].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
+            i = TempRuangan.TTable[1].TChair[3].X; j = TempRuangan.TTable[1].TChair[3].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
+            i = TempRuangan.TTable[1].TChair[4].X; j = TempRuangan.TTable[1].TChair[4].Y;
             ElmtMatriks(Tampilan, i,j) = 6;
-        } else if(Ruangan.TTable[1].NCustomer == 4){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
+        } else if(TempRuangan.TTable[1].NCustomer == 4){
+            i = TempRuangan.TTable[1].TChair[1].X; j = TempRuangan.TTable[1].TChair[1].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
+            i = TempRuangan.TTable[1].TChair[2].X; j = TempRuangan.TTable[1].TChair[2].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
+            i = TempRuangan.TTable[1].TChair[3].X; j = TempRuangan.TTable[1].TChair[3].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
+            i = TempRuangan.TTable[1].TChair[4].X; j = TempRuangan.TTable[1].TChair[4].Y;
             ElmtMatriks(Tampilan, i,j) = 7;
         }
     } else{
@@ -613,6 +601,7 @@ void assignMatriks(){
         ElmtMatriks(Tampilan, i,j) = 8;
         i = Dapur.M16.posisi.X; j = Dapur.M16.posisi.Y;
         ElmtMatriks(Tampilan, i,j) = 8;
+        
     }
 }
 
@@ -628,8 +617,8 @@ void init_player(){
 void init_all(){
     init_dapur;
     init_player;
-    init_ruangan1;
-    init_ruangan2;
-    init_ruangan3;
+    init_Ruangan1;
+    init_Ruangan2;
+    init_Ruangan3;
     InitDenah;
 }

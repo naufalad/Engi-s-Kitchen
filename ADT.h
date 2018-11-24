@@ -52,10 +52,8 @@
 		MejaMakan TTable[5];
 	}Ruang;
 
-	extern Ruang Ruangan1;
-	extern Ruang Ruangan2;
-	extern Ruang Ruangan3;
-
+	extern Ruang Ruangan[4];
+	
 	typedef struct{
 		POINT posisi;
 		Stack bahan;
