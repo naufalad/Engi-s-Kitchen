@@ -160,6 +160,23 @@ void DelQueue (Queue * Q, infotypeQueue * X)
         }
     }
 
+infotypeQueue NthElmt (Queue* Q, int X) {
+    if (X <= NBElmtQueue(*Q)) {
+        int i = Head(*Q);
+        while (X > 1) {
+            --X;
+            i = i%MaxElm(*Q)+1;
+        }
+        return ElmtQueue(*Q,i);
+    } else {
+        infotypeQueue temp;
+        temp.info = 0;
+        temp.kesabaran = 0;
+        temp.prio = 0;
+        return temp;
+    }
+}
+
 void SubKesabaranQueue (Queue* Q, int* Life) {
     if (!IsEmptyQueue(*Q)) {
         int i = Head(*Q), j = i;

@@ -53,5 +53,7 @@ void Length(Kata *kata);
 boolean compareKata(Kata kata1, char* teks);
 void printID(Kata kata1);
 
+Kata NumToKata (int x);
+
 #endif
 

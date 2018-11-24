@@ -29,4 +29,7 @@ void ADV();
           Jika  CC = MARK maka EOP akan menyala (true) */
 
 void ADVInt();
+
+char NumToChar (int x);
+
 #endif
