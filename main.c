@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 int main(){
-	int pilihan;
+	char pilihan,c;
 	boolean StartGame = false;
 	boolean exit = false;
 	const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
@@ -25,31 +25,32 @@ int main(){
 		printf("3. Load Game\n");
 		printf("4. Exit\n");
 		printf("Masukkan Pilihan Anda : ");
-		scanf("%d", &pilihan);
+		scanf(" %c", &pilihan);
 		switch (pilihan){
-			case 1 :
+			case '1' :
 			printf("Masukkan nama anda(Max 6 huruf) : ");
-			char c;
-			scanf("%c", &c);
 			Pemain.nama = InputKata();
 			printf("\n\n");
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n\n");
 			break;
 			
-			case 2 :
+			case '2' :
 			if(!(IsEqKata(Pemain.nama, StringToKata("")))) StartGame = true;
 			else printf("Nama belum di input! Silahkan kembali ke main menu dan pilih New Game atau Load Game.\n\n");
 			break;
 			//ngecek udh ada namanya atau belom, kalo belom suruh input lg
 
-			case 3 : 
+			case '3' : 
 			LoadFile();
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n");
 			break;
 			//read file eksternal
-			case 4 :
+			case '4' :
 			ExitMessage(false);
 			exit = true;
+			break;
+			default:
+			printf("Inputan tidak dikenali, silahkan cek kembali.\n");
 			break;
 		}
 		
@@ -65,7 +66,6 @@ int main(){
 		
 
 		//MAIN WHILE LOOP
-		char c;
 		scanf("%c", &c);
 		do{ 
 			assignMatriks();
@@ -94,9 +94,9 @@ int main(){
 		}while(!exit);
 		printf("Jam Sekarang : ");
 		TulisJAM(RealTime);
-		printf("Mau disave?[1 untuk Ya] ");
-		scanf("%d", &pilihan);
-		if (pilihan==1) ExitMessage(true);
+		printf("Mau disave?[Y untuk Ya] ");
+		scanf(" %c", &pilihan);
+		if (pilihan=='Y') ExitMessage(true);
 		else ExitMessage(false);
 		}
 	

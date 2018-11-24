@@ -156,9 +156,8 @@ void SaveFile(){
     FILE *save;
     char *filename;
     char c;
-    scanf("%c", &c);
     printf("Mau disave kemana? ");
-    scanf("%m[^\n]%*c", &filename);
+    scanf(" %m[^\n]%*c", &filename);
     save = fopen(filename, "w");
     fprintf(save, "Waktu Save : ===%d:%d:%d===\n", RealTime.HH, RealTime.MM, RealTime.SS); //Jam real time
     for (i = 1; i <= Pemain.nama.Length; ++i) {
@@ -224,9 +223,7 @@ void SaveFile(){
 void LoadFile(){
     char *filename;
     printf("Mau load dari mana? ");
-    char c;
-    scanf("%c", &c);
-    scanf("%m[^\n]%*c", &filename);
+    scanf(" %m[^\n]%*c", &filename);
     STARTKATA(filename);
     OutputKata(CKata);
     printf("\n");
@@ -242,6 +239,10 @@ void LoadFile(){
     printf("Mau di load?[1 untuk Ya] ");
     scanf("%d", &x);
     if(x==1){
+        CreateEmptyQueue(&Antrian, MaxEl);
+        CreateEmptyStack(&Tangan);
+        CreateEmptyStack(&Makanan);
+        MakeEmptyArray(&Pesanan);
         STARTKATA(filename);
         if(x>1){
             for(j=1;j<=x-1;j++){

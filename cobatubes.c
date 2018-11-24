@@ -23,7 +23,6 @@ void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah
         if (Pemain.ruangan < 4 && (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)))){
             GantiRuangan();
         }else if ((Pemain.ruangan==4 && ((EQ(Pemain.posisi, Dapur.P1))||EQ(Pemain.posisi, Dapur.P2)))){
-            printf("%d", Pemain.ruangan);
             GantiRuangan();
         }
         else {
@@ -108,7 +107,7 @@ ke kiri*/
             for (i = 1; i <= 16; ++i)
                 if (EQ(Pemain.posisi, Dapur.M[i].posisi)||EQ(Pemain.posisi, Dapur.T.posisi)) {
                     Pemain.posisi.Y++;
-                    printf("Tidak dapat menembus meja dan kursi!\n");
+                    printf("Tidak dapat menembus meja dan tray!\n");
                 }
         }
     }
@@ -171,6 +170,7 @@ dengan Pemain*/
 
         AddAsLastEl(&Pesanan, PengenMakan);
         Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken = true;
+        printf("Berhasil mengambil orderan!\n");
     }
 }
 void PUT()
@@ -210,8 +210,9 @@ void PUT()
     if(IsTreeOneElmt(R))
     {
       PushStack(&Makanan,Akar(R));
+      printf("Berhasil membuat makanan!\n");
     }
-  }
+  } else printf("Anda sedang tidak berada dekat dengan Tray...\n");
 }
 void TAKE()
 /*Command ini digunakan untuk mengambil bahan yang bersebelahan dengan
@@ -221,7 +222,10 @@ Pemain*/
 
   /*Algoritma*/
    Kata M = IsNearKitchenTable();
-   if(!compareKata(M, " ")) PushStack(&Tangan,M);
+   if(!IsEqKata(M, StringToKata(" "))) {
+       PushStack(&Tangan,M);
+       printf("Berhasil mengambil bahan!\n");
+   }
    else printf("Anda mencoba mengambil bahan : udara. Anda gagal\n");
 }
 void CH()
@@ -241,6 +245,7 @@ dalam tray*/
 
   /*Algoritma*/
   CreateEmptyStack(&Makanan);
+  printf("Berhasil mengosongkan nampan!\n");
 }
 
 int IsNearTable () {
@@ -279,6 +284,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
     Ruangan[Pemain.ruangan].TTable[i].isOrderTaken = false;
     infotypeQueue X;
     DelQueue(&Antrian,&X);
+    printf("Berhasil menambahkan pelanggan!\n");
 }
 
 void GIVE()
@@ -294,7 +300,6 @@ bertetanggaan*/
   if(M!=0){
     if(!IsEmptyStack(Makanan)&& Ruangan[Pemain.ruangan].TTable[M].kursi!=0)
     {
-        printf("tes1");
         PopStack(&Makanan,&makanan);
         X.Menu = makanan;
         X.MejaID = M;
@@ -302,8 +307,9 @@ bertetanggaan*/
         i = SearchArray(Pesanan,X) ;
         if(i!=0){
             Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
+            printf("Berhasil membuat makanan! Menerima uang sebesar %d", 500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
             Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
-            DelEli(&Pesanan, i,&X);
+            DelEli(&Pesanan, i,&X);            
         } else{
             printf("Tidak ada yang memesan makanan itu!\n");
         }
@@ -434,22 +440,22 @@ void help(){
     printf("LOAD \t-> Mengambil data permainan\n");
     printf("EXIT \t-> Keluar dari permainan\n\n");
     printf("Letak Bahan :\n");
-    printf("Piring \t-> 7,4\n");
-    printf("Sendok \t-> 7,3\n");
-    printf("Garpu \t-> 7,5\n");
+    printf("Piring \t\t-> 7,4\n");
+    printf("Sendok \t\t-> 7,3\n");
+    printf("Garpu \t\t-> 7,5\n");
     printf("Es krim \t-> 3,3\n");
-    printf("Nasi \t-> 4,3\n");
-    printf("Roti \t-> 3,6\n");
+    printf("Nasi \t\t-> 4,3\n");
+    printf("Roti \t\t-> 3,6\n");
     printf("Spaghetti \t-> 4,6\n");
-    printf("Pisang \t-> 3,2\n");
+    printf("Pisang \t\t-> 3,2\n");
     printf("Stroberi \t-> 3,1\n");
-    printf("Telur \t-> 4,2\n");
+    printf("Telur \t\t-> 4,2\n");
     printf("Ayam goreng \t-> 4,1\n");
-    printf("Patty \t-> 3,7\n");
-    printf("Sosis \t-> 3,8\n");
+    printf("Patty \t\t-> 3,7\n");
+    printf("Sosis \t\t-> 3,8\n");
     printf("Bolognese \t-> 4,7\n");
     printf("Carbonara \t-> 7,8\n");
-    printf("Keju \t-> 4,8\n");
+    printf("Keju \t\t-> 4,8\n");
 }
 void CHEAT(Kata command){
     if(IsEqKata(command, StringToKata("hesoyam"))){

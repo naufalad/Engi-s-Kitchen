@@ -126,7 +126,7 @@ Kata InputKata(){
 	char* a=NULL;
 	Kata K;
 
-	scanf("%m[^\n]%*c", &a);
+	scanf(" %m[^\n]%*c", &a);
 	K = StringToKata(a);
 	return K;
 }
