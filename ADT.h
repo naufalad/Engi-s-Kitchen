@@ -33,9 +33,9 @@
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
 		int NCustomer;
-		POINT K1; //Top
-		POINT K2; //Left, digunakan jika Kursi = 2
-		POINT K3; //Right, digunakan jika Kursi = 2
+		POINT K1; //Kiri, digunakan jika Kursi = 2
+		POINT K2; //Kanan, digunakan jika Kursi = 2
+		POINT K3; //Up
 		POINT K4; //Bottom
 	} MejaMakan;
 
