@@ -68,8 +68,6 @@ int main(){
 		char c;
 		scanf("%c", &c);
 		do{ 
-			const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
-  			write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 			assignMatriks();
 			TampilanProgramUtama();
 			command= InputKata();
@@ -89,8 +87,10 @@ int main(){
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
 			else help();
-			//UpdateTimePatience();
-			//buat ngelakuin sesuai inputan
+			if(Pemain.life==0){
+      		  printf("\nSayang sekali, kamu kehilangan kepercayaan dari para customer, dan akhirnya kamu memutuskan untuk gulung tikar... Skor kamu : %d\n\n", Pemain.money);
+			  exit=true;
+    		} 
 		}while(!exit);
 		printf("Jam Sekarang : ");
 		TulisJAM(RealTime);

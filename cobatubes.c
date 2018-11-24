@@ -381,6 +381,9 @@ void UpdateTimePatience() {
     Pemain.time++;
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
+    //Kalau IntervalCustomer >0 akan decrement
+    //Kalau IntervalCustomer =0 akan merandom tamu datang untuk masuk ke antrian sistem
+    RandomizerQueue();
     
 }
 void SubKesabaranArray (TabPesanan* T, int* Life) {
@@ -401,9 +404,6 @@ void SubKesabaranArray (TabPesanan* T, int* Life) {
     }
     Neff(*T) = j-1;
   }
-    //Kalau IntervalCustomer >0 akan decrement
-    //Kalau IntervalCustomer =0 akan merandom tamu datang untuk masuk ke antrian sistem
-    RandomizerQueue(&IntervalCustomer);
 }
 
 void help(){

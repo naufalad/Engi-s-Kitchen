@@ -657,7 +657,7 @@ int GetRandomArrival(){
     JAM RealTime = CurrentTime();
 
     srand(RealTime.SS); 
-    return (rand() % 27)+15; 
+    return ((rand() % 27)+5); 
 } 
  
 int GetRandomNCust(){ 
@@ -712,11 +712,11 @@ Kata GetRandomMenuName(int MenuIdx){
     }
 }
 
-void RandomizerQueue(int *Interval){
+void RandomizerQueue(){
     /* Kamus Lokal */
     infotypeQueue TamuDatang;
     /* Algoritma */
-    if(*Interval == 0){
+    if(IntervalCustomer == 0){
         TamuDatang.prio = GetRandomPrio();
         TamuDatang.info = GetRandomNCust();
         switch (TamuDatang.prio) {
@@ -728,9 +728,8 @@ void RandomizerQueue(int *Interval){
                 TamuDatang.kesabaran = 20; break;
         }
         AddQueue(&Antrian,TamuDatang);
-
-        (*Interval) = GetRandomArrival();
+        IntervalCustomer = GetRandomArrival();
     } else {
-        *Interval--;
+        IntervalCustomer--;
     }
 }
