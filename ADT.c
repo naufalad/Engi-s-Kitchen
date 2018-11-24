@@ -65,7 +65,7 @@ void SaveFile(){
     //save food stack
     Kata X;
     while(!IsEmptyStack(Makanan)){
-        Pop(Makanan, X);
+        PopStack(&Makanan, &X);
         for (int i = 1; i <= X.Length; ++i) {
 	    	fprintf(save, "%c", X.TabKata[i]);
         }

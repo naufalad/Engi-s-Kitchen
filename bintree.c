@@ -21,13 +21,13 @@ void Allocate(addrNode *P)
 
 BinTree Tree(Kata Akar, BinTree L, BinTree R)
 /* Menghasilkan sebuah pohon biner dari A, L, dan R, jika alokasi berhasil */
-/* Menghasilkan pohon kosong (Nil) jika alokasi gagal */
+/* Menghasilkan pohon kosong (NULL) jika alokasi gagal */
     {
     /* KAMUS LOKAL */
     BinTree temp;
     /* ALGORITMA */
     temp = AlokNode(Akar);
-    if (temp != Nil)
+    if (temp != NULL)
 		{
         Left(temp) = L;
         Right(temp) = R;
@@ -37,14 +37,14 @@ BinTree Tree(Kata Akar, BinTree L, BinTree R)
 void MakeTree(Kata Akar, BinTree L, BinTree R, BinTree *P)
 /* I.S. Akar, L, R terdefinisi. P Sembarang */
 /* F.S. Membentuk pohon P dengan Akar(P)=Akar, Left(P)=L, dan Right(P)=R
-		jika alokasi berhasil. P = Nil jika alokasi gagal. */
+		jika alokasi berhasil. P = NULL jika alokasi gagal. */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
     *P = Tree(Akar,L,R);
     }
 BinTree BuildBalanceTree(int n)
-/* Menghasilkan sebuah balanced tree dengan n node, nilai setiap node dibaca */
+/* Menghasilkan sebuah balanced tree dengan n node, NULLai setiap node dibaca */
     {
     /* KAMUS LOKAL */
     addrNode P;
@@ -54,13 +54,13 @@ BinTree BuildBalanceTree(int n)
 	/* ALGORITMA */
 	if (n == 0)
         {
-		return Nil;
+		return NULL;
         }
 	else
         {
 		X = InputKata();
         P = (addrNode) malloc(sizeof (Node));
-		if (P != Nil)
+		if (P != NULL)
             {
 			Akar(P) = X;
 			nL = n/2; nR = n-nL-1;
@@ -81,7 +81,7 @@ void BuildTree(BinTree *P, int* idx)
     ADV();
     if (CC == ')')
         {
-        (*P)=Nil;
+        (*P)=NULL;
         }
     else
         {
@@ -106,19 +106,19 @@ void BuildTree(BinTree *P, int* idx)
 /* Manajemen Memory */
 addrNode AlokNode(Kata X)
 /* Mengirimkan addrNode hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addrNode tidak Nil, dan misalnya menghasilkan P,
-  maka Akar(P) = X, Left(P) = Nil, Right(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* Jika alokasi berhasil, maka addrNode tidak NULL, dan misalnya menghasilkan P,
+  maka Akar(P) = X, Left(P) = NULL, Right(P)=NULL */
+/* Jika alokasi gagal, mengirimkan NULL */
     {
     /* KAMUS LOKAL */
     addrNode P;
     /* ALGORITMA */
     P = (addrNode) malloc (sizeof (Node));
-    if (P != Nil)
+    if (P != NULL)
 		{
         Akar(P) = X;
-        Left(P) = Nil;
-        Right(P) = Nil;
+        Left(P) = NULL;
+        Right(P) = NULL;
 		}
     return (P);
     }
@@ -138,35 +138,35 @@ boolean IsTreeEmpty(BinTree P)
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return (P == Nil);
+    return (P == NULL);
     }
 boolean IsTreeOneElmt(BinTree P)
 /* Mengirimkan true jika P adalah pohon biner tidak kosong dan hanya memiliki 1 elemen */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return ((P != Nil) && (Left(P) == Nil) && (Right(P) == Nil));
+    return ((P != NULL) && (Left(P) == NULL) && (Right(P) == NULL));
     }
 boolean IsUnerLeft(BinTree P)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon unerleft: hanya mempunyai subpohon kiri */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return ((P != Nil) && (Left(P) != Nil) && (Right(P) == Nil));
+    return ((P != NULL) && (Left(P) != NULL) && (Right(P) == NULL));
     }
 boolean IsUnerRight(BinTree P)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon unerright: hanya mempunyai subpohon kanan*/
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return ((P != Nil) && (Left(P) == Nil) && (Right(P) != Nil));
+    return ((P != NULL) && (Left(P) == NULL) && (Right(P) != NULL));
     }
 boolean IsBiner(BinTree P)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    return ((P != Nil) && (Left(P) != Nil) && (Right(P) != Nil));
+    return ((P != NULL) && (Left(P) != NULL) && (Right(P) != NULL));
     }
 
 /* *** Traversal *** */
@@ -269,11 +269,11 @@ void PrintTreeRek (BinTree P, int h, int CLevel)
 			}
         OutputKata(Akar(P));
         printID(Akar(P));
-        if (Left(P) != Nil)
+        if (Left(P) != NULL)
 			{
             PrintTreeRek(Left(P), h, CLevel+1);
 			}
-        if (Right(P) != Nil)
+        if (Right(P) != NULL)
 			{
             PrintTreeRek(Right(P), h, CLevel+1);
 			}
@@ -318,7 +318,7 @@ A
 
 /* *** Searching *** */
 boolean SearchTree(BinTree P, Kata X)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
+/* Mengirimkan true jika ada node dari P yang berNULLai X */
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
