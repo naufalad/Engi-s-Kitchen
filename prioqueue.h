@@ -73,6 +73,8 @@ void DelQueue (Queue * Q, infotypeQueue * X);
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 
+void SubKesabaranQueue (Queue* Q, int* Life) ;
+
 /* Operasi Tambahan */
 void PrintQueue (Queue Q);
 /* Mencetak isi queue Q ke layar */

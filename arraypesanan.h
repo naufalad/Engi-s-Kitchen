@@ -22,6 +22,7 @@
 typedef struct {
   Kata Menu;   /* type elemen tabel */
   int MejaID;
+  int Kesabaran;
 } PesananID;
 typedef struct { 
 	PesananID TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
@@ -178,5 +179,7 @@ void DelEli (TabPesanan * T, int i, PesananID * X);
 /*      Tabel T mungkin menjadi kosong */
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
+
+void SubKesabaranArray (TabPesanan* T, int* Life);
 
 #endif
