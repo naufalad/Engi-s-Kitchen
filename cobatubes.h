@@ -51,5 +51,5 @@ void EXIT(boolean *exit);
 /*Command ini digunakan untuk keluar dari program.*/
 
 /*~~~TAMBAHAN~~~*/
-MejaMakan IsNearTable(Ruang R);
+int IsNearTable ();
 void GantiRuangan ();

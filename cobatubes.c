@@ -300,13 +300,13 @@ bertetanggaan*/
 {
   /*kamus*/
   Kata makanan;
-  MejaMakan M =  IsNearTable(ruangan);
+  int M =  IsNearTable();
   /*Algoritma*/
-  if(!IsEmptyStack(*foodstack)&&M.kursi!=0)
+  if(!IsEmptyStack(*foodstack)&& Ruangan[pemain.ruangan].TTable[M].kursi!=0)
   {
     PopStack(foodstack,&makanan);
-    *money = *money + (500 * M.NCustomer);
-    M.NCustomer = 0;
+    *money = *money + (500 * Ruangan[pemain.ruangan].TTable[M].NCustomer);
+    Ruangan[pemain.ruangan].TTable[M].NCustomer = 0;
   }
 
 }
