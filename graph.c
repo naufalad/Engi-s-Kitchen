@@ -12,7 +12,7 @@ int SearchEdge (Graph G, int A, int B) {
     return Adj(G,A,B);
 }
 
-int SearchEdge1 (Graph G, int A, int C) {
+int SearchEdge2 (Graph G, int A, int C) {
     int i;
     for (i = 1; i <= Node(G); ++i)
         if (Adj(G,A,i) == C)

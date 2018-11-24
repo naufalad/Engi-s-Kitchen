@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "ADT.h"
-//#include "command.h"
+#include "cobatubes.h"
 
 int main(){
 	int pilihan;
@@ -62,25 +62,28 @@ int main(){
 		
 
 		//MAIN WHILE LOOP
-		assignMatriks();
+		char c;
+		scanf("%c", &c);
 		do{ 
+			assignMatriks();
 			TampilanProgramUtama();
-			/*if(IsEqKata(command, StringToKata("GU"))) GU();
-			else if(IsEqKata(command, StringToKata("GU"))) GU();
-			else if(IsEqKata(command, StringToKata("GD"))) GD();
-			else if(IsEqKata(command, StringToKata("GL"))) GL();
-			else if(IsEqKata(command, StringToKata("GR"))) GR();
-			else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
-			else if(IsEqKata(command, StringToKata("PUT"))) PUT();
-			else if(IsEqKata(command, StringToKata("TAKE"))) TAKE();
-			else if(IsEqKata(command, StringToKata("CH"))) CH();
-			else if(IsEqKata(command, StringToKata("CT"))) CT();
-			else if(IsEqKata(command, StringToKata("PLACE"))) PLACE();
-			else if(IsEqKata(command, StringToKata("GIVE"))) GIVE();
-			else if(IsEqKata(command, StringToKata("RECIPE"))) RECIPE();
+			command= InputKata();
+			if(IsEqKata(command, StringToKata("GU"))) GU(&Pemain);
+			else if(IsEqKata(command, StringToKata("GD"))) GD(&Pemain);
+			else if(IsEqKata(command, StringToKata("GL"))) GL(&Pemain);
+			else if(IsEqKata(command, StringToKata("GR"))) GR(&Pemain);
+			//else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
+			else if(IsEqKata(command, StringToKata("PUT"))) PUT(&Tangan, &(Dapur).T.bahan);
+			//else if(IsEqKata(command, StringToKata("TAKE"))) TAKE(&Tangan, );
+			else if(IsEqKata(command, StringToKata("CH"))) CH(&Tangan);
+			else if(IsEqKata(command, StringToKata("CT"))) CT(&(Dapur).T.bahan);
+			//else if(IsEqKata(command, StringToKata("PLACE"))) PLACE();
+			//else if(IsEqKata(command, StringToKata("GIVE"))) GIVE(Pemain, &Makanan, );
+			else if(IsEqKata(command, StringToKata("RECIPE"))) RECIPE(Resep);
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
-			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT();*/
+			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
+			TulisPOINT(Pemain.posisi);
 			//buat ngelakuin sesuai inputan
 		}while(!exit);
 		printf("Jam Sekarang : ");
