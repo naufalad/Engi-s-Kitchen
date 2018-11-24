@@ -12,7 +12,7 @@ void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu
     P.Y = (*pemain).posisi.Y;
 
     if (P = ruangan.P1) {
-        gantiruangan(*pemain)
+        GantiRuangan();
     }
     for (int i=1;i<=4;i++){
         if (ruangan.TTable[i].kursi == 2) {
@@ -33,7 +33,7 @@ void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu
                 }
             }
         }
-    } 
+    }
 }
 void GD(Player *pemain,Ruang ruangan)
 /*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi Player berpindah
@@ -46,7 +46,7 @@ ke bawah*/
     P.Y = (*pemain).posisi.Y;
 
     if (P = ruangan.P1) {
-        gantiruangan(*pemain)
+        GantiRuangan();
     }
     for (int i=1;i<=4;i++){
         if (ruangan.TTable[i].kursi == 2) {
@@ -67,7 +67,7 @@ ke bawah*/
                 }
             }
         }
-    } 
+    }
 }
 
 void GL(Player *pemain,Ruang ruangan)
@@ -81,7 +81,7 @@ ke kiri*/
     P.Y = (*pemain).posisi.Y-1;
 
     if (P = ruangan.P1) {
-        gantiruangan(*pemain)
+        GantiRuangan();
     }
     for (int i=1;i<=4;i++){
         if (ruangan.TTable[i].kursi == 2) {
@@ -102,7 +102,7 @@ ke kiri*/
                 }
             }
         }
-    } 
+    }
 }
 void GR(Player *pemain,Ruang ruangan)
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi Player berpindah
@@ -115,7 +115,7 @@ kekanan.*/
     P.Y = (*pemain).posisi.Y+1;
 
     if (P = ruangan.P1) {
-        gantiruangan(*pemain)
+        GantiRuangan();
     }
     for (int i=1;i<=4;i++){
         if (ruangan.TTable[i].kursi == 2) {
@@ -136,7 +136,7 @@ kekanan.*/
                 }
             }
         }
-    } 
+    }
 }
 
 void ORDER(Player pemain,List *menu,KRuang ruangan)//pemain bisa ambil brp banyak order?
@@ -255,14 +255,14 @@ void EXIT()
     exit(0);
 }
 
-boolean IsNearSatTable(Player Pemain, Ruang R, tabpesanan ArOrder) 
+boolean IsNearSatTable(Player Pemain, Ruang R, tabpesanan ArOrder)
 /* Command ini digunakan untuk menentukan apakah pemain berada di sebelah meja yang benar */
 {
     //Kamus
     int roomID;
     //Algoritma
     for (int i=1;i<=4,i++) {
-        
+
     }
 }
 
@@ -292,7 +292,7 @@ void GantiRuangan () {
         } else if (EQ(Pemain.posisi,Dapur.P2)) {
             pintu = 2;
         }
-    } 
+    }
     if (pintu != 0) {
         Pemain.ruangan = SearchEdge2(Denah,Pemain.ruangan,pintu);
         if (Pemain.ruangan == 1) {
@@ -319,6 +319,6 @@ void GantiRuangan () {
             } else if (pintu == 2) {
                 Pemain.posisi = Dapur.P2;
             }
-        } 
+        }
     }
 }
