@@ -56,3 +56,4 @@ void EXIT();
 
 /*~~~TAMBAHAN~~~*/
 boolean IsNearSatTable(Player Pemain, ruangan R, TabPesanan ArOrder);
+void GantiRuangan ();
