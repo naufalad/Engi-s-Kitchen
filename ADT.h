@@ -35,6 +35,7 @@
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
 		int NCustomer;
+		boolean isOrderTaken;
 		POINT TChair[5];
 	} MejaMakan;
 
@@ -53,7 +54,7 @@
 	}Ruang;
 
 	extern Ruang Ruangan[4];
-	
+
 	typedef struct{
 		POINT posisi;
 		Stack bahan;
