@@ -112,19 +112,26 @@ kekanan.*/
     UpdateTimePatience();
 }
 
-void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
+void ORDER()//Pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan Pemain*/
-//{
+{
     /*kamus*/
-    MejaMakan TableNo;
+    int TableNo;
+    int orderidx;
     /*algoritma*/
     TableNo = IsNearTable();
 
-    if (TableNo == 0) {
-        printf("Ngambil order siapa goblok");
+    if ((Ruangan[Pemain.ruangan].TTable[TableNo].NCustomer == 0) || (TableNo == 0) || (Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken)) {
+        /* Kalau di meja gaada orang, atau ga deket meja, atau mejanya udah diambil orderannya */
+        printf("Ngambil order siapa goblok\n");
+        printf("Ericko Lim aja lebih pinter dari maneh\n");
     } else {
-
+        orderidx = GetRandomMenu();
+        Pesanan.TI[Neff+1].Room = Pemain.ruangan;
+        Pesanan.TI[Neff+1].MejaID = TableNo;
+        Pesanan.TI[Neff+1].Kesabaran = 40;
+        Pesanan.TI[Neff+1].Menu = GetRandomMenuName(orderidx);
     }
 }
 void PUT()
