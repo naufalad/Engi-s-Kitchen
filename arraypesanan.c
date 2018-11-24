@@ -84,8 +84,8 @@ void BacaIsi (TabPesanan * T)
   int i;//iterator
   MakeEmptyArray(T);
   for(i=0;i<n;i++){
-    Elmt(*T,IdxMin+i).Menu = InputKata();
-    scanf("%d", &Elmt(*T,IdxMin+i).MejaID);
+    ElmtArray(*T,IdxMin+i).Menu = InputKata();
+    scanf("%d", &ElmtArray(*T,IdxMin+i).MejaID);
     Neff(*T)++;
   }
 }
@@ -103,8 +103,8 @@ void BacaIsiTab (TabPesanan * T)
   MakeEmptyArray(T);
   while(IsEqKata(temp, StringToKata("-9999")) && i<=MaxNbEl(*T)){
     temp = InputKata();
-    scanf("%d", &Elmt(*T,IdxMin+i).MejaID);
-    Elmt(*T,i).Menu = temp;
+    scanf("%d", &ElmtArray(*T,IdxMin+i).MejaID);
+    ElmtArray(*T,i).Menu = temp;
     Neff(*T) = i;
     i++;
   }
@@ -130,8 +130,8 @@ void TulisIsi (TabPesanan T)
     int i;//iterator
      for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
        printf("[%d]",i);
-       OutputKata(Elmt(T,i).Menu);
-       printf("-> %d",Elmt(T,IdxMin+i).MejaID);
+       OutputKata(ElmtArray(T,i).Menu);
+       printf("-> %d",ElmtArray(T,IdxMin+i).MejaID);
        printf("\n");
      }
   }
@@ -155,12 +155,12 @@ void TulisIsiTab (TabPesanan T)
     //print elemen ke 1 hingga terakhir-1
     int i;//iterator
     for(i=GetFirstIdx(T);i<GetLastIdx(T);i++){
-      OutputKata(Elmt(T,i).Menu);
-      printf("-> %d",Elmt(T,IdxMin+i).MejaID);
+      OutputKata(ElmtArray(T,i).Menu);
+      printf("-> %d",ElmtArray(T,IdxMin+i).MejaID);
     }
     //print elemen terakhir dan siku tutup
-    OutputKata(Elmt(T,i).Menu);
-    printf("-> %d",Elmt(T,IdxMin+i).MejaID);
+    OutputKata(ElmtArray(T,i).Menu);
+    printf("-> %d",ElmtArray(T,IdxMin+i).MejaID);
     printf("]");
   }
 }
@@ -174,7 +174,7 @@ boolean SearchArray (TabPesanan T, PesananID X)
   boolean Found = false;
   int i = GetFirstIdx(T);//iterator
   while(i<=GetLastIdx(T) && !(Found)){
-    if(IsEqKata(Elmt(T,i).Menu,X.Menu) && Elmt(T,i).MejaID == X.MejaID){
+    if(IsEqKata(ElmtArray(T,i).Menu,X.Menu) && ElmtArray(T,i).MejaID == X.MejaID){
       Found = true;
     }else{
       i++;
@@ -192,7 +192,7 @@ void CopyTab (TabPesanan Tin, TabPesanan * Tout)
   Neff(*Tout) = Neff(Tin);
   int i;//Iterator
   for(i=GetFirstIdx(Tin);i<=GetLastIdx(Tin);i++){
-    Elmt(*Tout,i) = Elmt(Tin,i);
+    ElmtArray(*Tout,i) = ElmtArray(Tin,i);
   }
 }
 TabPesanan InverseTab (TabPesanan T)
@@ -210,7 +210,7 @@ TabPesanan InverseTab (TabPesanan T)
     //isi temp secara terbalik
     int i;//iterator
     for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
-      Elmt(temp,Neff(temp)-i+GetFirstIdx(T)) = Elmt(T,i);
+      ElmtArray(temp,Neff(temp)-i+GetFirstIdx(T)) = ElmtArray(T,i);
     }
     //selesai mengisi
     return temp;
@@ -240,7 +240,7 @@ void AddAsLastEl (TabPesanan * T, PesananID X)
 /* F.S. X adalah elemen terakhir T yang baru */
 {
   Neff(*T)++;
-  Elmt(*T,GetLastIdx(*T)) = X;
+  ElmtArray(*T,GetLastIdx(*T)) = X;
 }
 void AddEli (TabPesanan * T, PesananID X, int i)
 /* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas
@@ -256,11 +256,11 @@ void AddEli (TabPesanan * T, PesananID X, int i)
   j = GetLastIdx(*T)-1;
   while(j >= i)
   {
-    Elmt(*T, j+1) = Elmt(*T, j);
+    ElmtArray(*T, j+1) = ElmtArray(*T, j);
     j -= 1;
   }
 
-  Elmt(*T, i) = X;
+  ElmtArray(*T, i) = X;
 }
 /* ********** MENGHAPUS ELEMEN ********** */
 void DelLastEl (TabPesanan * T, PesananID * X)
@@ -270,7 +270,7 @@ void DelLastEl (TabPesanan * T, PesananID * X)
 /*      Banyaknya elemen tabel berkurang satu */
 /*      Tabel T mungkin menjadi kosong */
 {
-    *X = Elmt(*T, GetLastIdx(*T));
+    *X = ElmtArray(*T, GetLastIdx(*T));
     Neff(*T) -= 1;
 }
 void DelEli (TabPesanan * T, int i, PesananID * X)
@@ -284,11 +284,11 @@ void DelEli (TabPesanan * T, int i, PesananID * X)
 {
   if (IsIdxEffArray(*T, i))
   {
-    *X = Elmt(*T, i);
+    *X = ElmtArray(*T, i);
     int j;//iterator
     for (j=i; j <= GetLastIdx(*T); j++)
     {
-      Elmt(*T, j) = Elmt(*T, j+1);
+      ElmtArray(*T, j) = ElmtArray(*T, j+1);
     }
     Neff(*T) -= 1;
   }

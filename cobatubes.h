@@ -6,6 +6,11 @@
 #include "prioqueue.h"
 #include "arraypesanan.h"
 
+#define EdgeTop 1
+#define EdgeBottom 8
+#define EdgeLeft 1
+#define EdgeRight 8
+
 void Gu(POINT *pemain,int *Time);//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari �Go Up�, sehingga posisi player berpindah ke
 //atas
@@ -32,7 +37,7 @@ terdapat di tangan pemain*/
 void CT(Stack *Tray);
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
-void PLACE(POINT  pemain,Queue * pelanggan);
+void PLACE(Player pemain, Ruang room, Queue antrian);
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 void GIVE(Stack *foodstack,int *ncustemer);
