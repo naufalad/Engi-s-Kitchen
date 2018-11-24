@@ -370,3 +370,16 @@ void GantiRuangan () {
         } 
     }
 }
+
+void UpdateTimePatience() {
+/* Mengupdate Kesabaran dan waktu */
+    Pemain.time++;
+    
+    for (i=1;i<=Pesanan.Neff;i++){
+        Pesanan.TI[i].Kesabaran--    
+    }
+
+    for (i=Head(Antrian);i<=Tail(Antrian);i++){
+        ElmtQueue(Antrian,i).kesabaran--;    
+    }
+}
