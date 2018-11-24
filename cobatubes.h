@@ -36,7 +36,7 @@ dalam tray*/
 void PLACE(Player pemain, Ruang room, Queue antrian);
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
-void GIVE(Player pemain,Stack *foodstack,int *money,Ruang *ruangan);
+void GIVE(Player pemain,Stack *foodstack,int *money,Ruang ruangan);
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 void RECIPE();

@@ -255,36 +255,54 @@ dalam tray*/
   /*Algoritma*/
   CreateEmptyStack(&(Dapur).T.bahan);
 }
-/*void PLACE(Player Pemain, Ruang room, Queue antrian)
+void PLACE(Player Pemain, Ruang room, Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
-//{
-    /*kamus*/
+{
+    if (IsEmptyQueue(antrian)) {
+        printf("Tidak ada tamu yang menunggu\n");
+        return;
+    }
+    int i;
+    MejaMakan meja = IsNearTable(room);
+    if(EQ(meja.posisi, room.TTable[1].posisi)) i = 1;
+    else if(EQ(meja.posisi, room.TTable[2].posisi)) i = 2;
+    else if(EQ(meja.posisi, room.TTable[3].posisi)) i = 3;
+    else if(EQ(meja.posisi, room.TTable[4].posisi)) i = 4;
+    if (meja.kursi == 0) {
+        printf("Anda harus berada dekat meja makan\n");
+        return;
+    }
+    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(antrian).info) {
+        printf("Banyak kursi tidak memenuhi\n");
+        return;
+    }
+    if (Ruangan[Pemain.ruangan].TTable[i].NCustomer > 0) {
+        printf("Tempat sudah ditempati\n");
+        return;
+    }
+    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(antrian).info;
+    Ruangan[Pemain.ruangan].TTable[i].isOrderTaken = false;
+    infotypeQueue X;
+    DelQueue(&antrian,&X);
+}
 
-    /*algoritma*/
-    /*if(IsNearTable(Pemain,room))
-    {
-      if(customermeja == 0)
-      {
-        if(!)
-      }
-    }*/
-/*void GIVE(Stack *foodstack,int *money,Ruang *ruangan)
+void GIVE(Player pemain,Stack *foodstack,int *money,Ruang ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
-//{
+{
   /*kamus*/
-  /*Kata makanan;
-  MejaMakan M =  IsNearTable(Pemain , *ruangan);
+  Kata makanan;
+  MejaMakan M =  IsNearTable(ruangan);
   /*Algoritma*/
-  /*if(!IsEmptyStack(*foodstack)&&M.kursi!=0)
+  if(!IsEmptyStack(*foodstack)&&M.kursi!=0)
   {
     PopStack(foodstack,&makanan);
     *money = *money + (500 * M.NCustomer);
     M.NCustomer = 0;
   }
 
-}*/
+}
 void RECIPE()
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
 {
