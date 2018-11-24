@@ -25,24 +25,17 @@
 		POINT posisi;
 		int ruangan;
 	} Player;
+
 	extern Player Pemain;
 	extern JAM RealTime;
+
 	typedef struct{
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
 		int NCustomer;
-		TabKursi TChair;
-		int ID;
+		POINT TChair[5];
 	} MejaMakan;
 
-	MejaMakan TabMeja[5]; //TabMeja isinya 0,1,2,3,4
-
-	typedef struct{
-		POINT posisi;
-		int ID; //Kursi no berapa
-	} Kursi;
-
-	Kursi TabKursi[5]; //TabKursi isinya 0,1,2,3,4
 
 	typedef struct{
 		POINT posisi;
@@ -54,16 +47,18 @@
 	typedef struct{
 		POINT P1;
 		POINT P2;
-		TabMeja TTable;
+		MejaMakan TTable[5];
 	}Ruang;
 
 	extern Ruang Ruangan1;
 	extern Ruang Ruangan2;
 	extern Ruang Ruangan3;
+
 	typedef struct{
 		POINT posisi;
 		Stack bahan;
 	}Tray;
+
 	typedef struct{
 		POINT P1;
 		POINT P2;
@@ -84,7 +79,7 @@
 		MejaDapur M14;
 		MejaDapur M15;
 		MejaDapur M16;
-	}RuangDapur;
+	} RuangDapur;
 
 	extern MATRIKS Tampilan;
 	extern RuangDapur Dapur;

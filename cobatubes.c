@@ -1,7 +1,7 @@
 //kemungkinan dari command
 #include "cobatubes.h"
 
-void Gu(player *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+void GU(player *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
@@ -251,6 +251,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         if(!)
       }
     }
+}
 void GIVE(Player pemain,Stack *foodstack,int *ncustemer,int *money,int *time,int ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
