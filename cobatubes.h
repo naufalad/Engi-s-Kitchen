@@ -57,3 +57,4 @@ void EXIT();
 /*~~~TAMBAHAN~~~*/
 boolean IsNearSatTable(Player Pemain, Ruang R, TabPesanan ArOrder);
 void GantiRuangan ();
+int GetRandomArrival();
