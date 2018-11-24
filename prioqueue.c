@@ -159,6 +159,30 @@ void DelQueue (Queue * Q, infotypeQueue * X)
             }
         }
     }
+
+void SubKesabaranQueue (Queue* Q, int* Life) {
+    if (!IsEmptyQueue(*Q)) {
+        int i = Head(*Q), j = i;
+        while (true) {
+            --Kesabaran(ElmtQueue(*Q,i));
+            if (Kesabaran(ElmtQueue(*Q,i)) == 0) {
+                --*Life;
+            } else {
+                ElmtQueue(*Q,j) = ElmtQueue(*Q,i);
+                j = j%MaxElm(*Q)+1;
+            }
+            if (i == Tail(*Q)) break;
+            i = i%MaxElm(*Q)+1;
+        }
+        if (j == Head(*Q)) Head(*Q) = Tail(*Q) = Nil;
+        else {
+            Tail(*Q) = j-1;
+            if (Tail(*Q) == 0) Tail(*Q) = MaxElm(*Q);
+        }
+    }
+}
+
+
 /* Operasi Tambahan */
 void PrintQueue (Queue Q)
 /* Mencetak isi queue Q ke layar */

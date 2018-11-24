@@ -293,3 +293,21 @@ void DelEli (TabPesanan * T, int i, PesananID * X)
     Neff(*T) -= 1;
   }
 }
+
+void SubKesabaranArray (TabPesanan* T, int* Life) {
+  if (!IsEmptyArray(*T)) {
+    int i = 1, j = 1;
+    while (true) {
+      --Elmt(*T,i).Kesabaran;
+      if (Kesabaran(Elmt(*T,i)) == 0) {
+          --*Life;
+      } else {
+          Elmt(*T,j) = Elmt(*T,i);
+          j++;
+      }
+      if (i == Neff(*T)) break;
+      i++;
+    }
+    Neff(*T) = j-1;
+  }
+}
