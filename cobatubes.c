@@ -1,192 +1,145 @@
 //kemungkinan dari command
 #include "cobatubes.h"
 
-void GU(player *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
-//Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
+void GU(Player *pemain,Ruang ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+//Command ini adalah singkatan dari ‘Go Up’, sehingga posisi Player berpindah ke
 //atas
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.x == 1/*batas atas dari peta*/)
-    {
-        P.x = *pemain.x-1;
-        P.y = *pemain.y ;
-        if(ruangan == 3)
-        {
-          if(P.y ==  5 )
-          {
-              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
-              *Time += 1;
-          }
-          else
-              printf("Tidak bisa bergerak keatas!");
-          }
-        else if(ruangan == 4)
-        {
-          if(P.y ==  5 )
-          {
-              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
-              *Time += 1;
-          }
-          else
-              printf("Tidak bisa bergerak keatas!");
-              *Time += 1;
-          }
-      }
-    else
-    {
-        if(IsNearTable(pemain,ruangan))
-        {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-            *Time += 1
-        }
-        else
-        {
-            *pemain.y -= 1;
-            *Time += 1;
-        }
+    P.X = (*pemain).posisi.X-1;
+    P.Y = (*pemain).posisi.Y;
+
+    if (P = ruangan.P1) {
+        gantiruangan(*pemain)
     }
+    for (int i=1;i<=4;i++){
+        if (ruangan.TTable[i].kursi == 2) {
+            for (int j=2;j<=3;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+        else if (ruangan.TTable[i].kursi == 4) {
+            for (int j=1;j<=4;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+    } 
 }
-void GD(Player *pemain,int *Time,int ruangan)
-/*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi player berpindah
+void GD(Player *pemain,Ruang ruangan)
+/*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi Player berpindah
 ke bawah*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.x == 8/*batas atas dari peta*/)
-    {
-        P.x = *pemain.x+1;
-        P.y = *pemain.y;
-        if(ruangan == 1)
-        {
-          if(P.y == 5)
-          {
-              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
-              *Time += 1;
-          }
-          else
-              printf("Tidak bisa bergerak kebawah");
-              *Time += 1;
-          }
-        else if(ruangan == 2)
-        {
-          if(P.y ==  5 )
-          {
-              gantiruangan(*pemain);//mengganti lokasi pemain dari satu ruangan ke ruangan lain
-              *Time += 1;
-          }
-          else
-              printf("Tidak bisa bergerak keatas!");
-              *Time += 1;
-          }
-      }
-    else
-    {
-        if(IsNearTable(pemain,ruangan))
-        {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-            *Time += 1
-        }
-        else
-        {
-            *pemain.y -= 1;
-            *Time += 1;
-        }
+    P.X = (*pemain).posisi.X+1;
+    P.Y = (*pemain).posisi.Y;
+
+    if (P = ruangan.P1) {
+        gantiruangan(*pemain)
     }
-}void GL(Player *pemain,int *Time,int ruangan)
-/*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi player berpindah
+    for (int i=1;i<=4;i++){
+        if (ruangan.TTable[i].kursi == 2) {
+            for (int j=2;j<=3;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+        else if (ruangan.TTable[i].kursi == 4) {
+            for (int j=1;j<=4;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+    } 
+}
+
+void GL(Player *pemain,Ruang ruangan)
+/*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi Player berpindah
 ke kiri*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.y == 1/*batas kanan dari peta*/)
-    {
-        P.x = *pemain.x;
-        P.y = *pemain.y -1 ;
-        if(ruangan == 2)
-        {
-          if(P.x == 2)
-          {
-              gantiruangan(*pemain);
-              *Time += 1;
-          }
-          else
-            printf("Tidak bisa bergerak kekiri!");
-        }
-        else if(ruangan == 3)
-        {
-          if(P.x == 2)
-          {
-              gantiruangan(*pemain);
-              *Time += 1;
-          }
-          else
-            printf("Tidak bisa bergerak kekiri!");
-        }
-      }
-    else
-    {
-        if(IsNearTable(*pemain,ruangan))
-        {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-            *Time += 1;
-        }
-        else
-        {
-            *pemain.y -= 1;
-            *Time += 1;
-        }
+    P.X = (*pemain).posisi.X;
+    P.Y = (*pemain).posisi.Y-1;
+
+    if (P = ruangan.P1) {
+        gantiruangan(*pemain)
     }
+    for (int i=1;i<=4;i++){
+        if (ruangan.TTable[i].kursi == 2) {
+            for (int j=2;j<=3;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+        else if (ruangan.TTable[i].kursi == 4) {
+            for (int j=1;j<=4;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+    } 
 }
-void GR(Player *pemain,int *Time,int ruangan)
-/*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi player berpindah
+void GR(Player *pemain,Ruang ruangan)
+/*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi Player berpindah
 kekanan.*/
 {
     /*kamus*/
     POINT P;
     /*algoritma*/
-    if(*pemain.y == 8/*batas kanan dari peta*/)
-    {
-        P.x = *pemain.x;
-        P.y = *pemain.y +1 ;
-        if(ruangan == 1)
-        {
-          if(P.x == 5)
-          {
-              gantiruangan(*pemain);
-              *Time += 1;
-          }
-          else
-            printf("Tidak bisa bergerak kekanan!");
-        }
-        else if(ruangan == 1)
-        {
-          if(P.x == 5)
-          {
-              gantiruangan(*pemain);
-              *Time += 1;
-          }
-          else
-            printf("Tidak bisa bergerak kekanan!");
-        }
-      }
-    else
-    {
-        if(IsNearTable(*pemain,ruangan))
-        {
-            printf("Pemain tidak boleh menginjak meja ataupun kursi!")
-            *Time += 1;
-        }
-        else
-        {
-            *pemain.y += 1;
-            *Time += 1;
-        }
+    P.X = (*pemain).posisi.X;
+    P.Y = (*pemain).posisi.Y+1;
+
+    if (P = ruangan.P1) {
+        gantiruangan(*pemain)
     }
-}void ORDER(Player pemain,List *menu,Kata order,int ruangan)//pemain bisa ambil brp banyak order?
+    for (int i=1;i<=4;i++){
+        if (ruangan.TTable[i].kursi == 2) {
+            for (int j=2;j<=3;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+        else if (ruangan.TTable[i].kursi == 4) {
+            for (int j=1;j<=4;j++) {
+                if ((P = ruangan.TTable[i].posisi) || (P = ruangan.TTable[i].Tchair[j])) {
+                    printf("Anda tidak dapat melangkahi Meja/Kursi");
+                } else {
+                    (*pemain).posisi = P;
+                }
+            }
+        }
+    } 
+}
+
+void ORDER(Player pemain,List *menu,KRuang ruangan)//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 {
@@ -219,7 +172,7 @@ pemain*/
   /*Algoritma*/
   push(Hand,bahan);
 }
-void CH(Stack *Hand)
+void CH(Stack *Hand, int *time)
 /*Command ini digunakan untuk membuang seluruh bahan makanan yang
 terdapat di tangan pemain*/
 {
@@ -237,7 +190,7 @@ dalam tray*/
   /*Algoritma*/
   CreateEmpty(Tray);
 }
-void PLACE(Player pemain,int *customermeja,Queue antrian,int ruangan)
+void PLACE(Player pemain, Ruang room, Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
@@ -251,8 +204,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         if(!)
       }
     }
-}
-void GIVE(Player pemain,Stack *foodstack,int *ncustemer,int *money,int *time,int ruangan)
+void GIVE(Player pemain,Stack *foodstack,int *ncustemer,int *money,Ruang ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 {
