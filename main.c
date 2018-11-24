@@ -23,19 +23,18 @@ int main(){
 		printf("4. Exit\n");
 		printf("Masukkan Pilihan Anda : ");
 		scanf("%d", &pilihan);
-		
+		init_all();
 		switch (pilihan){
 			case 1 :
 			printf("Masukkan nama anda(Max 6 huruf) : ");
-			Pemain.nama = InputKata();
+			Pemain.nama = StringToKata("Tes");
 			printf("\n\n");
-			init_all();
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n\n");
 			break;
 			
 			case 2 :
-			if(&Pemain.nama != NULL) StartGame = true;
-			else printf("Nama belum di input! Silahkan kembali ke main menu dan pilih New Game atau Load Game.\n");
+			if(!(IsEqKata(Pemain.nama, StringToKata(" ")))) StartGame = true;
+			else printf("Nama belum di input! Silahkan kembali ke main menu dan pilih New Game atau Load Game.\n\n");
 			break;
 			//ngecek udh ada namanya atau belom, kalo belom suruh input lg
 
@@ -55,12 +54,14 @@ int main(){
 		printf("\nSelamat datang, Chef ");
 		OutputKata(Pemain.nama);
 		printf(".\n\n");
-		printf("Dikisahkan pada suatu hari, anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.");
-		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.");
+		printf("Dikisahkan pada suatu hari, anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.\n\n");
+		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n\n");
 		printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n\n");
 		
 
 		//MAIN WHILE LOOP
+		assignMatriks();
+		TampilanProgramUtama();
 		/*do{ 
 			TampilanProgramUtama();
 			if(IsEqKata(command, StringToKata("GU"))) GU();

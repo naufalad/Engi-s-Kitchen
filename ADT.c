@@ -43,7 +43,7 @@ void TampilanProgramUtama(){
     printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
     printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
-    printf("│2               │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 2,1)), MatriksToChar(ElmtMatriks(Tampilan,2,2)), MatriksToChar(ElmtMatriks(Tampilan,2,3)), MatriksToChar(ElmtMatriks(Tampilan,2,4)), MatriksToChar(ElmtMatriks(Tampilan,2,5)), MatriksToChar(ElmtMatriks(Tampilan,2,6)), MatriksToChar(ElmtMatriks(Tampilan,2,7)), MatriksToChar(ElmtMatriks(Tampilan,2,8)));
+    printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 2,1)), MatriksToChar(ElmtMatriks(Tampilan,2,2)), MatriksToChar(ElmtMatriks(Tampilan,2,3)), MatriksToChar(ElmtMatriks(Tampilan,2,4)), MatriksToChar(ElmtMatriks(Tampilan,2,5)), MatriksToChar(ElmtMatriks(Tampilan,2,6)), MatriksToChar(ElmtMatriks(Tampilan,2,7)), MatriksToChar(ElmtMatriks(Tampilan,2,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
     printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 3,1)), MatriksToChar(ElmtMatriks(Tampilan,3,2)), MatriksToChar(ElmtMatriks(Tampilan,3,3)), MatriksToChar(ElmtMatriks(Tampilan,3,4)), MatriksToChar(ElmtMatriks(Tampilan,3,5)), MatriksToChar(ElmtMatriks(Tampilan,3,6)), MatriksToChar(ElmtMatriks(Tampilan,3,7)), MatriksToChar(ElmtMatriks(Tampilan,3,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
@@ -546,33 +546,37 @@ void assignMatriks(){
         ElmtMatriks(Tampilan, i,j) = 10;
         i = Ruangan.P2.X; j = Ruangan.P2.Y;
         ElmtMatriks(Tampilan, i,j) = 10;
-        if(Ruangan.TTable[1].NCustomer == 0){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-        }else if(Ruangan.TTable[1].NCustomer == 2){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
-            ElmtMatriks(Tampilan, i,j) = 6;
-        } else if(Ruangan.TTable[1].NCustomer == 4){
-            i = Ruangan.TTable[1].TChair[1].X; j = Ruangan.TTable[1].TChair[1].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[2].X; j = Ruangan.TTable[1].TChair[2].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[3].X; j = Ruangan.TTable[1].TChair[3].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
-            i = Ruangan.TTable[1].TChair[4].X; j = Ruangan.TTable[1].TChair[4].Y;
-            ElmtMatriks(Tampilan, i,j) = 7;
+        for(int m=1;m<=4;m++){
+            i=Ruangan.TTable[m].posisi.X;j=Ruangan.TTable[m].posisi.Y;
+            ElmtMatriks(Tampilan, i,j)=m;
+            if(Ruangan.TTable[m].NCustomer == 0){
+                i = Ruangan.TTable[m].TChair[1].X; j = Ruangan.TTable[m].TChair[1].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+                i = Ruangan.TTable[m].TChair[2].X; j = Ruangan.TTable[m].TChair[2].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+                i = Ruangan.TTable[m].TChair[3].X; j = Ruangan.TTable[m].TChair[3].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+                i = Ruangan.TTable[m].TChair[4].X; j = Ruangan.TTable[m].TChair[4].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+            }else if(Ruangan.TTable[m].NCustomer == 2){
+                i = Ruangan.TTable[m].TChair[1].X; j = Ruangan.TTable[m].TChair[1].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+                i = Ruangan.TTable[m].TChair[2].X; j = Ruangan.TTable[m].TChair[2].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+                i = Ruangan.TTable[m].TChair[3].X; j = Ruangan.TTable[m].TChair[3].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+                i = Ruangan.TTable[m].TChair[4].X; j = Ruangan.TTable[m].TChair[4].Y;
+                ElmtMatriks(Tampilan, i,j) = 6;
+            } else if(Ruangan.TTable[m].NCustomer == 4){
+                i = Ruangan.TTable[m].TChair[1].X; j = Ruangan.TTable[m].TChair[1].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+                i = Ruangan.TTable[m].TChair[2].X; j = Ruangan.TTable[m].TChair[2].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+                i = Ruangan.TTable[m].TChair[3].X; j = Ruangan.TTable[m].TChair[3].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+                i = Ruangan.TTable[m].TChair[4].X; j = Ruangan.TTable[m].TChair[4].Y;
+                ElmtMatriks(Tampilan, i,j) = 7;
+            }
         }
     } else{
         i = Dapur.P1.X; j = Dapur.P1.Y;
@@ -626,10 +630,14 @@ void init_player(){
 }
 
 void init_all(){
-    init_dapur;
-    init_player;
-    init_ruangan1;
-    init_ruangan2;
-    init_ruangan3;
+    init_dapur();
+    init_player();
+    init_ruangan1();
+    init_ruangan2();
+    init_ruangan3();
     InitDenah;
+    CreateEmptyQueue(&Antrian, MaxEl);
+    CreateEmptyStack(&Makanan);
+    CreateEmptyStack(&Tangan);
+    CreateEmptyStack(&Dapur.T.bahan);
 }
