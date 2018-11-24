@@ -110,6 +110,10 @@ void SaveFile(){
         }
     }
     //save ruangan
+<<<<<<< HEAD
+    int j;
+=======
+>>>>>>> 29459d15efe2e5ab6329a90fd1c4a23fff968f59
     for (i = 1; i <= 3; ++i) {
         fprintf(save, "Customer Meja Ruangan %d : \n", i);
         for (j = 1; j <= 4; ++j)

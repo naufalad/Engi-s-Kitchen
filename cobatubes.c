@@ -194,20 +194,45 @@ dalam tray*/
   /*Algoritma*/
   CreateEmpty(Tray);
 }
-/*void PLACE(Player pemain, Ruang room, Queue antrian)
+
+int IsNearTable () {
+    if (Pemain.ruangan <= 3) {
+        int i,j;
+        for (i = 1; i <= 4; ++i) {
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (AdjPoint(Pemain.posisi,Ruangan[Pemain.ruangan].TTable[i].TChair[j])) return i;
+        }
+    }
+    return 0;
+}
+
+void PLACE(Player pemain, Ruang room, Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
-//{
-    /*kamus*/
+{
+    if (IsEmptyQueue(antrian)) {
+        printf("Tidak ada tamu yang menunggu\n");
+        return;
+    }
+    int meja = IsNearTable();
+    if (meja == 0) {
+        printf("Anda harus berada dekat meja makan\n");
+        return;
+    }
+    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(Info(antrian))) {
+        printf("Banyak kursi tidak memenuhi\n");
+        return;
+    }
+    if (Ruangan[Pemain.ruangan].TTable[i].NCustomer > 0) {
+        printf("Tempat sudah ditempati\n");
+        return;
+    }
+    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(Info(antrian));
+    Ruangan[Pemain.ruangan].TTable[i].isOrderTaken = false;
+    infotypeQueue X;
+    DelQueue(&antrian,&X);
+}
 
-    /*algoritma*/
-    /*if(IsNearTable(pemain,room))
-    {
-      if(customermeja == 0)
-      {
-        if(!)
-      }
-    }*/
 void GIVE(Player pemain,Stack *foodstack,int *money,Ruang ruangan)
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
