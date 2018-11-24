@@ -165,7 +165,7 @@ dengan Pemain*/
         PengenMakan.MejaID = TableNo;
         PengenMakan.Kesabaran = 40;
         PengenMakan.Menu = GetRandomMenuName(orderidx);
-        AddAsLastEl(Pesanan, PengenMakan);
+        AddAsLastEl(&Pesanan, PengenMakan);
     }
 }
 void PUT()
