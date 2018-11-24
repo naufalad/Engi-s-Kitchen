@@ -19,13 +19,12 @@
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType;  /* type indeks */
-typedef struct{
+typedef struct {
   Kata Menu;   /* type elemen tabel */
   int MejaID;
-}ElType;
+} PesananID;
 typedef struct { 
-	ElType TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
+	PesananID TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
 	int Neff; /* >=0, banyaknya elemen efektif */
 
 } TabPesanan;
@@ -61,18 +60,18 @@ int NbElmtArray (TabPesanan T);
 int MaxNbEl (TabPesanan T);
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 /* *** Selektor INDEKS *** */
-IdxType GetFirstIdx (TabPesanan T);
+int GetFirstIdx (TabPesanan T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T pertama */
-IdxType GetLastIdx (TabPesanan T);
+int GetLastIdx (TabPesanan T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T terakhir */
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValidArray (TabPesanan T, IdxType i);
+boolean IsIdxValidArray (TabPesanan T, int i);
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean IsIdxEffArray (TabPesanan T, IdxType i);
+boolean IsIdxEffArray (TabPesanan T, int i);
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
 
@@ -126,7 +125,7 @@ void TulisIsiTab (TabPesanan T);
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-boolean Search (TabPesanan T, ElType X);
+boolean SearchArray (TabPesanan T, PesananID X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Memakai Skema search DENGAN boolean */
@@ -151,11 +150,11 @@ boolean IsSimetris (TabPesanan T);
 
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
-void AddAsLastEl (TabPesanan * T, ElType X);
+void AddAsLastEl (TabPesanan * T, PesananID X);
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
-void AddEli (TabPesanan * T, ElType X, IdxType i);
+void AddEli (TabPesanan * T, PesananID X, int i);
 /* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas 
    terhadap elemen yang sudah ada */
 /* I.S. Tabel tidak kosong dan tidak penuh */
@@ -165,13 +164,13 @@ void AddEli (TabPesanan * T, ElType X, IdxType i);
 /*          Isi elemen ke-i dengan X */
 
 /* ********** MENGHAPUS ELEMEN ********** */
-void DelLastEl (TabPesanan * T, ElType * X);
+void DelLastEl (TabPesanan * T, PesananID * X);
 /* Proses : Menghapus elemen terakhir tabel */
 /* I.S. Tabel tidak kosong */
 /* F.S. X adalah nilai elemen terakhir T sebelum penghapusan, */
 /*      Banyaknya elemen tabel berkurang satu */
 /*      Tabel T mungkin menjadi kosong */
-void DelEli (TabPesanan * T, IdxType i, ElType * X);
+void DelEli (TabPesanan * T, int i, PesananID * X);
 /* Menghapus elemen ke-i tabel tanpa mengganggu kontiguitas */
 /* I.S. Tabel tidak kosong, i adalah indeks efektif yang valid */
 /* F.S. X adalah nilai elemen ke-i T sebelum penghapusan */

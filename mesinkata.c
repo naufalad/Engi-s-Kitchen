@@ -18,7 +18,7 @@ void IgnoreBlank()
     {
     /* KAMUS LOKAL */
     /* ALGORITMA */
-    while ((CC == BLANK || CC == '\n' || CC == ';' || CC == ',' || CC !='(' || CC != ')') && CC != MARK)
+    while ((CC == BLANK || CC == '\n' || CC == ';' || CC == ',' || CC =='(' || CC == ')') && CC != MARK)
         {
         ADV();
         }
@@ -40,6 +40,7 @@ void STARTKATA(char* filename)
         }
     else /* CC != MARK */
         {
+
         EndKata = false;
         SalinKata();
         }
@@ -77,12 +78,12 @@ void SalinKata()
     /* KAMUS LOKAL */
     int i;
     /* ALGORITMA */
-    i = 0;
+    i = 1;
     for (;;)
         {
         CKata.TabKata[i] = CC;
         ADV();
-        if (CC == MARK || CC == ':' || CC == ';' || CC == '\n' || CC == ',')
+        if (CC == MARK || CC == ':' || CC == ';' || CC == '\n' || CC == ',' || CC == ' ')
             {
             break;
             }

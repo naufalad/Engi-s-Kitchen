@@ -24,31 +24,31 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M){
 boolean IsIdxValid (int i, int j){
 	return((i>=BrsMin)&&(i<=BrsMax)&&(j>=KolMin)&&(j<=KolMax));
 }
-/* Mengirimkan true jika i, j adalah indeks yang valid untuk matriks apa pun */
+/* Mengirimkan true jika i, j adalah int yang valid untuk matriks apa pun */
 
 /* *** Selektor: Untuk sebuah matriks M yang terdefinisi: *** */
-indeks GetFirstIdxBrs (MATRIKS M){
+int GetFirstIdxBrs (MATRIKS M){
 	return(BrsMin);
 }
-/* Mengirimkan indeks baris terkecil M */
-indeks GetFirstIdxKol (MATRIKS M){
+/* Mengirimkan int baris terkecil M */
+int GetFirstIdxKol (MATRIKS M){
 	return(KolMin);
 }
-/* Mengirimkan indeks kolom terkecil M */
-indeks GetLastIdxBrs (MATRIKS M){
+/* Mengirimkan int kolom terkecil M */
+int GetLastIdxBrs (MATRIKS M){
 	return(NBrsEff(M));
 }
-/* Mengirimkan indeks baris terbesar M */
-indeks GetLastIdxKol (MATRIKS M){
+/* Mengirimkan int baris terbesar M */
+int GetLastIdxKol (MATRIKS M){
 	return(NKolEff(M));
 }
-/* Mengirimkan indeks kolom terbesar M */
-boolean IsIdxEff (MATRIKS M, indeks i, indeks j){
+/* Mengirimkan int kolom terbesar M */
+boolean IsIdxEff (MATRIKS M, int i, int j){
 	return((i>=GetFirstIdxBrs(M))&&(i<=GetLastIdxBrs(M))&&(j>=GetFirstIdxKol(M))&&(j<=GetLastIdxKol(M)));
 }
-/* Mengirimkan true jika i, j adalah indeks efektif bagi M */
-ElType GetElmtDiagonal (MATRIKS M, indeks i){
-	return(Elmt(M,i,i));
+/* Mengirimkan true jika i, j adalah int efektif bagi M */
+int GetElmtMatriksDiagonal (MATRIKS M, int i){
+	return(ElmtMatriks(M,i,i));
 }
 /* Mengirimkan elemen M(i,i) */
 
@@ -66,7 +66,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 	MakeMATRIKS(NB, NK, M); /* ga yakin di manggil M nya*/
 	for(i=1;i<=NBrsEff(*M);i++){
 		for(j=1;j<=NKolEff(*M);j++){
-			scanf("%d", &Elmt(*M,i,j));
+			scanf("%d", &ElmtMatriks(*M,i,j));
 		}
 	}
 }
@@ -88,15 +88,15 @@ void TulisMATRIKS (MATRIKS M){
 		for(j=1;j<=NKolEff(M);j++){
 			if(i!=NBrsEff(M)){
 				if(j!=NKolEff(M)){
-					printf("%d ", Elmt(M,i,j));
+					printf("%d ", ElmtMatriks(M,i,j));
 				} else {
-					printf("%d\n", Elmt(M,i,j));
+					printf("%d\n", ElmtMatriks(M,i,j));
 				}
 			} else {
 				if(j!=NKolEff(M)){
-					printf("%d ", Elmt(M,i,j));
+					printf("%d ", ElmtMatriks(M,i,j));
 				} else {
-					printf("%d", Elmt(M,i,j));
+					printf("%d", ElmtMatriks(M,i,j));
 				}
 			}
 		}
@@ -120,7 +120,7 @@ MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2){
 	M = M1;
 	for(i=1;i<=NBrsEff(M);i++){
 		for(j=1;j<=NKolEff(M);j++){
-			Elmt(M,i,j)= Elmt(M1,i,j)+Elmt(M2,i,j);
+			ElmtMatriks(M,i,j)= ElmtMatriks(M1,i,j)+ElmtMatriks(M2,i,j);
 		}
 	}
 	return M;
@@ -134,7 +134,7 @@ MATRIKS KurangMATRIKS (MATRIKS M1, MATRIKS M2){
 	M = M1;
 	for(i=1;i<=NBrsEff(M);i++){
 		for(j=1;j<=NKolEff(M);j++){
-			Elmt(M,i,j)= Elmt(M1,i,j)-Elmt(M2,i,j);
+			ElmtMatriks(M,i,j)= ElmtMatriks(M1,i,j)-ElmtMatriks(M2,i,j);
 		}
 	}
 	return M;
@@ -151,9 +151,9 @@ MATRIKS KaliMATRIKS (MATRIKS M1, MATRIKS M2){
 	for(i=1;i<=NBrsEff(M);i++){
 		for(j=1;j<=NKolEff(M);j++){
 			for(k=1;k<=NKolEff(M1);k++){
-				sum = sum + (Elmt(M1,i,k)*Elmt(M2,k,j));
+				sum = sum + (ElmtMatriks(M1,i,k)*ElmtMatriks(M2,k,j));
 			}
-			Elmt(M,i,j)= sum;
+			ElmtMatriks(M,i,j)= sum;
 			sum = 0;
 		}
 	}
@@ -161,25 +161,25 @@ MATRIKS KaliMATRIKS (MATRIKS M1, MATRIKS M2){
 }
 /* Prekondisi : Ukuran kolom efektif M1 = ukuran baris efektif M2 */
 /* Mengirim hasil perkalian matriks: salinan M1 * M2 */
-MATRIKS KaliKons (MATRIKS M, ElType X){
+MATRIKS KaliKons (MATRIKS M, int X){
 	int i, j;
 	MATRIKS M1;
 	
 	M1 = M;
 	for(i=1;i<=NBrsEff(M1);i++){
 		for(j=1;j<=NKolEff(M1);j++){
-			Elmt(M1,i,j)= Elmt(M,i,j)*X;
+			ElmtMatriks(M1,i,j)= ElmtMatriks(M,i,j)*X;
 		}
 	}
 	return M1;
 }
 /* Mengirim hasil perkalian setiap elemen M dengan X */
-void PKaliKons (MATRIKS * M, ElType K){
+void PKaliKons (MATRIKS * M, int K){
 	int i, j;
 	
 	for(i=1;i<=NBrsEff(*M);i++){
 		for(j=1;j<=NKolEff(*M);j++){
-			Elmt(*M,i,j)= Elmt(*M,i,j)*K;
+			ElmtMatriks(*M,i,j)= ElmtMatriks(*M,i,j)*K;
 		}
 	}
 }
@@ -192,7 +192,7 @@ boolean EQMatriks (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 	if((GetFirstIdxBrs(M1) == GetFirstIdxBrs(M2))&&(GetLastIdxKol(M1) == GetLastIdxKol(M2))&&(NBElmtMatriks(M1)==(NBElmtMatriks(M2)))){
 		for(i=GetFirstIdxBrs(M1);i<=NBrsEff(M1);i++){
 			for(j=GetFirstIdxKol(M1);j<=NKolEff(M1);j++){
-				if(Elmt(M1,i,j)!=Elmt(M2,i,j)) return false;
+				if(ElmtMatriks(M1,i,j)!=ElmtMatriks(M2,i,j)) return false;
 			}
 		}
 	} else return false;
@@ -200,7 +200,7 @@ boolean EQMatriks (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 }
 	
 /* Mengirimkan true jika M1 = M2, yaitu NbElmtMatriks(M1) = NbElmtMatriks(M2) dan */
-/* untuk setiap i,j yang merupakan indeks baris dan kolom M1(i,j) = M2(i,j) */
+/* untuk setiap i,j yang merupakan int baris dan kolom M1(i,j) = M2(i,j) */
 /* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
    dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
 boolean NEQMatriks (MATRIKS M1, MATRIKS M2){
@@ -233,7 +233,7 @@ boolean IsSimetri (MATRIKS M){
 	}
 	for(i=1;i<=NBrsEff(M);i++){
 		for(j=1;j<=NKolEff(M);j++){
-			if(Elmt(M,i,j)!= Elmt(M,j,i)) return false;
+			if(ElmtMatriks(M,i,j)!= ElmtMatriks(M,j,i)) return false;
 		}
 	}
 	return true;
@@ -248,11 +248,11 @@ boolean IsSatuan (MATRIKS M){
 		for(i=GetFirstIdxBrs(M);i<=NBrsEff(M);i++){
 			for(j=GetFirstIdxKol(M);j<=NKolEff(M);j++){
 				if(i==j){
-					if(GetElmtDiagonal(M,i)!=1){
+					if(GetElmtMatriksDiagonal(M,i)!=1){
 						return false;
 					}
 				} else {
-					if(Elmt(M,i,j)!=0){
+					if(ElmtMatriks(M,i,j)!=0){
 						return false;
 					}
 				}
@@ -269,7 +269,7 @@ boolean IsSparse (MATRIKS M){
 	count = 0;
 	for(i=1;i<=NBrsEff(M);i++){
 		for(j=1;j<=NKolEff(M);j++){
-			if(Elmt(M,i,j)!=0) count++;
+			if(ElmtMatriks(M,i,j)!=0) count++;
 		}
 	}
 	if(count*0.1/NBElmtMatriks(M) <= 0.05) return true;
@@ -286,9 +286,9 @@ float Determinan (MATRIKS M){
 	int i, tempbaris, tempkolom, k, l;
 	MATRIKS temp;
 	
-	if(NBrsEff(M)==1) det = Elmt(M,1,1);
+	if(NBrsEff(M)==1) det = ElmtMatriks(M,1,1);
 	else if(NBrsEff(M)==2){
-		det = (Elmt(M,1,1)*Elmt(M,2,2))-(Elmt(M,1,2)*Elmt(M,2,1));
+		det = (ElmtMatriks(M,1,1)*ElmtMatriks(M,2,2))-(ElmtMatriks(M,1,2)*ElmtMatriks(M,2,1));
 	} else {
 		det = 0;
 		MakeMATRIKS(NBrsEff(M)-1, NKolEff(M)-1, &temp);
@@ -299,7 +299,7 @@ float Determinan (MATRIKS M){
 			for(k=1;k<=NBrsEff(M);k++){
 				for(l=1;l<=NKolEff(M);l++){
 						if((k!=i)&&(l!=1)){
-							Elmt(temp, tempbaris, tempkolom)=Elmt(M,k,l);
+							ElmtMatriks(temp, tempbaris, tempkolom)=ElmtMatriks(M,k,l);
 							if(tempkolom!=NKolEff(temp)){
 								tempkolom++;
 							} else {
@@ -316,9 +316,9 @@ float Determinan (MATRIKS M){
 				}
 			}
 			if((i+1)%2==0) {
-				det=det+(Elmt(M,i,1)*Determinan(temp));
+				det=det+(ElmtMatriks(M,i,1)*Determinan(temp));
 			} else {
-				det=det+(-1*Determinan(temp)*Elmt(M,i,1));
+				det=det+(-1*Determinan(temp)*ElmtMatriks(M,i,1));
 				
 			}
 			//copy matriks beres
@@ -337,12 +337,12 @@ void PInverse1 (MATRIKS * M){
 /* F.S. M di-invers, yaitu setiap elemennya dinegasikan (dikalikan -1) */
 void Transpose (MATRIKS * M){
 	int i,j;
-	ElType temp;
+	int temp;
 	for(i=1;i<=NBrsEff(*M);i++){
 		for(j=i;j<=NKolEff(*M);j++){
-			temp = Elmt(*M,i,j);
-			Elmt(*M,i,j)= Elmt(*M,j,i);
-			Elmt(*M,j,i)=temp;
+			temp = ElmtMatriks(*M,i,j);
+			ElmtMatriks(*M,i,j)= ElmtMatriks(*M,j,i);
+			ElmtMatriks(*M,j,i)=temp;
 		}
 	}
 }
@@ -351,7 +351,7 @@ void Transpose (MATRIKS * M){
 void MakeEmptyMatriks(MATRIKS *M){
 	for(int i=1;i<=NBrsEff(*M);i++){
 		for(int j=i;j<=NKolEff(*M);j++){
-			Elmt(*M,i,j)= 0;
+			ElmtMatriks(*M,i,j)= 0;
 		}
 	}
 }

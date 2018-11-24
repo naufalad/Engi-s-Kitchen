@@ -19,8 +19,10 @@ void ExitMessage(boolean SaveGame){
 
 void TampilanProgramUtama(){
     Kata command;
-     printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
-    printf("│%s\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.nama, Pemain.money, Pemain.life, Pemain.time);
+    printf("\n┌────────────────┬───────────────┬───────────────┬────────────┐\n");
+    printf("|");
+    OutputKata(Pemain.nama);
+    printf("\t\t │ Money: %d\t │ Life: %d\t │Time: %d     │\n", Pemain.money, Pemain.life, Pemain.time);
     printf("├────────────────┼───┬───┬───┬───┼───┬───┬───┬───┼────────────┤\n");
     printf("│Waiting Cust    │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │Food Stack  │\n", MatriksToChar(ElmtMatriks(Tampilan, 1,1)), MatriksToChar(ElmtMatriks(Tampilan,1,2)), MatriksToChar(ElmtMatriks(Tampilan,1,3)), MatriksToChar(ElmtMatriks(Tampilan,1,4)), MatriksToChar(ElmtMatriks(Tampilan,1,5)), MatriksToChar(ElmtMatriks(Tampilan,1,6)), MatriksToChar(ElmtMatriks(Tampilan,1,7)), MatriksToChar(ElmtMatriks(Tampilan,1,8)));
     printf("│                ├───┼───┼───┼───┼───┼───┼───┼───│            │\n");
@@ -53,20 +55,21 @@ void SaveFile(){
     fprintf(save, "Life : %d\n", Pemain.life); //<life, int>
     fprintf(save, "Money : %d\n", Pemain.money); //<money, int >
     fprintf(save, "Time : %d\n", Pemain.time); //<time, int >
-    fprintf(save, "Posisi : <%d, %d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
+    fprintf(save, "Posisi : \n<%d, %d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
     //save antrian
     fprintf(save, "QUEUE : \n");
     int i = Head(Antrian);
     while(i!=Nil){
-        fprintf(save, "<%d %d %d>", Elmt(Antrian,i), Prio(Elmt(Antrian,i)), Kesabaran(Elmt(Antrian,i)));
+        fprintf(save, "<%d %d %d>", ElmtQueue(Antrian,i), Prio(ElmtQueue(Antrian,i)), Kesabaran(ElmtQueue(Antrian,i)));
         i++;
     }
     fprintf(save,"\n");
     //save food stack
     fprintf(save, "FOOD : \n");
-    infotypeStack X;
+    Kata X;
     while(!IsEmptyStack(Makanan)){
-        Pop(Makanan, X);
+        PopStack(&Makanan, &X);
+        fprintf(save, "<");
         for (int i = 1; i <= X.Length; ++i) {
 	    	fprintf(save, "%c", X.TabKata[i]);
         }
@@ -109,26 +112,143 @@ void SaveFile(){
     fclose(save);
 }//bakal ngesave ke file eksternal dgn format yg di tampilan
 void LoadFile(){
-    FILE *save;
     STARTKATA("savegame.txt");
-    
-    OutputKata(CKata);//Jam real time
-    fscanf(load, "%s", &Pemain.nama);//<nama, string>
-    fscanf(load, "%d", &Pemain.life);//<life, int>
-    fscanf(load, "%d", &Pemain.money);//<money, int >
-    fscanf(load, "%d", &Pemain.time);//<time, int >
-    fscanf(load, "%d", &Pemain.posisi.x, Pemain.posisi.y);//<posisi x,y, point(?)>
-    //mulai dr sini kayaknya bakal make loop
-    fscanf(load, "%d", queue antrian);//<queue antrian>
-    fscanf(load, "%d", food stack); //<food stack>
-    fscanf(load, "%d", array order);//<array order>
-    fscanf(load, "%d", stack hand);//<stack hand>
-    fscanf(load, "%d", ruangan 1);//<matriks ruangan 1>
-    fscanf(load, "%d", ruangan 2);//<matriks ruangan 2>
-    fscanf(load, "%d", ruangan 3);//<matriks ruangan 3>
-    fscanf(load, "%d", kitchen);//<matriks kitchen>
-    fclose(load);
+    int i=1;
+    int x,j;
+    do{
+        printf("%d. ", i);
+        i++;
+        do{
+            OutputKata(CKata);
+            ADVKATA();
+            printf("\n");
+        }while(CC!='#');   
+    }while(CC!='.');
+    printf("Masukkan pilihan ");
+    scanf("%d", &x);
 
+    STARTKATA("savegame.txt");
+    if(x>1){
+        for(j=1;j<=x-1;j++){
+            do{
+                ADVKATA();
+            }while(CC!='#');
+        }
+    }
+    ADVKATA();
+    Pemain.nama = CKata;
+    ADVInt();
+    Pemain.life = CInt;
+    ADVInt();
+    Pemain.money = CInt;
+    ADVInt();
+    Pemain.time = CInt;
+    ADVKATA();
+    ADV();
+    ADVInt();
+    Pemain.posisi.X = CInt;
+    ADV();
+    ADVInt();
+    Pemain.posisi.Y = CInt;
+    ADVKATA();
+    ADVKATA();
+    ADV();
+    int i = 1;
+    infotypeQueue X;
+    while(CC=='<'){
+        ADVInt();
+        X.info = CInt;
+        ADV();
+        ADVInt();
+        X.prio = CInt;
+        ADV();
+        ADVInt();
+        X.kesabaran = CInt;
+        AddQueue(&Antrian, X);
+        ADVKATA();
+        ADV();
+    }
+    ADVKATA();
+    ADV();
+    Kata Y;
+    while(CC=='<'){
+        ADV();
+        ADVKATA();
+        Y = CKata;
+        PushStack(&Makanan, Y);
+        ADV();
+    }
+    ADVKATA();
+    ADV();
+    PesananID Z;
+    while(CC=='<'){
+        ADVInt();
+        Z.MejaID = CInt;
+        ADV();
+        ADVKATA();
+        Z.Menu = CKata;
+        ADV();
+    }
+    ADVKATA();
+    ADV();
+    while(CC=='<'){
+        ADV();
+        ADVKATA();
+        Y = CKata;
+        PushStack(&Tangan, Y);
+        ADV();
+    }
+    ADVKATA();
+    OutputKata(CKata);
+    printf("\n"); 
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADV();
+    ADV();
+    ADVKATA();
+    OutputKata(CKata);
+    printf("\n"); 
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADV();
+    ADVKATA();
+    printf("\n");
+    OutputKata(CKata);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADVInt();
+    printf("%d", CInt);
+    printf("\n");
+    ADV();
+    ADV();
     //nampilin daftar apa aja yg bisa diload, ntar playernya milih terus ngeload statnya dan diassign ke variabel
 }
 //bakal dipake sama main menu yg Load game
@@ -190,45 +310,45 @@ void init_ruangan1(){
     (Ruangan1).M1.posisi.Y = 2;
     (Ruangan1).M1.kursi = 4;
     (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y-1;
+    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X-1;
+    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y;
+    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X+1;
+    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y;
 
     (Ruangan1).M2.posisi.X = 2;
     (Ruangan1).M2.posisi.Y = 7;
     (Ruangan1).M2.kursi = 2;
     (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
+    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y-1;
+    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y+1;
 
     (Ruangan1).M3.posisi.X = 7;
     (Ruangan1).M3.posisi.Y = 2;
     (Ruangan1).M3.kursi = 4;
     (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y-1;
+    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X-1;
+    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y;
+    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X+1;
+    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y;
 
     (Ruangan1).M4.posisi.X = 7;
     (Ruangan1).M4.posisi.Y = 7;
     (Ruangan1).M4.kursi = 2;
     (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
+    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y-1;
+    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y+1;
 }
 void init_ruangan2(){
     (Ruangan2).P1.X = 2;
@@ -239,47 +359,45 @@ void init_ruangan2(){
     (Ruangan2).M1.posisi.Y = 2;
     (Ruangan1).M1.kursi = 4;
     (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y-1;
+    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X-1;
+    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y;
+    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X+1;
+    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y;
 
     (Ruangan2).M2.posisi.X = 2;
     (Ruangan2).M2.posisi.Y = 7;
     (Ruangan1).M2.kursi = 2;
     (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
+    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y-1;
+    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y+1;
 
     (Ruangan2).M3.posisi.X = 7;
     (Ruangan2).M3.posisi.Y = 2;
     (Ruangan1).M3.kursi = 4;
     (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y-1;
+    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X-1;
+    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y;
+    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X+1;
+    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y;
 
-
-    (Ruangan2).M3.NCustomer = 0;
     (Ruangan2).M4.posisi.X = 7;
     (Ruangan2).M4.posisi.Y = 7;
     (Ruangan2).M4.kursi = 2;
     (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
+    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y-1;
+    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y+1;
 }
 void init_ruangan3(){
     (Ruangan3).P1.X = 2;
@@ -290,47 +408,47 @@ void init_ruangan3(){
     (Ruangan3).M1.posisi.Y = 2;
     (Ruangan1).M1.kursi = 4;
     (Ruangan1).M1.NCustomer = 0;
-    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X-1;
-    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X+1;
-    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y;
-    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y-1;
-    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X;
-    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K1.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K1.Y = (Ruangan1).M1.posisi.Y-1;
+    (Ruangan1).M1.K2.X = (Ruangan1).M1.posisi.X;
+    (Ruangan1).M1.K2.Y = (Ruangan1).M1.posisi.Y+1;
+    (Ruangan1).M1.K3.X = (Ruangan1).M1.posisi.X-1;
+    (Ruangan1).M1.K3.Y = (Ruangan1).M1.posisi.Y;
+    (Ruangan1).M1.K4.X = (Ruangan1).M1.posisi.X+1;
+    (Ruangan1).M1.K4.Y = (Ruangan1).M1.posisi.Y;
 
     (Ruangan3).M2.posisi.X = 2;
     (Ruangan3).M2.posisi.Y = 7;
     (Ruangan1).M2.kursi = 2;
     (Ruangan1).M2.NCustomer = 0;
-    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X-1;
-    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y;
-    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X+1;
-    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y;
+    (Ruangan1).M2.K1.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K1.Y = (Ruangan1).M2.posisi.Y-1;
+    (Ruangan1).M2.K2.X = (Ruangan1).M2.posisi.X;
+    (Ruangan1).M2.K2.Y = (Ruangan1).M2.posisi.Y+1;
 
     (Ruangan3).M2.NCustomer = 0;
     (Ruangan3).M3.posisi.X = 7;
     (Ruangan3).M3.posisi.Y = 2;
     (Ruangan1).M3.kursi = 4;
     (Ruangan1).M3.NCustomer = 0;
-    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X-1;
-    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X+1;
-    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y;
-    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y-1;
-    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X;
-    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K1.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K1.Y = (Ruangan1).M3.posisi.Y-1;
+    (Ruangan1).M3.K2.X = (Ruangan1).M3.posisi.X;
+    (Ruangan1).M3.K2.Y = (Ruangan1).M3.posisi.Y+1;
+    (Ruangan1).M3.K3.X = (Ruangan1).M3.posisi.X-1;
+    (Ruangan1).M3.K3.Y = (Ruangan1).M3.posisi.Y;
+    (Ruangan1).M3.K4.X = (Ruangan1).M3.posisi.X+1;
+    (Ruangan1).M3.K4.Y = (Ruangan1).M3.posisi.Y;
 
     (Ruangan3).M3.NCustomer = 0;
     (Ruangan3).M4.posisi.X = 7;
     (Ruangan3).M4.posisi.Y = 7;
     (Ruangan2).M4.kursi = 2;
     (Ruangan1).M4.NCustomer = 0;
-    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X-1;
-    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y;
-    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X+1;
-    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y;
+    (Ruangan1).M4.K1.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K1.Y = (Ruangan1).M4.posisi.Y-1;
+    (Ruangan1).M4.K2.X = (Ruangan1).M4.posisi.X;
+    (Ruangan1).M4.K2.Y = (Ruangan1).M4.posisi.Y+1;
 }
 void init_dapur(){
     (Dapur).P1.X = 5;

@@ -9,9 +9,8 @@
 #define NodeMax 200
 
 typedef int indeks; /* indeks baris, kolom */
-typedef int ElTypeGraph; 
 typedef struct { 
-	ElTypeGraph Adj[NodeMax+1][NodeMax+1];
+	int Adj[NodeMax+1][NodeMax+1];
     int Node; /* banyaknya node yg terdefinisi */
 } Graph;
 /* NBrsEff <= 1 dan NKolEff <= 1 */

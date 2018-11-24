@@ -16,12 +16,11 @@ typedef struct { int prio;  /* [1..3], prioritas dengan nilai 1..3 (3 adalah pri
                  int info;  /* nilai elemen */
                  int kesabaran ;
                } infotypeQueue;
-typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infotypeQueue * T;   /* tabel penyimpan elemen */
-                 address HEAD;  /* alamat penghapusan */
-                 address TAIL;  /* alamat penambahan */
+typedef struct { infotypeQueue * TI;   /* tabel penyimpan elemen */
+                 int HEAD;  /* alamat penghapusan */
+                 int TAIL;  /* alamat penambahan */
                  int MaxElm;     /* Max elemen queue */
                } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
@@ -34,10 +33,10 @@ typedef struct { infotypeQueue * T;   /* tabel penyimpan elemen */
 #define Info(e)     (e).info
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
+#define InfoHead(Q) (Q).TI[(Q).HEAD]
+#define InfoTail(Q) (Q).TI[(Q).TAIL]
 #define MaxElm(Q)    (Q).MaxElm
-#define Elmt(Q,i)   (Q).T[(i)]
+#define ElmtQueue(Q,i)   (Q).TI[(i)]
 
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q);
