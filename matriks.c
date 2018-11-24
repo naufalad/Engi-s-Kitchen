@@ -47,8 +47,8 @@ boolean IsIdxEff (MATRIKS M, int i, int j){
 	return((i>=GetFirstIdxBrs(M))&&(i<=GetLastIdxBrs(M))&&(j>=GetFirstIdxKol(M))&&(j<=GetLastIdxKol(M)));
 }
 /* Mengirimkan true jika i, j adalah int efektif bagi M */
-int GetElmtMatriksMatriksDiagonal (MATRIKS M, int i){
-	return(ElmtMatriksMatriks(M,i,i));
+int GetElmtMatriksDiagonal (MATRIKS M, int i){
+	return(ElmtMatriks(M,i,i));
 }
 /* Mengirimkan elemen M(i,i) */
 
@@ -189,7 +189,7 @@ void PKaliKons (MATRIKS * M, int K){
 /* ********** KELOMPOK OPERASI RELASIONAL TERHADAP MATRIKS ********** */
 boolean EQMatriks (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 	int i, j;	
-	if((GetFirstIdxBrs(M1) == GetFirstIdxBrs(M2))&&(GetLastIdxKol(M1) == GetLastIdxKol(M2))&&(NBElmtMatriksMatriks(M1)==(NBElmtMatriksMatriks(M2)))){
+	if((GetFirstIdxBrs(M1) == GetFirstIdxBrs(M2))&&(GetLastIdxKol(M1) == GetLastIdxKol(M2))&&(NBElmtMatriks(M1)==(NBElmtMatriks(M2)))){
 		for(i=GetFirstIdxBrs(M1);i<=NBrsEff(M1);i++){
 			for(j=GetFirstIdxKol(M1);j<=NKolEff(M1);j++){
 				if(ElmtMatriks(M1,i,j)!=ElmtMatriks(M2,i,j)) return false;
@@ -199,7 +199,7 @@ boolean EQMatriks (MATRIKS M1, MATRIKS M2){ /* masih harus dibenerin */
 	return true;
 }
 	
-/* Mengirimkan true jika M1 = M2, yaitu NbElmtMatriksMatriks(M1) = NbElmtMatriksMatriks(M2) dan */
+/* Mengirimkan true jika M1 = M2, yaitu NbElmtMatriks(M1) = NbElmtMatriks(M2) dan */
 /* untuk setiap i,j yang merupakan int baris dan kolom M1(i,j) = M2(i,j) */
 /* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
    dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
@@ -215,7 +215,7 @@ boolean EQSize (MATRIKS M1, MATRIKS M2){
 /* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
 
 /* ********** Operasi lain ********** */
-int NBElmtMatriksMatriks(MATRIKS M){
+int NBElmtMatriks(MATRIKS M){
 	return(NBrsEff(M)*NKolEff(M));
 }
 /* Mengirimkan banyaknya elemen M */
@@ -272,7 +272,7 @@ boolean IsSparse (MATRIKS M){
 			if(ElmtMatriks(M,i,j)!=0) count++;
 		}
 	}
-	if(count*0.1/NBElmtMatriksMatriks(M) <= 0.05) return true;
+	if(count*0.1/NBElmtMatriks(M) <= 0.05) return true;
 	else return false;
 }
 /* Mengirimkan true jika M adalah matriks sparse: mariks �gjarang�h dengan definisi: 

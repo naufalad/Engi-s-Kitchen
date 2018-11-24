@@ -117,7 +117,7 @@ void AddQueue (Queue * Q, infotypeQueue X)
             {
             prev--;
             }
-        if (prio(Elmt(*Q,prev))<prio(Elmt(*Q,i)))
+        if (Prio(ElmtQueue(*Q,prev))<Prio(ElmtQueue(*Q,i)))
             {
             Temp=ElmtQueue(*Q,i);
             ElmtQueue(*Q,i)=ElmtQueue(*Q,prev);
