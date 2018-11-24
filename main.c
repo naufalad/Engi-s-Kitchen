@@ -73,17 +73,18 @@ int main(){
 			else if(IsEqKata(command, StringToKata("GD"))) GD();
 			else if(IsEqKata(command, StringToKata("GL"))) GL();
 			else if(IsEqKata(command, StringToKata("GR"))) GR();
-			//else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
-			else if(IsEqKata(command, StringToKata("PUT"))) PUT(&Tangan, &(Dapur).T.bahan);
+			else if(IsEqKata(command, StringToKata("ORDER"))) ORDER();
+			else if(IsEqKata(command, StringToKata("PUT"))) PUT();
 			else if(IsEqKata(command, StringToKata("TAKE"))) TAKE();
-			else if(IsEqKata(command, StringToKata("CH"))) CH(&Tangan);
-			else if(IsEqKata(command, StringToKata("CT"))) CT(&(Dapur).T.bahan);
-			else if(IsEqKata(command, StringToKata("PLACE"))) PLACE(Pemain, Ruangan[Pemain.ruangan], Antrian);
-			//else if(IsEqKata(command, StringToKata("GIVE"))) GIVE(Pemain, &Makanan, );
-			else if(IsEqKata(command, StringToKata("RECIPE"))) RECIPE(Resep);
+			else if(IsEqKata(command, StringToKata("CH"))) CH();
+			else if(IsEqKata(command, StringToKata("CT"))) CT();
+			else if(IsEqKata(command, StringToKata("PLACE"))) PLACE();
+			else if(IsEqKata(command, StringToKata("GIVE"))) GIVE();
+			else if(IsEqKata(command, StringToKata("RECIPE"))) RECIPE();
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
+			UpdateTimePatience();
 			//buat ngelakuin sesuai inputan
 		}while(!exit);
 		printf("Jam Sekarang : ");

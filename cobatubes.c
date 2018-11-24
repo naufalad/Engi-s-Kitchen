@@ -249,11 +249,11 @@ int IsNearTable () {
     return 0;
 }
 
-void PLACE(Player Pemain, Ruang room, Queue antrian)
+void PLACE()
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
 {
-    if (IsEmptyQueue(antrian)) {
+    if (IsEmptyQueue(Antrian)) {
         printf("Tidak ada tamu yang menunggu\n");
         return;
     }
@@ -262,7 +262,7 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Anda harus berada dekat meja makan\n");
         return;
     }
-    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(antrian).info) {
+    if (Ruangan[Pemain.ruangan].TTable[i].kursi < InfoHead(Antrian).info) {
         printf("Banyak kursi tidak memenuhi\n");
         return;
     }
@@ -270,13 +270,13 @@ Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
         printf("Tempat sudah ditempati\n");
         return;
     }
-    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(antrian).info;
+    Ruangan[Pemain.ruangan].TTable[i].NCustomer = InfoHead(Antrian).info;
     Ruangan[Pemain.ruangan].TTable[i].isOrderTaken = false;
     infotypeQueue X;
-    DelQueue(&antrian,&X);
+    DelQueue(&Antrian,&X);
 }
 
-void GIVE(Player pemain,Stack *foodstack,int *money,Ruang ruangan)
+void GIVE()
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 {
@@ -284,11 +284,11 @@ bertetanggaan*/
   Kata makanan;
   int M =  IsNearTable();
   /*Algoritma*/
-  if(!IsEmptyStack(*foodstack)&& Ruangan[pemain.ruangan].TTable[M].kursi!=0)
+  if(!IsEmptyStack(Makanan)&& Ruangan[Pemain.ruangan].TTable[M].kursi!=0)
   {
-    PopStack(foodstack,&makanan);
-    *money = *money + (500 * Ruangan[pemain.ruangan].TTable[M].NCustomer);
-    Ruangan[pemain.ruangan].TTable[M].NCustomer = 0;
+    PopStack(&Makanan,&makanan);
+    Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
+    Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
   }
 }
 void RECIPE()
@@ -448,28 +448,3 @@ void UpdateTimePatience() {
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
 }
-
-int GetRandomArrival(){ 
-    srand(RealTime.SS); 
-    return (rand() % 27)+15; 
-} 
- 
-int GetRandomNCust(){ 
-    srand(RealTime.SS); 
-    if ((rand() % 2) == 0) { 
-        return 2; 
-    } else { /* rand() mod 2 == 1 */ 
-        return 4; 
-    } 
-} 
- 
-int GetRandomPrio(){ 
-    srand(RealTime.SS); 
-    if ((rand() % 3) == 2) { 
-        return 1; 
-    } else if ((rand() % 3) == 1) { 
-        return 2; 
-    } else { /* mod 3 == 0 */ 
-        return 3; 
-    } 
-} 

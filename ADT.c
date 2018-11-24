@@ -54,10 +54,10 @@ void TampilanProgramUtama(){
     printf("│                │ %c │ %c │ %c │ %c │ %c │ %c │ %c │ %c │            │\n", MatriksToChar(ElmtMatriks(Tampilan, 8,1)), MatriksToChar(ElmtMatriks(Tampilan,8,2)), MatriksToChar(ElmtMatriks(Tampilan,8,3)), MatriksToChar(ElmtMatriks(Tampilan,8,4)), MatriksToChar(ElmtMatriks(Tampilan,8,5)), MatriksToChar(ElmtMatriks(Tampilan,8,6)), MatriksToChar(ElmtMatriks(Tampilan,8,7)), MatriksToChar(ElmtMatriks(Tampilan,8,8)));
     printf("└────────────────┴───┴───┴───┴───┴───┴───┴───┴───┴────────────┘\n");
     printf(" Command : ");
-    //PrintQueue(Antrian);
-    //TulisIsi(Pesanan);
-    //TulisStack(Makanan);
-    //TulisStack(Tangan);
+    PrintQueue(Antrian);
+    TulisIsi(Pesanan);
+    TulisStack(Makanan);
+    TulisStack(Tangan);
 }
 //ntar bakal nampilin program utamanya
 void SaveFile(){

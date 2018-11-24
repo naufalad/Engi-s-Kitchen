@@ -16,6 +16,7 @@
 	#include "prioqueue.h"
 	#include "bintree.h"
 	#include "graph.h"
+	#include <stdlib.h>
 
 	#define EdgeAtas 1
 	#define EdgeBawah 8

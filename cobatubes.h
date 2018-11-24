@@ -2,6 +2,8 @@
 #include "ADT.h"
 #include <stdio.h>
 
+#ifndef cobatubes_H
+#define cobatubes_H
 #define EdgeTop 1
 #define EdgeBottom 8
 #define EdgeLeft 1
@@ -19,7 +21,7 @@ ke kiri*/
 void GR();
 /*Command ini adalah singkatan dari �Go Right�, sehingga posisi player berpindah
 kekanan.*/
-//void ORDER(POINT pemain,int *Time, *order);//pemain bisa ambil brp banyak order?
+void ORDER();//pemain bisa ambil brp banyak order?
 /*Command ini digunakan untuk mengambil order dari meja yang bersebelahan
 dengan pemain*/
 void PUT();
@@ -33,10 +35,10 @@ terdapat di tangan pemain*/
 void CT();
 /*Command ini digunakan untuk membuang seluruh makanan yang berada di
 dalam tray*/
-void PLACE(Player pemain, Ruang room, Queue antrian);
+void PLACE();
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
-void GIVE(Player pemain,Stack *foodstack,int *money,Ruang ruangan);
+void GIVE();
 /*Memberikan makanan yang berada di paling atas tumpukan ke pengunjung yang
 bertetanggaan*/
 void RECIPE();
@@ -55,3 +57,5 @@ int IsNearTable ();
 void GantiRuangan ();
 void UpdateTimePatience();
 MejaDapur IsNearKitchenTable();
+
+#endif
