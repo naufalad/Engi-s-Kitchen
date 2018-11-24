@@ -60,7 +60,7 @@ ke bawah*/
     }
     printf("%d  ", Pemain.ruangan);
     TulisPOINT(Pemain.posisi);
-    UpdateTimePatience();  
+    UpdateTimePatience();
 }
 
 void GL()
@@ -129,14 +129,42 @@ dengan Pemain*/
 }
 void PUT()
 /*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
+/*Command ini digunakan untuk menaruh makanan di hand ke nampan*/
 {
   /*kamus*/
   Kata isi;
+  BinTree R
   /*Algoritma*/
-  while(!IsEmptyStack(Tangan))
+  if(Player.posisi.X - 1 == Tray.posisi.X || Player.posisi.Y + 1 == Tray.posisi.Y)
   {
-    PopStack(&Tangan,&isi);
-    PushStack(&(Dapur).T.bahan,isi);
+    R = Resep;
+    while(!IsEmptyStack(Tangan))
+    {
+      PopStack(&Tangan,&isi);
+      PushStack(&Tray.bahan,isi);
+    }
+    PopStack(&Tray.bahan,&isi);
+    while(!IsEmptyStack(Tray.bahan))
+    {
+      PopStack(&Tray.bahan,&isi);
+      if(IsEqKata(isi,Akar(Left(R))))
+      {
+        R = Left(R);
+      }
+      else if(IsEqKata(isi,Akar(Right(R))))
+      {
+        R = Right(R);
+      }
+      else
+      {
+        CH();
+      }
+    }
+    R = Left(R);
+    if(IsTreeOneElmt(R))
+    {
+      PushStack(&Makanan,Akar(R));
+    }
   }
 }
 /*void TAKE()
@@ -164,7 +192,7 @@ dalam tray*/
   /*kamus*/
 
   /*Algoritma*/
-  CreateEmptyStack(&(Dapur).T.bahan);
+  CreateEmptyStack(&Makanan);
 }
 
 int IsNearTable () {
@@ -256,14 +284,14 @@ void GantiRuangan () {
             pintu = 2;
         }
     }
-    
+
     if (Pemain.ruangan == 4) {
         if (EQ(Pemain.posisi,Dapur.P1)) {
             pintu = 1;
         } else if (EQ(Pemain.posisi,Dapur.P2)) {
             pintu = 2;
         }
-    } 
+    }
     if (pintu != 0) {
         Pemain.ruangan = SearchEdge2(Denah,Pemain.ruangan,pintu);
         if (Pemain.ruangan >= 1 && Pemain.ruangan <= 3) {
@@ -278,7 +306,7 @@ void GantiRuangan () {
             } else if (pintu == 2) {
                 Pemain.posisi = Dapur.P2;
             }
-        } 
+        }
     }
 }
 
