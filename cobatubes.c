@@ -151,6 +151,7 @@ dengan Pemain*/
     /*kamus*/
     int TableNo;
     int orderidx;
+    PesananID PengenMakan;
     /*algoritma*/
     TableNo = IsNearTable();
 
@@ -160,10 +161,11 @@ dengan Pemain*/
         printf("Ericko Lim aja lebih pinter dari maneh\n");
     } else {
         orderidx = GetRandomMenu();
-        Pesanan.TI[Neff(Pesanan)+1].Room = Pemain.ruangan;
-        Pesanan.TI[Neff(Pesanan)+1].MejaID = TableNo;
-        Pesanan.TI[Neff(Pesanan)+1].Kesabaran = 40;
-        Pesanan.TI[Neff(Pesanan)+1].Menu = GetRandomMenuName(orderidx);
+        PengenMakan.Room = Pemain.ruangan;
+        PengenMakan.MejaID = TableNo;
+        PengenMakan.Kesabaran = 40;
+        PengenMakan.Menu = GetRandomMenuName(orderidx);
+        AddAsLastEl(Pesanan, PengenMakan);
     }
 }
 void PUT()
