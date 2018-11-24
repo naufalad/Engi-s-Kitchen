@@ -18,47 +18,13 @@ void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi Player berpindah ke
 //atas
 {
-    /*kamus*/
-    POINT P;
-    /*algoritma*/
-    P.X = (Pemain).posisi.X-1;
-    P.Y = (Pemain).posisi.Y;
-    Ruang ruangan;
-    switch ((Pemain).ruangan){
-        case 1 :
-        ruangan = Ruangan[1];  
-        break;
-        case 2 :
-        ruangan = Ruangan[2];  
-        break;
-        case 3 :
-        ruangan = Ruangan[3];  
-        break;
-    }
-
-    if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(Pemain);
-    } else{
-        for (int i=1;i<=4;i++){
-            if (ruangan.TTable[i].kursi == 2) {
-                for (int j=2;j<=3;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
-                }
-            }
-            else if (ruangan.TTable[i].kursi == 4) {
-                for (int j=1;j<=4;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
-                }
-            }
-        } 
+    if (Pemain.posisi.x == 1) {
+        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)) {
+            GantiRuangan();
+            UpdateTime
+        }
+            GantiRuangan();
+        else 
     }
 }
 void GD(Player Pemain)
@@ -368,18 +334,5 @@ void GantiRuangan () {
                 Pemain.posisi = Dapur.P2;
             }
         } 
-    }
-}
-
-void UpdateTimePatience() {
-/* Mengupdate Kesabaran dan waktu */
-    Pemain.time++;
-    
-    for (i=1;i<=Pesanan.Neff;i++){
-        Pesanan.TI[i].Kesabaran--    
-    }
-
-    for (i=Head(Antrian);i<=Tail(Antrian);i++){
-        ElmtQueue(Antrian,i).kesabaran--;    
     }
 }
