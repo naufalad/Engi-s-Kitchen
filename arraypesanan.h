@@ -127,7 +127,7 @@ void TulisIsiTab (TabPesanan T);
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-boolean SearchArray (TabPesanan T, PesananID X);
+int SearchArray (TabPesanan T, PesananID X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Memakai Skema search DENGAN boolean */
@@ -181,6 +181,6 @@ void DelEli (TabPesanan * T, int i, PesananID * X);
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
 
-void SubKesabaranArray (TabPesanan* T, int* Life);
+
 
 #endif

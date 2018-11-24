@@ -130,7 +130,7 @@ void TulisIsi (TabPesanan T)
      for(i=GetFirstIdx(T);i<=GetLastIdx(T);i++){
        printf("[%d]",i);
        OutputKata(ElmtArray(T,i).Menu);
-       printf("-> %d",ElmtArray(T,IdxMin+i).MejaID);
+       printf("-> %d",ElmtArray(T,i).MejaID);
        printf("\n");
      }
   }
@@ -165,7 +165,7 @@ void TulisIsiTab (TabPesanan T)
 }
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-boolean SearchArray (TabPesanan T, PesananID X)
+int SearchArray (TabPesanan T, PesananID X)
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Memakai Skema search DENGAN boolean */
@@ -179,7 +179,8 @@ boolean SearchArray (TabPesanan T, PesananID X)
       i++;
     }
   }
-  return Found;
+  if(Found) return i;
+  else return 0;
 }
 
 /* ********** OPERASI LAIN ********** */
@@ -293,20 +294,3 @@ void DelEli (TabPesanan * T, int i, PesananID * X)
   }
 }
 
-void SubKesabaranArray (TabPesanan* T, int* Life) {
-  if (!IsEmptyArray(*T)) {
-    int i = 1, j = 1;
-    while (true) {
-      --ElmtArray(*T,i).Kesabaran;
-      if (ElmtArray(*T,i).Kesabaran == 0) {
-          --*Life;
-      } else {
-          ElmtArray(*T,j) = ElmtArray(*T,i);
-          j++;
-      }
-      if (i == Neff(*T)) break;
-      i++;
-    }
-    Neff(*T) = j-1;
-  }
-}

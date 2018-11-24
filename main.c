@@ -4,12 +4,14 @@
 #include "boolean.h"
 #include "ADT.h"
 #include "cobatubes.h"
+#include <unistd.h>
 
 int main(){
 	int pilihan;
 	boolean StartGame = false;
 	boolean exit = false;
-	
+	const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
+  	write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 	Resep = assignResep();
 	RealTime = CurrentTime();
 	printf("===============SELAMAT DATANG DI ENGI'S KITCHEN EXPANSION!===============\n\n");
@@ -57,8 +59,8 @@ int main(){
 		printf("\nSelamat datang, Chef ");
 		OutputKata(Pemain.nama);
 		printf(".\n\n");
-		printf("Dikisahkan pada suatu hari, anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.\n\n");
-		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n\n");
+		printf("Anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.\n\n");
+		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n\n");
 		printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n\n");
 		
 
@@ -66,6 +68,8 @@ int main(){
 		char c;
 		scanf("%c", &c);
 		do{ 
+			const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
+  			write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 			assignMatriks();
 			TampilanProgramUtama();
 			command= InputKata();
@@ -84,6 +88,7 @@ int main(){
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
+			else help();
 			//UpdateTimePatience();
 			//buat ngelakuin sesuai inputan
 		}while(!exit);

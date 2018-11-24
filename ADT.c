@@ -63,7 +63,12 @@ void TampilanProgramUtama(){
 void SaveFile(){
     int i,j;
     FILE *save;
-    save= fopen("savegame.txt", "w");
+    char *filename;
+    char c;
+    scanf("%c", &c);
+    printf("Mau disave kemana? ");
+    scanf("%m[^\n]%*c", &filename);
+    save = fopen(filename, "w");
     fprintf(save, "Waktu Save : ===%d:%d:%d===\n", RealTime.HH, RealTime.MM, RealTime.SS); //Jam real time
     for (i = 1; i <= Pemain.nama.Length; ++i) {
 		fprintf(save, "%c", Pemain.nama.TabKata[i]);
@@ -75,10 +80,8 @@ void SaveFile(){
     fprintf(save, "<%d,%d>\n", Pemain.posisi.X, Pemain.posisi.Y); //<posisi x,y, point(?)>
     //save antrian
     fprintf(save, "QUEUE : \n");
-    i = Head(Antrian);
-    while(i!=Nil){
+    for(i=Head(Antrian);i<=Tail(Antrian);i++){
         fprintf(save, "<%d,%d,%d>", Info(ElmtQueue(Antrian,i)), Prio(ElmtQueue(Antrian,i)), Kesabaran(ElmtQueue(Antrian,i)));
-        i++;
     }
     fprintf(save,"\n");
     //save food stack
@@ -119,7 +122,12 @@ void SaveFile(){
     fclose(save);
 }//bakal ngesave ke file eksternal dgn format yg di tampilan
 void LoadFile(){
-    STARTKATA("savegame.txt");
+    char *filename;
+    printf("Mau load dari mana? ");
+    char c;
+    scanf("%c", &c);
+    scanf("%m[^\n]%*c", &filename);
+    STARTKATA(filename);
     int i=1;
     int x,j;
     
@@ -131,10 +139,10 @@ void LoadFile(){
             printf("\n");
             ADV();
         }while(CC!='#');
-    printf("Masukkan pilihan : ");
+    printf("Mau di load?[1 untuk Ya] ");
     scanf("%d", &x);
 
-    STARTKATA("savegame.txt");
+    STARTKATA(filename);
     if(x>1){
         for(j=1;j<=x-1;j++){
             do{
@@ -206,54 +214,35 @@ void LoadFile(){
         ADV();
     }
     ADVKATA();
-    OutputKata(CKata);
-    printf("\n"); 
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[1].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[2].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[3].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[4].NCustomer = CInt;
     ADV();
     ADV();
     ADVKATA();
-    OutputKata(CKata);
-    printf("\n"); 
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[2]).TTable[1].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[2]).TTable[2].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[2]).TTable[3].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[2]).TTable[4].NCustomer = CInt;
     ADV();
     ADVKATA();
-    printf("\n");
-    OutputKata(CKata);
-    printf("\n");
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[1].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[2].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[3].NCustomer = CInt;
     ADVInt();
-    printf("%d", CInt);
-    printf("\n");
+    (Ruangan[1]).TTable[4].NCustomer = CInt;
     ADV();
     ADV();
     //nampilin daftar apa aja yg bisa diload, ntar playernya milih terus ngeload statnya dan diassign ke variabel
@@ -615,7 +604,7 @@ void assignMatriks(){
 
 void init_player(){
     Pemain.money = 500;
-    Pemain.life = 100;
+    Pemain.life = 3;
     Pemain.time = 0;
     Pemain.posisi.X = 3;
     Pemain.posisi.Y = 5;

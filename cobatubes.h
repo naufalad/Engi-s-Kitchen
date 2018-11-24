@@ -57,5 +57,7 @@ int IsNearTable ();
 void GantiRuangan ();
 void UpdateTimePatience();
 Kata IsNearKitchenTable();
+void SubKesabaranArray (TabPesanan* T, int* Life);
+void help();
 
 #endif

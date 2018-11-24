@@ -166,6 +166,7 @@ dengan Pemain*/
         PengenMakan.Kesabaran = 40;
         PengenMakan.Menu = GetRandomMenuName(orderidx);
         AddAsLastEl(&Pesanan, PengenMakan);
+        Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken = true;
     }
 }
 void PUT()
@@ -282,13 +283,23 @@ bertetanggaan*/
 {
   /*kamus*/
   Kata makanan;
-  int M =  IsNearTable();
+  int M,i =  IsNearTable();
+  PesananID X;
   /*Algoritma*/
   if(!IsEmptyStack(Makanan)&& Ruangan[Pemain.ruangan].TTable[M].kursi!=0)
   {
     PopStack(&Makanan,&makanan);
-    Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
-    Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
+    X.Menu = makanan;
+    X.MejaID = M;
+    X.Room = Pemain.ruangan;
+    i = SearchArray(Pesanan,X) ;
+    if(i!=0){
+        Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
+        Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
+        DelEli(&Pesanan, i,&X);
+    } else{
+        printf("gaada yang pesan gituan cok\n");
+    }
   }
 }
 void RECIPE()
@@ -369,4 +380,59 @@ void UpdateTimePatience() {
     SubKesabaranArray(&Pesanan,&Pemain.life);
     SubKesabaranQueue(&Antrian,&Pemain.life);
     
+}
+void SubKesabaranArray (TabPesanan* T, int* Life) {
+  if (!IsEmptyArray(*T)) {
+    int i = 1, j = 1;
+    while (true) {
+      --ElmtArray(*T,i).Kesabaran;
+      if (ElmtArray(*T,i).Kesabaran == 0) {
+          --*Life;
+          printf("Pelanggan di meja %d, ruang %d lelah menanti, dia meninggalkan meja makannya dan pergi!", (*T).TI[i].MejaID, (*T).TI[i].Room);
+          Ruangan[Pemain.ruangan].TTable[(*T).TI[i].MejaID].NCustomer = 0;
+      } else {
+          ElmtArray(*T,j) = ElmtArray(*T,i);
+          j++;
+      }
+      if (i == Neff(*T)) break;
+      i++;
+    }
+    Neff(*T) = j-1;
+  }
+}
+
+void help(){
+    printf("List Command :\n");
+    printf("GU \t-> Bergerak ke atas\n");
+    printf("GD \t-> Bergerak ke bawah\n");
+    printf("GL \t-> Bergerak ke kiri\n");
+    printf("GR \t-> Bergerak ke kanan\n");
+    printf("ORDER \t-> Mengambil orderan\n");
+    printf("PUT \t-> Menaruh ke tray dan membuat makanan(hanya di dekat tray)\n");
+    printf("TAKE \t-> Ambil bahan(hanya bisa di dekat meja bahan)\n");
+    printf("CH \t-> Membuang semua bahan makanan dalam hand\n");
+    printf("CT \t-> Membuang semua makanan yang dibawa\n");
+    printf("PLACE \t-> Menaruh pelanggan yang kelaparan\n");
+    printf("GIVE \t-> Memberi makanan kepada pelanggan(hanya di dekat pelanggan)\n");
+    printf("RECIPE \t-> Menampilkan daftar resep\n");
+    printf("SAVE \t-> Menyimpan data permainan\n");
+    printf("LOAD \t-> Mengambil data permainan\n");
+    printf("EXIT \t-> Keluar dari permainan\n\n");
+    printf("Letak Bahan :\n");
+    printf("Piring \t-> 7,4\n");
+    printf("Sendok \t-> 7,3\n");
+    printf("Garpu \t-> 7,5\n");
+    printf("Es krim \t-> 3,3\n");
+    printf("Nasi \t-> 4,3\n");
+    printf("Roti \t-> 3,6\n");
+    printf("Spaghetti \t-> 4,6\n");
+    printf("Pisang \t-> 3,2\n");
+    printf("Stroberi \t-> 3,1\n");
+    printf("Telur \t-> 4,2\n");
+    printf("Ayam goreng \t-> 4,1\n");
+    printf("Patty \t-> 3,7\n");
+    printf("Sosis \t-> 3,8\n");
+    printf("Bolognese \t-> 4,7\n");
+    printf("Carbonara \t-> 7,8\n");
+    printf("Keju \t-> 4,8\n");
 }
