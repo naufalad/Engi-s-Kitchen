@@ -255,6 +255,18 @@ dalam tray*/
   /*Algoritma*/
   CreateEmptyStack(&(Dapur).T.bahan);
 }
+
+int IsNearTable () {
+    if (Pemain.ruangan <= 3) {
+        int i,j;
+        for (i = 1; i <= 4; ++i) {
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (AdjPOINT(Pemain.posisi, Ruangan[Pemain.ruangan].TTable[i].TChair[j])) return i;
+        }
+    }
+    return 0;
+}
+
 void PLACE(Player Pemain, Ruang room, Queue antrian)
 /*Command ini digunakan untuk menaruh pelanggan di meja dan kosong.
 Pelanggan yang ditaruh adalah pelanggan pada top of queue*/
@@ -320,98 +332,6 @@ void EXIT(boolean *exit)
 {
     /*kamus*/
     *exit = true;
-}
-
-MejaMakan IsNearTable(Ruang R)
-/* Command ini digunakan untuk menentukan apakah Pemain berada di sebelah meja yang benar */
-{
-    //Kamus
-    POINT P;
-    boolean f=false;
-    int i,j;
-    //Algoritma
-    P.X = Pemain.posisi.X;
-    P.Y = Pemain.posisi.Y;
-    P.X = P.X+1;
-    while(i<=4 && !f)
-    {
-      while(j<=4 && !f)
-      {
-        if(EQ(P,R.TTable[i].TChair[j]))
-        {
-          f = true;
-        }
-        else
-          j++;
-      }
-      i++;
-    }
-    if(!f)
-    {
-      P.X -= 2;
-      i = 1;
-      j = 1;
-      while(i<=4 && !f)
-      {
-        while(j<=4 && !f)
-        {
-          if(EQ(P,R.TTable[i].TChair[j]))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-    if(!f)
-    {
-      P.X += 1;
-      P.Y += 1;
-      i = 1;
-      j = 1;
-
-      while(i<=4 && !f)
-      {
-        while(j<=4 && !f)
-        {
-          if(EQ(P,R.TTable[i].TChair[j]))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-    if(!f)
-    {
-      P.Y -= 2;
-      i = 1;
-      i = 1;
-
-      while(i<=4 && !f)
-      {
-        while(j<=4 && !f)
-        {
-          if(EQ(P,R.TTable[i].TChair[j]))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-  if(f)
-  {
-    return R.TTable[i];
-  }
-  R.TTable[0].kursi = 0;
-  return R.TTable[0];
 }
 
 
