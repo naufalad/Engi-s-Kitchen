@@ -52,3 +52,8 @@ void TulisStack(Stack S){
 		printf("\n");
 	}
 }
+
+Kata NthElmtStack (Stack* S, int X) {
+	if (X > Top(*S)) return StringToKata(" ");
+	else return (*S).T[Top(*S)-X+1];
+}

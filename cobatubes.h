@@ -49,6 +49,7 @@ dilanjutkan kemudian. Metode interaksi bebas*/
 void LOAD();
 /*Command ini digunakan untuk melanjutkan permainan sesuai dengan state yang
 ada pada text file. Metode interaksi bebas*/
+void CHEAT(Kata command);
 void EXIT(boolean *exit);
 /*Command ini digunakan untuk keluar dari program.*/
 

@@ -57,4 +57,7 @@ void PopStack (Stack * S, Kata* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 void TulisStack(Stack S);
+
+Kata NthElmtStack (Stack* S, int X);
+
 #endif

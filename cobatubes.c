@@ -20,8 +20,12 @@ void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah
 //atas
 {
     if (Pemain.posisi.X == 1) {
-        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1))||EQ(Pemain.posisi, Dapur.P1)||EQ(Pemain.posisi, Dapur.P2))
+        if (Pemain.ruangan < 4 && (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)))){
             GantiRuangan();
+        }else if ((Pemain.ruangan==4 && ((EQ(Pemain.posisi, Dapur.P1))||EQ(Pemain.posisi, Dapur.P2)))){
+            printf("%d", Pemain.ruangan);
+            GantiRuangan();
+        }
         else {
             printf("Tidak dapat menembus dinding!\n");
         }
@@ -43,8 +47,6 @@ void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah
                 }
         }
     }
-    printf("%d  ", Pemain.ruangan);
-    TulisPOINT(Pemain.posisi);
     UpdateTimePatience();
 }
 void GD()
@@ -52,7 +54,9 @@ void GD()
 ke bawah*/
 {
     if (Pemain.posisi.X == 8) {
-        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)||EQ(Pemain.posisi, Dapur.P1)||EQ(Pemain.posisi, Dapur.P2))
+        if (Pemain.ruangan<4&&(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)))
+            GantiRuangan();
+        else if ((Pemain.ruangan==4&&(EQ(Pemain.posisi, Dapur.P1))||EQ(Pemain.posisi, Dapur.P2)))
             GantiRuangan();
         else {
             printf("Tidak dapat menembus!\n");
@@ -75,8 +79,6 @@ ke bawah*/
                 }
         }
     }
-    printf("%d  ", Pemain.ruangan);
-    TulisPOINT(Pemain.posisi);
     UpdateTimePatience();
 }
 
@@ -85,7 +87,9 @@ void GL()
 ke kiri*/
 {
     if (Pemain.posisi.Y == 1) {
-        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||EQ(Pemain.posisi, Dapur.P1)||EQ(Pemain.posisi, Dapur.P2))
+        if (Pemain.ruangan<4&&(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)))
+            GantiRuangan();
+        else if ((Pemain.ruangan==4&&(EQ(Pemain.posisi, Dapur.P1))||EQ(Pemain.posisi, Dapur.P2)))
             GantiRuangan();
         else {
             printf("Tidak dapat menembus dinding!\n");
@@ -108,8 +112,6 @@ ke kiri*/
                 }
         }
     }
-    printf("%d  ", Pemain.ruangan);
-    TulisPOINT(Pemain.posisi);
     UpdateTimePatience();
 }
 void GR()
@@ -117,7 +119,9 @@ void GR()
 kekanan.*/
 {
     if (Pemain.posisi.Y == 8) {
-        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)||EQ(Pemain.posisi, Dapur.P1)||EQ(Pemain.posisi, Dapur.P2))
+        if (Pemain.ruangan<4&&(EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1)||EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)))
+            GantiRuangan();
+        else if ((Pemain.ruangan==4&&(EQ(Pemain.posisi, Dapur.P1))||EQ(Pemain.posisi, Dapur.P2)))
             GantiRuangan();
         else {
             printf("Tidak dapat menembus dinding!\n");
@@ -140,8 +144,6 @@ kekanan.*/
                 }
         }
     }
-    printf("%d  ", Pemain.ruangan);
-    TulisPOINT(Pemain.posisi);
     UpdateTimePatience();
 }
 
@@ -159,14 +161,14 @@ dengan Pemain*/
 
     if ((Ruangan[Pemain.ruangan].TTable[TableNo].NCustomer == 0) || (TableNo == 0) || (Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken)) {
         /* Kalau di meja gaada orang, atau ga deket meja, atau mejanya udah diambil orderannya */
-        printf("Ngambil order siapa goblok\n");
-        printf("Ericko Lim aja lebih pinter dari maneh\n");
+        printf("Tidak ada orderan yang bisa diambil!\n");
     } else {
         orderidx = GetRandomMenu();
         PengenMakan.Room = Pemain.ruangan;
         PengenMakan.MejaID = TableNo;
         PengenMakan.Kesabaran = 40;
         PengenMakan.Menu = GetRandomMenuName(orderidx);
+
         AddAsLastEl(&Pesanan, PengenMakan);
         Ruangan[Pemain.ruangan].TTable[TableNo].isOrderTaken = true;
     }
@@ -285,24 +287,31 @@ bertetanggaan*/
 {
   /*kamus*/
   Kata makanan;
-  int M,i =  IsNearTable();
+  int M =  IsNearTable();
+  int i;
   PesananID X;
   /*Algoritma*/
-  if(!IsEmptyStack(Makanan)&& Ruangan[Pemain.ruangan].TTable[M].kursi!=0)
-  {
-    PopStack(&Makanan,&makanan);
-    X.Menu = makanan;
-    X.MejaID = M;
-    X.Room = Pemain.ruangan;
-    i = SearchArray(Pesanan,X) ;
-    if(i!=0){
-        Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
-        Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
-        DelEli(&Pesanan, i,&X);
-    } else{
-        printf("gaada yang pesan gituan cok\n");
-    }
-  }
+  if(M!=0){
+    if(!IsEmptyStack(Makanan)&& Ruangan[Pemain.ruangan].TTable[M].kursi!=0)
+    {
+        printf("tes1");
+        PopStack(&Makanan,&makanan);
+        X.Menu = makanan;
+        X.MejaID = M;
+        X.Room = Pemain.ruangan;
+        i = SearchArray(Pesanan,X) ;
+        if(i!=0){
+            Pemain.money = Pemain.money + (500 * Ruangan[Pemain.ruangan].TTable[M].NCustomer);
+            Ruangan[Pemain.ruangan].TTable[M].NCustomer = 0;
+            DelEli(&Pesanan, i,&X);
+        } else{
+            printf("Tidak ada yang memesan makanan itu!\n");
+        }
+    } else if(Ruangan[Pemain.ruangan].TTable[M].kursi==0)
+        printf("Tidak ada pelanggan.");
+        else if(IsEmptyStack(Makanan))
+        printf("Makanan kosong.");
+  } else printf("Sedang tidak berada dekat dengan meja apapun...");
 }
 void RECIPE()
 /*Command ini digunakan untuk menampilkan pohon makanan.*/
@@ -406,6 +415,7 @@ void SubKesabaranArray (TabPesanan* T, int* Life) {
   }
 }
 
+
 void help(){
     printf("List Command :\n");
     printf("GU \t-> Bergerak ke atas\n");
@@ -440,4 +450,11 @@ void help(){
     printf("Bolognese \t-> 4,7\n");
     printf("Carbonara \t-> 7,8\n");
     printf("Keju \t-> 4,8\n");
+}
+void CHEAT(Kata command){
+    if(IsEqKata(command, StringToKata("hesoyam"))){
+        Pemain.life+=3;
+    } else{
+        help();
+    }
 }

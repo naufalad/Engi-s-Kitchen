@@ -14,6 +14,7 @@ int main(){
   	write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 	Resep = assignResep();
 	RealTime = CurrentTime();
+	init_all();
 	printf("===============SELAMAT DATANG DI ENGI'S KITCHEN EXPANSION!===============\n\n");
 
 
@@ -25,7 +26,6 @@ int main(){
 		printf("4. Exit\n");
 		printf("Masukkan Pilihan Anda : ");
 		scanf("%d", &pilihan);
-		init_all();
 		switch (pilihan){
 			case 1 :
 			printf("Masukkan nama anda(Max 6 huruf) : ");
@@ -86,7 +86,7 @@ int main(){
 			else if(IsEqKata(command, StringToKata("SAVE"))) SAVE();
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT(&exit);
-			else help();
+			else CHEAT(command);
 			if(Pemain.life==0){
       		  printf("\nSayang sekali, kamu kehilangan kepercayaan dari para customer, dan akhirnya kamu memutuskan untuk gulung tikar... Skor kamu : %d\n\n", Pemain.money);
 			  exit=true;
