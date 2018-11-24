@@ -105,4 +105,5 @@
 	void init_matriks();
 	void init_player();
 	void init_all();
+	void assignMatriks();
 #endif
