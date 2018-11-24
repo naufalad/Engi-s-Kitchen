@@ -31,10 +31,10 @@
 		POINT posisi; //mejanya ada di titik berapa
 		int kursi; //ada berapa customer yang bisa ditempatkan disitu
 		int NCustomer;
-		POINT K1;
-		POINT K2;
-		POINT K3;
-		POINT K4;
+		POINT K1; //Top
+		POINT K2; //Left, digunakan jika Kursi = 2
+		POINT K3; //Right, digunakan jika Kursi = 2
+		POINT K4; //Bottom
 	} MejaMakan;
 
 	typedef struct{

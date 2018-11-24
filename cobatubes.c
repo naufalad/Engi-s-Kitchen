@@ -2,7 +2,7 @@
 #include "ADT.h"
 #include "stackt.h"
 #include "bintree.c"
-void Gu(POINT *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
+void Gu(P *pemain,int *Time,int ruangan)//pemain adalah lokasi dari pemain saat itu,Time adalah waktu yag telah lewat
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi player berpindah ke
 //atas
 {
