@@ -10,6 +10,8 @@
 /* State Mesin */
 extern char CC;
 extern boolean EOP;
+extern int CInt;
+
 
 void START(char* filename);
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
@@ -26,4 +28,5 @@ void ADV();
           CC mungkin = MARK
           Jika  CC = MARK maka EOP akan menyala (true) */
 
+void ADVInt();
 #endif

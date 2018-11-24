@@ -120,5 +120,5 @@
 	void InitDenah();
 	void init_matriks();
 	void init_player();
-
+	void init_all();
 #endif

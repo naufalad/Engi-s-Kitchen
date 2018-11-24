@@ -6,6 +6,7 @@
 
 char CC;
 boolean EOP;
+int CInt;
 
 static FILE * pita;
 static int retval;
@@ -51,4 +52,9 @@ void ADV() {
 	if (EOP) {
        fclose(pita);
  	}
+}
+
+void ADVInt(){
+    
+    fscanf(pita,"%d", &CInt);
 }

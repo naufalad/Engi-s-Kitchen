@@ -27,9 +27,10 @@ int main(){
 		switch (pilihan){
 			case 1 :
 			printf("Masukkan nama anda(Max 6 huruf) : ");
-			Pemain.nama=InputKata();
+			Pemain.nama = InputKata();
+			printf("\n\n");
 			init_all();
-			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n");
+			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n\n");
 			break;
 			
 			case 2 :
@@ -43,7 +44,7 @@ int main(){
 			printf("Untuk mulai permainan, silahkan pilih Start Game pada Main Menu.\n");
 			//read file eksternal
 			case 4 :
-			ExitGame(false);
+			ExitMessage(false);
 			exit = true;
 			break;
 		}
@@ -51,16 +52,16 @@ int main(){
 				
 	}while((StartGame == false)&&(exit==false));
 	if(StartGame){
-		printf("\nSelamat datang, Chef");
+		printf("\nSelamat datang, Chef ");
 		OutputKata(Pemain.nama);
 		printf(".\n\n");
-		printf("Dikisahkan pada suatu hari, anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.\n");
-		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.\n");
-		printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n");
+		printf("Dikisahkan pada suatu hari, anda sebagai seorang Chef membuka suatu restoran bernama Engi's Kitchen. Hanya dalam satu tahun, restoran tersebut berkembang pesat dan sudah bisa dibilang sukses dan berjaya.");
+		printf("Sekarang anda berencana mengembangkan bisnis ini lebih lanjut. Namun sebelum itu, anda mencoba mensimulasikannya terlebih dahulu dengan program ini.");
+		printf("Anggaplah simulasi ini seperti anda menjalankan restoran yang sebenarnya, Selamat bermain!\n\n");
 		
 
 		//MAIN WHILE LOOP
-		do{ 
+		/*do{ 
 			TampilanProgramUtama();
 			if(IsEqKata(command, StringToKata("GU"))) GU();
 			else if(IsEqKata(command, StringToKata("GU"))) GU();
@@ -79,13 +80,13 @@ int main(){
 			else if(IsEqKata(command, StringToKata("LOAD"))) LOAD();
 			else if(IsEqKata(command, StringToKata("EXIT"))) EXIT();
 			//buat ngelakuin sesuai inputan
-		}while(!exit);
+		}while(!exit);*/
 		printf("Jam Sekarang : ");
 		TulisJAM(RealTime);
 		printf("Mau disave?[1 untuk Ya]");
 		scanf("%d", &pilihan);
-		/*if (pilihan==1) ExitMessage(true);
-		else ExitMessage(false);*/
+		if (pilihan==1) ExitMessage(true);
+		else ExitMessage(false);
 		}
 	
 	return 0;
