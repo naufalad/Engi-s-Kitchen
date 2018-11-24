@@ -18,156 +18,98 @@ void GU()//Pemain adalah lokasi dari Pemain saat itu,Time adalah waktu yag telah
 //Command ini adalah singkatan dari ‘Go Up’, sehingga posisi Player berpindah ke
 //atas
 {
-    if (Pemain.posisi.x == 1) {
-        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2)) {
+    if (Pemain.posisi.X == 1) {
+        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2))
             GantiRuangan();
-            UpdateTime
+        else {
+            printf("Tidak dapat menembus dinding goblog\n");
         }
-            GantiRuangan();
-        else 
+    } else {
+        Pemain.posisi.X--;
+        int i,j;
+        for (i = 1; i <= 4; ++i)
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].TTable[i].TChair[j])) {
+                    Pemain.posisi.X++;
+                    printf("Tidak dapat menembus meja kursi super gblg\n");
+                }
     }
+    printf("%d  ", Pemain.ruangan);
+    TulisPOINT(Pemain.posisi);
+    UpdateTimePatience();
 }
-void GD(Player Pemain)
+void GD()
 /*Command ini adalah singkatan dari ‘Go Down’, sehingga posisi Player berpindah
 ke bawah*/
 {
-    /*kamus*/
-    POINT P;
-    /*algoritma*/
-    P.X = (Pemain).posisi.X+1;
-    P.Y = (Pemain).posisi.Y;
-    Ruang ruangan;
-    switch ((Pemain).ruangan){
-        case 1 :
-        ruangan = Ruangan[1];  
-        break;
-        case 2 :
-        ruangan = Ruangan[2];  
-        break;
-        case 3 :
-        ruangan = Ruangan[3];  
-        break;
-    }
-
-    if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(Pemain);
-    } else{
-        for (int i=1;i<=4;i++){
-            if (ruangan.TTable[i].kursi == 2) {
-                for (int j=2;j<=3;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
+    if (Pemain.posisi.X == 8) {
+        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P2))
+            GantiRuangan();
+        else {
+            printf("Tidak dapat menembus dinding goblog\n");
+        }
+    } else {
+        Pemain.posisi.X++;
+        int i,j;
+        for (i = 1; i <= 4; ++i)
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].TTable[i].TChair[j])) {
+                    Pemain.posisi.X--;
+                    printf("Tidak dapat menembus meja kursi super gblg\n");
                 }
-            }
-            else if (ruangan.TTable[i].kursi == 4) {
-                for (int j=1;j<=4;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
-                }
-            }
-        } 
     }
+    printf("%d  ", Pemain.ruangan);
+    TulisPOINT(Pemain.posisi);
+    UpdateTimePatience();  
 }
 
 void GL()
 /*Command ini adalah singkatan dari ‘Go Left’, sehingga posisi Player berpindah
 ke kiri*/
 {
-    /*kamus*/
-    POINT P;
-    /*algoritma*/
-    P.X = (Pemain).posisi.X;
-    P.Y = (Pemain).posisi.Y-1;
-    Ruang ruangan;
-    switch ((Pemain).ruangan){
-        case 1 :
-        ruangan = Ruangan[1];  
-        break;
-        case 2 :
-        ruangan = Ruangan[2];  
-        break;
-        case 3 :
-        ruangan = Ruangan[3];  
-        break;
-    }
-
-    if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(Pemain);
-    } else{
-        for (int i=1;i<=4;i++){
-            if (ruangan.TTable[i].kursi == 2) {
-                for (int j=2;j<=3;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
+    if (Pemain.posisi.Y == 1) {
+        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1))
+            GantiRuangan();
+        else {
+            printf("Tidak dapat menembus dinding goblog\n");
+        }
+    } else {
+        Pemain.posisi.Y--;
+        int i,j;
+        for (i = 1; i <= 4; ++i)
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].TTable[i].TChair[j])) {
+                    Pemain.posisi.Y++;
+                    printf("Tidak dapat menembus meja kursi super gblg\n");
                 }
-            }
-            else if (ruangan.TTable[i].kursi == 4) {
-                for (int j=1;j<=4;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
-                }
-            }
-        } 
     }
+    printf("%d  ", Pemain.ruangan);
+    TulisPOINT(Pemain.posisi);
+    UpdateTimePatience();
 }
 void GR()
 /*Command ini adalah singkatan dari ‘Go Right’, sehingga posisi Player berpindah
 kekanan.*/
 {
-    /*kamus*/
-    POINT P;
-    /*algoritma*/
-    P.X = (Pemain).posisi.X;
-    P.Y = (Pemain).posisi.Y+1;
-    Ruang ruangan;
-    switch ((Pemain).ruangan){
-        case 1 :
-        ruangan = Ruangan[1];  
-        break;
-        case 2 :
-        ruangan = Ruangan[2];  
-        break;
-        case 3 :
-        ruangan = Ruangan[3];  
-        break;
-    }
-
-    if (EQ(P,ruangan.P1)||EQ(P,ruangan.P2)) {
-        GantiRuangan(Pemain);
-    } else{
-        for (int i=1;i<=4;i++){
-            if (ruangan.TTable[i].kursi == 2) {
-                for (int j=2;j<=3;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
+    if (Pemain.posisi.Y == 8) {
+        if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].P1))
+            GantiRuangan();
+        else {
+            printf("Tidak dapat menembus dinding goblog\n");
+        }
+    } else {
+        Pemain.posisi.Y++;
+        int i,j;
+        for (i = 1; i <= 4; ++i)
+            for (j = 1; j <= Ruangan[Pemain.ruangan].TTable[i].kursi; ++j)
+                if (EQ(Pemain.posisi, Ruangan[Pemain.ruangan].TTable[i].TChair[j])) {
+                    Pemain.posisi.Y--;
+                    printf("Tidak dapat menembus meja kursi super gblg\n");
                 }
-            }
-            else if (ruangan.TTable[i].kursi == 4) {
-                for (int j=1;j<=4;j++) {
-                    if (EQ(P,ruangan.TTable[i].posisi) || EQ(P,ruangan.TTable[i].TChair[j])) {
-                        printf("Anda tidak dapat melangkahi Meja/Kursi");
-                    } else {
-                        (Pemain).posisi = P;
-                    }
-                }
-            }
-        } 
     }
+    printf("%d  ", Pemain.ruangan);
+    TulisPOINT(Pemain.posisi);
+    UpdateTimePatience();
 }
 
 /*void ORDER(Player Pemain,List *menu,Ruang ruangan)//Pemain bisa ambil brp banyak order?
@@ -335,4 +277,11 @@ void GantiRuangan () {
             }
         } 
     }
+}
+
+void UpdateTimePatience() {
+/* Mengupdate Kesabaran dan waktu */
+    Pemain.time++;
+    SubKesabaranArray(&Pesanan,&Pemain.life);
+    SubKesabaranQueue(&Antrian,&Pemain.life);
 }
