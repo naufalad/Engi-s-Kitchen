@@ -213,11 +213,9 @@ Pemain*/
   /*kamus*/
 
   /*Algoritma*/
-   MejaDapur M = IsNearKitchenTable();
-   Kata bahan;
-   if(!compareKata(M.bahan, "")) bahan = M.bahan;
-   else printf("Anda sedang tidak dekat dengan meja apapun!");
-   PushStack(&Tangan,bahan);
+   Kata M = IsNearKitchenTable();
+   if(!compareKata(M, " ")) PushStack(&Tangan,M);
+   else printf("Anda mencoba mengambil bahan : udara. Anda gagal\n");
 }
 void CH()
 /*Command ini digunakan untuk membuang seluruh bahan makanan yang
@@ -352,94 +350,15 @@ void GantiRuangan () {
     }
 }
 
-MejaDapur IsNearKitchenTable(){
-    
-    POINT P;
-    boolean f=false;
-    int i,j;
-    //Algoritma
-    P.X = Pemain.posisi.X;
-    P.Y = Pemain.posisi.Y;
-    P.X = P.X+1;
-    while(i<=16 && !f)
-    {
-      while(j<=16 && !f)
-      {
-        if(EQ(P,Dapur.M[i].posisi))
-        {
-          f = true;
+Kata IsNearKitchenTable(){
+    if (Pemain.ruangan == 4) {
+        int i,j;
+        for (i = 1; i <= 16; ++i) {
+            if (AdjPOINT(Pemain.posisi, Dapur.M[i].posisi))
+                return Dapur.M[i].bahan;
         }
-        else
-          j++;
-      }
-      i++;
     }
-    if(!f)
-    {
-      P.X -= 2;
-      i = 1;
-      j = 1;
-      while(i<=16 && !f)
-      {
-        while(j<=16 && !f)
-        {
-          if(EQ(P,Dapur.M[i].posisi))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-    if(!f)
-    {
-      P.X += 1;
-      P.Y += 1;
-      i = 1;
-      j = 1;
-
-      while(i<=16 && !f)
-      {
-        while(j<=16 && !f)
-        {
-          if(EQ(P,Dapur.M[i].posisi))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-    if(!f)
-    {
-      P.Y -= 2;
-      i = 1;
-      i = 1;
-
-      while(i<=16 && !f)
-      {
-        while(j<=16 && !f)
-        {
-          if(EQ(P,Dapur.M[i].posisi))
-          {
-            f = true;
-          }
-          else
-            j++;
-        }
-        i++;
-      }
-    }
-  if(f)
-  {
-    return Dapur.M[i];
-  }
-  Dapur.M[0].bahan = StringToKata(" ");
-  return Dapur.M[0];
+    return StringToKata(" ");
 }    
 /* Command ini digunakan untuk menentukan apakah Pemain berada di sebelah meja yang benar */
 void UpdateTimePatience() {

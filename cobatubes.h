@@ -56,6 +56,6 @@ void EXIT(boolean *exit);
 int IsNearTable ();
 void GantiRuangan ();
 void UpdateTimePatience();
-MejaDapur IsNearKitchenTable();
+Kata IsNearKitchenTable();
 
 #endif
