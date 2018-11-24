@@ -75,6 +75,8 @@ void DelQueue (Queue * Q, infotypeQueue * X);
 
 void SubKesabaranQueue (Queue* Q, int* Life) ;
 
+infotypeQueue NthElmt (Queue* Q, int X);
+
 /* Operasi Tambahan */
 void PrintQueue (Queue Q);
 /* Mencetak isi queue Q ke layar */

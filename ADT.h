@@ -55,7 +55,7 @@
 		MejaDapur M[17];
 	} RuangDapur;
 
-
+	extern int IntervalCustomer;
 	extern Player Pemain;
 	extern JAM RealTime;
 	extern TabPesanan Pesanan;
@@ -95,4 +95,5 @@
 	int GetRandomNCust();
 	int GetRandomArrival();
 	Kata GetRandomMenuName(int MenuIdx);
+	void RandomizerQueue(int* Interval);
 #endif

@@ -184,3 +184,22 @@ void printID(Kata kata1){
         }
     return valid;
     }*/	
+
+Kata NumToKata (int x) {
+    Kata K;
+    if (x <= 0) K.Length = 0;
+    else {
+        int a = 1;
+        while (a < x) a *= 10;
+        int i = 1;
+        Kata K;
+        while (x) {
+            K.TabKata[i] = (x/a)+'0';
+            x -= a*(x/a);
+            a /= 10;
+            ++i;
+        }
+        K.Length = i-1;
+    }
+    return K;
+}

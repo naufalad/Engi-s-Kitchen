@@ -58,3 +58,8 @@ void ADVInt(){
     
     fscanf(pita,"%d", &CInt);
 }
+
+char NumToChar (int x) {
+    if (x == 0) return ' ';
+    else return x + '0';
+}
